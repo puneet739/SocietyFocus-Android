@@ -34,8 +34,11 @@ public class AssetsListFragment extends AbsBaseListFragment {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                if (parent.getChildAdapterPosition(view) != parent.getAdapter().getItemCount() - 1) {
+                if (parent.getChildAdapterPosition(view) < parent.getAdapter().getItemCount() - 2) {
                     outRect.bottom = 50;
+                }
+                if (parent.getChildAdapterPosition(view) % 2  == 0){
+                    outRect.right = 50;
                 }
             }
         };
@@ -43,12 +46,14 @@ public class AssetsListFragment extends AbsBaseListFragment {
 
     @Override
     public RecyclerView.LayoutManager getLayoutManager() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        return layoutManager;
 
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
 
-        return layoutManager;
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        return gridLayoutManager;
+
     }
 
     @Override

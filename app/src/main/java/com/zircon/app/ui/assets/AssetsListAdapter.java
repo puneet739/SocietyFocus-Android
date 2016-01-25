@@ -23,7 +23,7 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_asset,null,false);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         return new ViewHolder(view);
     }
