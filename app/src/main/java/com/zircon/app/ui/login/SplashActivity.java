@@ -1,4 +1,4 @@
-package com.zircon.app.ui;
+package com.zircon.app.ui.login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -9,11 +9,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.widget.Space;
 
 import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
+import com.zircon.app.ui.common.AbsLoginActivity;
 import com.zircon.app.utils.AppManager;
 import com.zircon.app.utils.SessionManager;
 

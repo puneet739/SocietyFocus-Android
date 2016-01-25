@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@android:color/transparent"
-    tools:context="com.zircon.app.ui.SplashActivity">
+    tools:context="com.zircon.app.ui.login.SplashActivity">
 
     <!-- Login progress -->
     <ProgressBar

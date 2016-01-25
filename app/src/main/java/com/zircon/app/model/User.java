@@ -10,7 +10,7 @@ public class User {
     public String userid;
     public String firstname;
 //    public String password;
-//    public String email;
+    public String email;
     public ArrayList<UserRole> userRoles;
 
     public static class UserRole {

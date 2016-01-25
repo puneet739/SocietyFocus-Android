@@ -1,4 +1,4 @@
-package com.zircon.app.ui;
+package com.zircon.app.ui.login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -11,16 +11,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.List;
-
 import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
+import com.zircon.app.ui.common.AbsLoginActivity;
 
 /**
  * A login screen that offers login via email/password.
