@@ -1,5 +1,7 @@
 package com.zircon.app.model.response;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by jikoobaruah on 25/01/16.
  */
@@ -13,5 +15,6 @@ public class Asset {
     public String category;
     public String status;
     public String duration;
+    @SerializedName("img_url")
     public String img;
 }

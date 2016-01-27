@@ -18,7 +18,9 @@ import android.widget.RelativeLayout;
 import com.zircon.app.R;
 import com.zircon.app.ui.assets.AssetsActivity;
 import com.zircon.app.ui.home.MainActivity;
+import com.zircon.app.ui.login.LoginActivity;
 import com.zircon.app.ui.residents.MembersActivity;
+import com.zircon.app.utils.SessionManager;
 
 public abstract class AbsBaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -99,30 +101,40 @@ public abstract class AbsBaseActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent = null;
+        boolean isFinishCurrActivity = false;
 
         if (id == R.id.nav_home) {
-            Intent intent = new Intent(AbsBaseActivity.this, MainActivity.class);
+            intent = new Intent(AbsBaseActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
         } else if (id == R.id.nav_rwa_members) {
 
         } else if (id == R.id.nav_assets) {
-            Intent intent = new Intent(AbsBaseActivity.this, AssetsActivity.class);
+            intent = new Intent(AbsBaseActivity.this, AssetsActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
 
         } else if (id == R.id.nav_residents) {
-           Intent intent = new Intent(AbsBaseActivity.this, MembersActivity.class);
-           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-           startActivity(intent);
+            intent = new Intent(AbsBaseActivity.this, MembersActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
+        }else if (id == R.id.nav_logout){
+            SessionManager.logoutUser();
+            intent = new Intent(AbsBaseActivity.this, LoginActivity.class);
+            isFinishCurrActivity = true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+        if (intent != null){
+            startActivity(intent);
+            if (isFinishCurrActivity)
+                finish();
+        }
+
         return true;
     }
 

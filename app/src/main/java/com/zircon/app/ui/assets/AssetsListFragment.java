@@ -37,7 +37,7 @@ public class AssetsListFragment extends AbsBaseListFragment {
                 if (parent.getChildAdapterPosition(view) < parent.getAdapter().getItemCount() - 2) {
                     outRect.bottom = 50;
                 }
-                if (parent.getChildAdapterPosition(view) % 2  == 0){
+                if (parent.getChildAdapterPosition(view) % 2 == 0) {
                     outRect.right = 50;
                 }
             }
@@ -51,7 +51,7 @@ public class AssetsListFragment extends AbsBaseListFragment {
 //        return layoutManager;
 
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         return gridLayoutManager;
 
     }
@@ -64,18 +64,17 @@ public class AssetsListFragment extends AbsBaseListFragment {
     @Override
     public void fetchList() {
 
-        Call<AssetsResponse> call= HTTP.getAPI().getAllSocietyAssets(SessionManager.getToken());
+        Call<AssetsResponse> call = HTTP.getAPI().getAllSocietyAssets(SessionManager.getToken());
         call.enqueue(new Callback<AssetsResponse>() {
             @Override
             public void onResponse(Response<AssetsResponse> response) {
                 if (response.isSuccess() && response.body() != null && response.body().body != null)
-                    for (int i = 0; i < 20; i++) {
-                        ((AssetsListAdapter)mListAdapter).addAll(response.body().body);
-                    }
+                    ((AssetsListAdapter) mListAdapter).addAll(response.body().body);
             }
 
             @Override
             public void onFailure(Throwable t) {
+
                 t.getLocalizedMessage();
             }
         });

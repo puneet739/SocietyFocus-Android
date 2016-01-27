@@ -29,6 +29,16 @@ public class SessionManager {
         editor.commit();
     }
 
+    public static void logoutUser(){
+        SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(PREF_IS_LOGGED_IN);
+        editor.remove(PREF_LOG_IN_USER);
+        editor.remove(PREF_LOG_IN_CREDENTIALS);
+        editor.remove(PREF_LOG_IN_TOKEN);
+        editor.commit();
+    }
+
     public static User getLoggedInUser(){
         User user = null;
         SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);

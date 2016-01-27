@@ -52,14 +52,12 @@ public class MembersFragment extends AbsBaseListFragment {
 
     @Override
     public void fetchList() {
-        Call<MembersResponse> call= HTTP.getAPI().getAllUsers(SessionManager.getToken());
+        Call<MembersResponse> call = HTTP.getAPI().getAllUsers(SessionManager.getToken());
         call.enqueue(new Callback<MembersResponse>() {
             @Override
             public void onResponse(Response<MembersResponse> response) {
                 if (response.isSuccess() && response.body() != null && response.body().body != null)
-                    for (int i = 0; i < 20; i++) {
-                        ((MembersListAdapter)mListAdapter).addAll(response.body().body);
-                    }
+                    ((MembersListAdapter) mListAdapter).addAll(response.body().body);
             }
 
             @Override
