@@ -3,6 +3,7 @@ package com.zircon.app.ui.common;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 
 import com.zircon.app.model.LoginCredentials;
@@ -45,7 +46,8 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
             //TODO handle no inernet scenario;
             return;
         }
-        mLoginCall = HTTP.getAPI().login(loginCredentials.societyId, loginCredentials.userName, loginCredentials.password);
+        mLoginCall = HTTP.getAPI().login(loginCredentials.societyId, loginCredentials.userName, loginCredentials.password, Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.ANDROID_ID));
         mLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Response<LoginResponse> response) {
