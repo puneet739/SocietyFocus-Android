@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.model.response.LoginResponse;
-import com.zircon.app.ui.home.MainActivity;
+import com.zircon.app.ui.home.MainNavActivity;
 import com.zircon.app.utils.API;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
@@ -55,7 +55,7 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
                 mLoginCall=null;
                 if (response.isSuccess()) {
                     SessionManager.setLoggedInUser(response.body().body.userDetails.user, loginCredentials, response.body().body.token);
-                    Intent intent = new Intent(AbsLoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(AbsLoginActivity.this, MainNavActivity.class);
                     startActivity(intent);
                     finish();
                 }else{

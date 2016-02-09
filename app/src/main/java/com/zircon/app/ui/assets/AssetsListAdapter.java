@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zircon.app.R;
-import com.zircon.app.model.User;
-import com.zircon.app.model.response.Asset;
+import com.zircon.app.model.Asset;
 
 import java.util.ArrayList;
 
@@ -82,7 +81,7 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
         }
 
         public void setAsset(Asset asset) {
-            ImageLoader.getInstance().displayImage(asset.img,profileImageView);
+            ImageLoader.getInstance().displayImage(asset.img, profileImageView);
             nameTextView.setText(asset.description);
             emailTextView.setText(asset.email);
             phoneTextView.setText(asset.contactno);

@@ -1,4 +1,4 @@
-package com.zircon.app.model.response;
+package com.zircon.app.model;
 
 import com.google.gson.annotations.SerializedName;
 

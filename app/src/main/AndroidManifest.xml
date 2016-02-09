@@ -6,6 +6,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name=".ZirconApp"
         android:allowBackup="true"
@@ -13,37 +18,57 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".ui.login.SplashActivity"
-            android:theme="@style/SplashTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <!--<activity-->
+            <!--android:name=".ui.test.TestNavActivity"-->
+            <!--android:theme="@style/AppTheme.NoActionBar" >-->
+          <!-->-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
+         <activity
+         android:name=".ui.login.SplashActivity"
+         android:theme="@style/SplashTheme" >
+         <intent-filter>
+         <action android:name="android.intent.action.MAIN" />
+
+
+         <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+         </activity>
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
-
         <activity
-            android:name=".ui.home.MainActivity"
+            android:name=".ui.profile.ProfileActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Dialog" >
+        </activity>
+        <activity
+            android:name=".ui.home.MainNavActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ui.residents.MembersNavActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ui.assets.AssetsNavActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ui.panel.MembersNavActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
-        <activity
-            android:name=".ui.residents.MembersActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-
-        <activity
-            android:name=".ui.assets.AssetsActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
     </application>
 
 </manifest>

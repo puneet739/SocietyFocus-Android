@@ -1,5 +1,7 @@
 package com.zircon.app.model.response;
 
+import com.zircon.app.model.Asset;
+
 import java.util.ArrayList;
 
 /**

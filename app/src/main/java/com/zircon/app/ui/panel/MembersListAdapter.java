@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zircon.app.R;
+import com.zircon.app.model.Panel;
 import com.zircon.app.model.User;
 
 import java.util.ArrayList;
@@ -17,28 +18,28 @@ import java.util.ArrayList;
  */
 public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.ViewHolder> {
 
-    private ArrayList<User> membersList = new ArrayList<User>();
+    private ArrayList<Panel> membersList = new ArrayList<Panel>();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_panel,null,false);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.setUser(membersList.get(position));
+        holder.setPanel(membersList.get(position));
 
     }
 
-    public void addAll(ArrayList<User> users){
-        membersList.addAll(users);
+    public void addAll(ArrayList<Panel> panels){
+        membersList.addAll(panels);
         notifyDataSetChanged();
     }
 
-    public void add(User user){
-        membersList.add(user);
+    public void add(Panel panel){
+        membersList.add(panel);
         notifyDataSetChanged();
     }
 
@@ -54,6 +55,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         TextView addressTextView;
         TextView emailTextView;
         TextView phoneTextView;
+        TextView designationTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -63,6 +65,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
             addressTextView = (TextView) itemView.findViewById(R.id.address);
             emailTextView = (TextView) itemView.findViewById(R.id.email);
             phoneTextView = (TextView) itemView.findViewById(R.id.phone);
+            designationTextView = (TextView) itemView.findViewById(R.id.designation);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -79,11 +82,12 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
             });
         }
 
-        public void setUser(User user) {
-            nameTextView.setText(user.firstname);
-            addressTextView.setText(user.email);
-            emailTextView.setText(user.email);
-            phoneTextView.setText(user.userid);
+        public void setPanel(Panel panel) {
+            designationTextView.setText(panel.designation);
+            nameTextView.setText(panel.user.firstname);
+            addressTextView.setText(panel.user.email);
+            emailTextView.setText(panel.user.email);
+            phoneTextView.setText(panel.user.userid);
         }
     }
 
