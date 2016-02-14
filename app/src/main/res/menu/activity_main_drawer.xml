@@ -13,6 +13,16 @@
 
     </group>
 
+    <item android:title="Complaints">
+        <menu>
+            <item android:id="@+id/nav_complaint_new" android:icon="@android:drawable/ic_input_add"
+                android:title="Share" />
+            <item android:id="@+id/nav_complaint_track" android:icon="@android:drawable/ic_input_get"
+                android:title="Send" />
+
+        </menu>
+    </item>
+
     <item android:title="Tools">
         <menu>
             <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"

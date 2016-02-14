@@ -15,9 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zircon.app.R;
 import com.zircon.app.ui.assets.AssetsNavActivity;
+import com.zircon.app.ui.complaint.ComplaintActivity;
 import com.zircon.app.ui.home.MainNavActivity;
 import com.zircon.app.ui.login.LoginActivity;
 import com.zircon.app.ui.profile.ProfileActivity;
@@ -31,9 +34,12 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
     protected AbsFragment mFragment;
 
     private ImageView mChangeProfileBtn;
+    private TextView mNameTextView;
+    private ImageView mProfileImageView;
+    private TextView mEmailTextView;
 
     @Override
-    protected final void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResID());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -57,6 +63,20 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        mNameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.name);
+        mEmailTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
+        mProfileImageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.profile_pic);
+
+        String name = SessionManager.getLoggedInUser().firstname + " " +(SessionManager.getLoggedInUser().lastname != null ? SessionManager.getLoggedInUser().lastname:"");
+        String email = SessionManager.getLoggedInUser().email;
+        String profileImage = SessionManager.getLoggedInUser().profilePic;
+
+        ImageLoader.getInstance().displayImage(profileImage, mProfileImageView);
+
+
+        mNameTextView.setText(name);
+        mEmailTextView.setText(email);
 
         mChangeProfileBtn = (ImageView)navigationView.getHeaderView(0).findViewById(R.id.edit_profile);
         mChangeProfileBtn.setClickable(true);
@@ -102,7 +122,7 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
             intent = new Intent(AbsBaseNavActivity.this, MainNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         } else if (id == R.id.nav_rwa_members) {
-            intent = new Intent(AbsBaseNavActivity.this, MembersNavActivity.class);
+            intent = new Intent(AbsBaseNavActivity.this, com.zircon.app.ui.panel.MembersNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         } else if (id == R.id.nav_assets) {
             intent = new Intent(AbsBaseNavActivity.this, AssetsNavActivity.class);
@@ -119,6 +139,10 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
             SessionManager.logoutUser();
             intent = new Intent(AbsBaseNavActivity.this, LoginActivity.class);
             isFinishCurrActivity = true;
+        }else if (id == R.id.nav_complaint_new) {
+            intent = new Intent(AbsBaseNavActivity.this, ComplaintActivity.class);
+        } else if (id == R.id.nav_complaint_track) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

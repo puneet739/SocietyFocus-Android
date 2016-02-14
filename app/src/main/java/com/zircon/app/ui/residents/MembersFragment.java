@@ -32,7 +32,7 @@ public class MembersFragment extends AbsBaseListFragment {
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
                 if (parent.getChildAdapterPosition(view) != parent.getAdapter().getItemCount() - 1) {
-                    outRect.bottom = 50;
+                    outRect.bottom = 15;
                 }
             }
         };

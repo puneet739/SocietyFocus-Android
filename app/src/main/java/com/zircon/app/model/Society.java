@@ -5,9 +5,14 @@ package com.zircon.app.model;
  */
 public class Society {
 
-    public String societyName;
+    public String name;
 
     public String societyId;
 
-    public String societyImgUrl;
+    public String address;
+
+    public String contactDetail;
+
+    public String societypic;
+
 }

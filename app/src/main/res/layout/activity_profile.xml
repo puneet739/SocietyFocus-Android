@@ -3,18 +3,18 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
+    <ScrollView android:id="@+id/profile_form" android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
+        <LinearLayout android:id="@+id/edit_profile_form" android:layout_width="match_parent"
             android:layout_height="wrap_content" android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText android:id="@+id/name" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="@string/prompt_password"
-                    android:inputType="textCapWords"
+                <EditText android:id="@+id/firstname" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/prompt_firstname"
+                    android:inputType="textCapSentences"
                     android:maxLines="1" android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -22,9 +22,9 @@
             <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText android:id="@+id/email" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="@string/prompt_password"
-                    android:inputType="textEmailAddress"
+                <EditText android:id="@+id/lastname" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/prompt_lastname"
+                    android:inputType="textCapSentences"
                     android:maxLines="1" android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -34,7 +34,17 @@
                 android:layout_height="wrap_content">
 
                 <EditText android:id="@+id/mobile" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="@string/prompt_password"
+                    android:layout_height="wrap_content" android:hint="@string/prompt_contact_number"
+                    android:inputType="phone"
+                    android:maxLines="1" android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText android:id="@+id/address" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/prompt_address"
                     android:inputType="phone"
                     android:maxLines="1" android:singleLine="true" />
 

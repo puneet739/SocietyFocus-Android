@@ -1,4 +1,4 @@
-package com.zircon.app.ui.test;
+package com.zircon.app.ui.common;
 
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zircon.app.R;
-import com.zircon.app.model.AssetDaySlot;
-import com.zircon.app.ui.common.AbsFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 
 /**
  * Created by jikoobaruah on 03/02/16.
@@ -83,7 +79,7 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
             public void onPageSelected(int position) {
                 setTitle(position);
                 int recylerViewPos = ((AbsCalendarRecycleViewAdapter) mRecyclerView.getAdapter()).getPositionForDate(getCalendar(position));
-                ((LinearLayoutManager) mRecyclerView.getLayoutManager()).scrollToPosition(recylerViewPos);
+                mRecyclerView.scrollToPosition(recylerViewPos);
 
             }
 
@@ -126,7 +122,7 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
         Calendar c = getCalendar(mViewPager.getCurrentItem());
         c.set(c.get(Calendar.YEAR), month, date, 0, 0, 0);
         int recylerViewPos = ((AbsCalendarRecycleViewAdapter) mRecyclerView.getAdapter()).getPositionForDate(c);
-        ((LinearLayoutManager)mRecyclerView.getLayoutManager()).scrollToPosition(recylerViewPos);
+        mRecyclerView.scrollToPosition(recylerViewPos);
 
     }
 
@@ -141,7 +137,7 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
         mRecyclerView.setLayoutParams(lp1);
 
         int recylerViewPos = ((AbsCalendarRecycleViewAdapter) mRecyclerView.getAdapter()).getPositionForDate(getCalendar(mViewPager.getCurrentItem()));
-        ((LinearLayoutManager)mRecyclerView.getLayoutManager()).scrollToPosition(recylerViewPos);
+        mRecyclerView.scrollToPosition(recylerViewPos);
 
         isViewPagerFullScreen = false;
     }
@@ -276,12 +272,12 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
         }
 
 
-        class ViewHolder extends RecyclerView.ViewHolder{
+        protected class ViewHolder extends RecyclerView.ViewHolder{
 
             TextView datetextView ;
             TextView daytextView ;
             TextView monthtextView ;
-            TextView infotextView ;
+            public TextView infotextView ;
 
             public ViewHolder(View itemView) {
                 super(itemView);

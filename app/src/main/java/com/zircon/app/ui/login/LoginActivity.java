@@ -6,8 +6,10 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -23,16 +25,12 @@ import com.zircon.app.ui.common.AbsLoginActivity;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AbsLoginActivity {
+public class LoginActivity extends AbsLoginActivity implements SocietySelectionFragment.ISocietySelectionListener {
 
 
     private View mProgressView;
     private View mLoginFormView;
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -46,7 +44,14 @@ public class LoginActivity extends AbsLoginActivity {
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mSocietyView = (EditText) findViewById(R.id.society);
-
+        mSocietyView.setClickable(true);
+        mSocietyView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SocietySelectionFragment newFragment = (SocietySelectionFragment) Fragment.instantiate(LoginActivity.this,SocietySelectionFragment.class.getName());
+                newFragment.show(getSupportFragmentManager(),"dialog");
+            }
+        });
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -91,7 +96,7 @@ public class LoginActivity extends AbsLoginActivity {
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String society = mSocietyView.getText().toString();
+        String society = mSocietyView.getTag().toString();
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
@@ -191,5 +196,10 @@ public class LoginActivity extends AbsLoginActivity {
     }
 
 
+    @Override
+    public void onSocietySelected(String societyName, String societyValue) {
+        mSocietyView.setText(societyName);
+        mSocietyView.setTag(societyValue);
+    }
 }
 

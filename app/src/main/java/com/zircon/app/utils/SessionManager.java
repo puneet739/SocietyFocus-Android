@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.zircon.app.ZirconApp;
 import com.zircon.app.model.LoginCredentials;
+import com.zircon.app.model.Society;
 import com.zircon.app.model.User;
 
 /**
@@ -18,14 +19,16 @@ public class SessionManager {
     private  static final String PREF_LOG_IN_CREDENTIALS = "credentials";
     private  static final String PREF_IS_LOGGED_IN = "is_logged_in";
     private  static final String PREF_LOG_IN_TOKEN = "token";
+    private static final String PREF_LOG_IN_SOCIETY = "society" ;
 
-    public static void setLoggedInUser(User user,LoginCredentials loginCredentials,String token){
+    public static void setLoggedInUser(User user, LoginCredentials loginCredentials, String token, Society society){
         SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(PREF_IS_LOGGED_IN,true);
+        editor.putBoolean(PREF_IS_LOGGED_IN, true);
         editor.putString(PREF_LOG_IN_USER, new Gson().toJson(user));
         editor.putString(PREF_LOG_IN_CREDENTIALS,new Gson().toJson(loginCredentials));
         editor.putString(PREF_LOG_IN_TOKEN, token);
+        editor.putString(PREF_LOG_IN_SOCIETY, new Gson().toJson(society));
         editor.commit();
     }
 
@@ -46,6 +49,15 @@ public class SessionManager {
         if (userJson != null && userJson.trim().length()>0)
             user = new Gson().fromJson(userJson,User.class);
         return user;
+    }
+
+    public static Society getLoggedInSociety(){
+        Society society = null;
+        SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
+        String societyJson = sharedPreferences.getString(PREF_LOG_IN_SOCIETY,null);
+        if (societyJson != null && societyJson.trim().length()>0)
+            society = new Gson().fromJson(societyJson,Society.class);
+        return society;
     }
 
     public static LoginCredentials getLoginCredentials(){

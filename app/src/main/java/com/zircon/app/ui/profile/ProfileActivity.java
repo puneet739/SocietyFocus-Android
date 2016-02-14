@@ -1,25 +1,23 @@
 package com.zircon.app.ui.profile;
 
-import android.os.Bundle;
-import android.view.ViewGroup;
-
 import com.zircon.app.R;
-import com.zircon.app.ui.common.AbsBaseActivity;
+import com.zircon.app.ui.common.AbsBaseDialogFormActivity;
 
 /**
  * Created by jikoobaruah on 09/02/16.
  */
-public class ProfileActivity extends AbsBaseActivity {
+public class ProfileActivity extends AbsBaseDialogFormActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int getContentViewResID() {
+        return R.layout.activity_profile;
+    }
 
+    @Override
+    protected void initViews() {
 
-        setContentView(R.layout.activity_profile);
-
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
+        setTitle("Edit Profile");
 
     }
 }

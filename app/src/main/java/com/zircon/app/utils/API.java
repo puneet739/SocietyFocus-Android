@@ -5,6 +5,7 @@ import com.zircon.app.model.response.AssetSlotResponse;
 import com.zircon.app.model.response.LoginResponse;
 import com.zircon.app.model.response.MembersResponse;
 import com.zircon.app.model.response.PanelResponse;
+import com.zircon.app.model.response.SocietyListResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -52,11 +53,14 @@ public interface API {
     @GET(API_PATH_PATTERN+"society/asset/getall")
     public Call<AssetsResponse> getAllSocietyAssets(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
 
-    @GET(API_PATH_PATTERN+"panel")
+    @GET(API_PATH_PATTERN+"society/panel")
     public Call<PanelResponse> getSocietyPanel(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
 
     @GET(API_PATH_PATTERN+"society/asset/getAssetCalendar")
     public Call<AssetSlotResponse> getAssetCalendar(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken,@Header(IAssetParams.ID) String assetID,@Header(IEventParams.MONTH) int month,@Header(IEventParams.YEAR) int year);
+
+    @GET(API_PATH_PATTERN+"society")
+    public Call<SocietyListResponse> getSocietyList();
 
 
 

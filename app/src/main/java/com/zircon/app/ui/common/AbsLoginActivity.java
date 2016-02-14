@@ -54,7 +54,7 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
                 showProgress(false);
                 mLoginCall=null;
                 if (response.isSuccess()) {
-                    SessionManager.setLoggedInUser(response.body().body.userDetails.user, loginCredentials, response.body().body.token);
+                    SessionManager.setLoggedInUser(response.body().body.userDetails.user, loginCredentials, response.body().body.token,response.body().body.society);
                     Intent intent = new Intent(AbsLoginActivity.this, MainNavActivity.class);
                     startActivity(intent);
                     finish();

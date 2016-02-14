@@ -1,4 +1,4 @@
-package com.zircon.app.ui.test;
+package com.zircon.app.ui.assets;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.zircon.app.R;
 import com.zircon.app.model.AssetDaySlot;
 import com.zircon.app.model.response.AssetSlotResponse;
+import com.zircon.app.ui.common.AbsMonthFragment;
+import com.zircon.app.ui.common.DayCellView;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
@@ -66,7 +68,7 @@ public class AssetMonthFragment extends AbsMonthFragment {
             @Override
             public void onResponse(Response<AssetSlotResponse> response) {
 
-                setAssetDaySlots(response.body().body);
+//                setAssetDaySlots(response.body().body);
 
                 if (assetMonthInteractionListener!=null)
                     assetMonthInteractionListener.onAssetDataFetched(response.body().body,calendar);

@@ -1,14 +1,22 @@
 package com.zircon.app.ui.residents;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
+import com.zircon.app.ui.common.AbsBaseActivity;
 
 import java.util.ArrayList;
 
@@ -21,7 +29,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user, null, false);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         return new ViewHolder(view);
     }
@@ -32,12 +40,12 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
 
     }
 
-    public void addAll(ArrayList<User> users){
+    public void addAll(ArrayList<User> users) {
         membersList.addAll(users);
         notifyDataSetChanged();
     }
 
-    public void add(User user){
+    public void add(User user) {
         membersList.add(user);
         notifyDataSetChanged();
     }
@@ -47,7 +55,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         return membersList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView profileImageView;
         TextView nameTextView;
@@ -77,13 +85,48 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
                     System.out.println("profile");
                 }
             });
+
+
+            itemView.setOnTouchListener(new SwipeTouchListener());
         }
 
         public void setUser(User user) {
-            nameTextView.setText(user.firstname);
-            addressTextView.setText(user.email);
+            ImageLoader.getInstance().displayImage(user.profilePic, profileImageView);
+            nameTextView.setText(user.firstname + " " + (user.lastname != null ? user.lastname : ""));
+            addressTextView.setText(user.description);
             emailTextView.setText(user.email);
-            phoneTextView.setText(user.userid);
+            phoneTextView.setText(user.contactNumber);
+        }
+
+        private class SwipeTouchListener implements View.OnTouchListener {
+            float historicX = Float.NaN, historicY = Float.NaN;
+            static final int TRIGGER_DELTA = 50; // Number of pixels to travel till trigger
+
+            @Override
+            public boolean onTouch(View v, MotionEvent e) {
+                switch (e.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        historicX = e.getX();
+                        historicY = e.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (e.getX() - historicX > TRIGGER_DELTA) {
+                            System.out.println("call");
+                            ((AbsBaseActivity)v.getContext()).call((String) ((TextView) v.findViewById(R.id.phone)).getText());
+
+                            return true;
+                        }
+                        else if (historicX - e.getX() > TRIGGER_DELTA)  {
+//                            onSlideComplete(Direction.RIGHT);
+                            System.out.println("sms");
+
+                            return true;
+                        } break;
+                    default:
+                        return false;
+                }
+                return false;
+            }
         }
     }
 

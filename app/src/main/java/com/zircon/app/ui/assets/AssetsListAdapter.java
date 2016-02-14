@@ -52,18 +52,16 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
 
         ImageView profileImageView;
         TextView nameTextView;
-        TextView addressTextView;
-        TextView emailTextView;
-        TextView phoneTextView;
+        ImageView emailImageView;
+        ImageView phoneImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             profileImageView = (ImageView) itemView.findViewById(R.id.profile_pic);
             nameTextView = (TextView) itemView.findViewById(R.id.name);
-            addressTextView = (TextView) itemView.findViewById(R.id.address);
-            emailTextView = (TextView) itemView.findViewById(R.id.email);
-            phoneTextView = (TextView) itemView.findViewById(R.id.phone);
+            emailImageView = (ImageView) itemView.findViewById(R.id.email);
+            phoneImageView = (ImageView) itemView.findViewById(R.id.phone);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -78,13 +76,29 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
                     System.out.println("profile");
                 }
             });
+
+            emailImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println(v.getTag());
+                }
+            });
+
+            phoneImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println(v.getTag());
+                }
+            });
+
+
         }
 
         public void setAsset(Asset asset) {
             ImageLoader.getInstance().displayImage(asset.img, profileImageView);
             nameTextView.setText(asset.description);
-            emailTextView.setText(asset.email);
-            phoneTextView.setText(asset.contactno);
+            emailImageView.setTag(asset.email);
+            phoneImageView.setTag(asset.contactno);
         }
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Zircon</string>
+    <string name="app_name">Society Focus</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -32,4 +32,12 @@
     <string name="thursday">T</string>
     <string name="friday">F</string>
     <string name="action_sign_in_short">Sign in</string>
+
+    <string name="enter_complaint">Enter your complaint</string>
+
+    <string name="prompt_firstname">Firstname</string>
+    <string name="prompt_lastname">Lastname</string>
+    <string name="prompt_contact_number">Contact no</string>
+    <string name="prompt_address">Address</string>
+
 </resources>

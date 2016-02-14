@@ -1,4 +1,4 @@
-package com.zircon.app.ui.test;
+package com.zircon.app.ui.common;
 
 import android.content.Context;
 import android.os.Build;

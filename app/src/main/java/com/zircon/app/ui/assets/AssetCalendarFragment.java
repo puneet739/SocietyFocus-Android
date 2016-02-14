@@ -1,14 +1,12 @@
-package com.zircon.app.ui.test;
+package com.zircon.app.ui.assets;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.zircon.app.model.AssetDaySlot;
+import com.zircon.app.ui.common.AbsCalendarFragment;
+import com.zircon.app.ui.common.AbsMonthFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

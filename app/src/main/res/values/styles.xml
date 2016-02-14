@@ -13,8 +13,6 @@
     </style>
 
     <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -24,7 +22,7 @@
     <style name="SplashTheme" parent="AppTheme.NoActionBar">
         <!-- Disable window features like ActionBar, Title and Overlay. -->
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@drawable/splash_free</item>
+        <item name="android:windowBackground">@drawable/background</item>
     </style>
 
 </resources>
