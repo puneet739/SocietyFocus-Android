@@ -1,18 +1,12 @@
 package com.zircon.app.ui.residents;
 
 import android.graphics.Rect;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.zircon.app.R;
 import com.zircon.app.model.response.MembersResponse;
-import com.zircon.app.ui.common.AbsBaseListFragment;
-import com.zircon.app.ui.common.AbsFragment;
+import com.zircon.app.ui.common.fragment.AbsBaseListFragment;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 

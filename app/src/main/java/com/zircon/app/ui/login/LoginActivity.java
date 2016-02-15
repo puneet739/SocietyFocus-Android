@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -20,7 +19,7 @@ import android.widget.TextView;
 
 import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
-import com.zircon.app.ui.common.AbsLoginActivity;
+import com.zircon.app.ui.common.activity.AbsLoginActivity;
 
 /**
  * A login screen that offers login via email/password.

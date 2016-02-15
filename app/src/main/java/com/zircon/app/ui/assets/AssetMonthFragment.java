@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.zircon.app.R;
 import com.zircon.app.model.AssetDaySlot;
 import com.zircon.app.model.response.AssetSlotResponse;
-import com.zircon.app.ui.common.AbsMonthFragment;
-import com.zircon.app.ui.common.DayCellView;
+import com.zircon.app.ui.common.fragment.AbsMonthFragment;
+import com.zircon.app.ui.common.widget.DayCellView;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 

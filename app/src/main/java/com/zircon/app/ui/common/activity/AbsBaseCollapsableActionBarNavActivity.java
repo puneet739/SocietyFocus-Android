@@ -1,7 +1,6 @@
-package com.zircon.app.ui.common;
+package com.zircon.app.ui.common.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;

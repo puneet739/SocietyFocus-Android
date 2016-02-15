@@ -3,14 +3,12 @@ package com.zircon.app.ui.complaint;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.zircon.app.R;
 import com.zircon.app.model.request.Complaint;
 import com.zircon.app.model.User;
 import com.zircon.app.model.response.ComplaintResponse;
-import com.zircon.app.ui.common.AbsBaseDialogFormActivity;
-import com.zircon.app.utils.API;
+import com.zircon.app.ui.common.activity.AbsBaseDialogFormActivity;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 

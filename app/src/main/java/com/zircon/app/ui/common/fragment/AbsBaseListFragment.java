@@ -1,6 +1,5 @@
-package com.zircon.app.ui.common;
+package com.zircon.app.ui.common.fragment;
 
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,14 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zircon.app.R;
-import com.zircon.app.model.response.MembersResponse;
-import com.zircon.app.ui.residents.MembersListAdapter;
-import com.zircon.app.utils.HTTP;
-import com.zircon.app.utils.SessionManager;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by jikoobaruah on 25/01/16.

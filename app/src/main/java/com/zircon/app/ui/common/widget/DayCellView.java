@@ -1,4 +1,4 @@
-package com.zircon.app.ui.common;
+package com.zircon.app.ui.common.widget;
 
 import android.content.Context;
 import android.os.Build;

@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
-import com.zircon.app.ui.common.AbsLoginActivity;
+import com.zircon.app.ui.common.activity.AbsLoginActivity;
 import com.zircon.app.utils.AppManager;
 import com.zircon.app.utils.SessionManager;
 

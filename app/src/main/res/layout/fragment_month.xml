@@ -84,44 +84,44 @@
             android:weightSum="7"
             >
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:gravity="start"
                 android:id="@+id/d_1_1"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_1_2"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_1_3"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_1_4"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_1_5"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_1_6"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_1_7"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -137,43 +137,43 @@
             android:weightSum="7"
             >
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_2_1"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_2_2"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_2_3"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_2_4"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_2_5"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_2_6"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_2_7"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -189,43 +189,43 @@
             android:weightSum="7"
             >
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_3_1"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_3_2"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_3_3"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_3_4"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_3_5"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_3_6"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_3_7"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -240,43 +240,43 @@
             android:weightSum="7"
             >
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_4_1"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_4_2"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_4_3"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_4_4"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_4_5"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_4_6"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_4_7"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -291,43 +291,43 @@
             android:weightSum="7"
             >
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_5_1"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_5_2"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_5_3"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_5_4"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_5_5"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_5_6"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_5_7"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -342,43 +342,43 @@
             android:weightSum="7"
             >
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_6_1"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_6_2"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_6_3"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_6_4"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_6_5"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_6_6"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
 
-            <com.zircon.app.ui.common.DayCellView
+            <com.zircon.app.ui.common.widget.DayCellView
                 android:id="@+id/d_6_7"
                 android:layout_weight="1"
                 android:layout_width="0dp"

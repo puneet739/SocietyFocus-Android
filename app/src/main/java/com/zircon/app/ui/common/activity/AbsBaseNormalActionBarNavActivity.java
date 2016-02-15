@@ -1,4 +1,4 @@
-package com.zircon.app.ui.common;
+package com.zircon.app.ui.common.activity;
 
 import com.zircon.app.R;
 

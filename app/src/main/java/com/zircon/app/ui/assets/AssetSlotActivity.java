@@ -3,8 +3,8 @@ package com.zircon.app.ui.assets;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.zircon.app.ui.common.AbsBaseNormalActionBarNavActivity;
-import com.zircon.app.ui.common.AbsFragment;
+import com.zircon.app.ui.common.activity.AbsBaseNormalActionBarNavActivity;
+import com.zircon.app.ui.common.fragment.AbsFragment;
 
 /**
  * Created by jikoobaruah on 03/02/16.

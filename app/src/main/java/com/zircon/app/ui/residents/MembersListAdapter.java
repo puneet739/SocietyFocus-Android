@@ -1,10 +1,5 @@
 package com.zircon.app.ui.residents;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,7 +11,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
-import com.zircon.app.ui.common.AbsBaseActivity;
+import com.zircon.app.ui.common.activity.AbsBaseActivity;
 
 import java.util.ArrayList;
 

@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zircon.app.model.response.ComplaintListResponse;
-import com.zircon.app.ui.common.AbsBaseListFragment;
+import com.zircon.app.ui.common.fragment.AbsBaseListFragment;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 

@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
 import com.zircon.app.model.AssetDaySlot;
-import com.zircon.app.ui.common.AbsCalendarFragment;
-import com.zircon.app.ui.common.AbsMonthFragment;
+import com.zircon.app.ui.common.fragment.AbsCalendarFragment;
+import com.zircon.app.ui.common.fragment.AbsMonthFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

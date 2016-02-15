@@ -1,4 +1,4 @@
-package com.zircon.app.ui.common;
+package com.zircon.app.ui.common.fragment;
 
 import android.graphics.Rect;
 import android.os.Bundle;

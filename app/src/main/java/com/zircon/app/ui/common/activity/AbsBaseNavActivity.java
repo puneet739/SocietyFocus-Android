@@ -1,4 +1,4 @@
-package com.zircon.app.ui.common;
+package com.zircon.app.ui.common.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -21,6 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.assets.AssetsNavActivity;
+import com.zircon.app.ui.common.fragment.AbsFragment;
 import com.zircon.app.ui.complaint.AllComplaintsActivity;
 import com.zircon.app.ui.complaint.ComplaintActivity;
 import com.zircon.app.ui.home.MainNavActivity;

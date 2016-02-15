@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zircon.app.R;
-import com.zircon.app.ui.common.AbsFragment;
+import com.zircon.app.ui.common.fragment.AbsFragment;
 
 /**
  * A simple {@link Fragment} subclass.

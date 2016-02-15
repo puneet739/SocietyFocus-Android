@@ -1,4 +1,4 @@
-package com.zircon.app.ui.common;
+package com.zircon.app.ui.common.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zircon.app.R;
+import com.zircon.app.ui.common.widget.DayCellView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

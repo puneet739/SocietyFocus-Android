@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.zircon.app.R;
-import com.zircon.app.ui.common.AbsBaseCollapsableActionBarNavActivity;
-import com.zircon.app.ui.common.AbsFragment;
+import com.zircon.app.ui.common.activity.AbsBaseCollapsableActionBarNavActivity;
+import com.zircon.app.ui.common.fragment.AbsFragment;
 
 /**
  * Created by jikoobaruah on 15/02/16.

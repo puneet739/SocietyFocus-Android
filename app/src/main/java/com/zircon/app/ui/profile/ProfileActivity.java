@@ -9,7 +9,7 @@ import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.model.User;
 import com.zircon.app.model.response.BaseResponse;
 import com.zircon.app.model.response.UserResponse;
-import com.zircon.app.ui.common.AbsBaseDialogFormActivity;
+import com.zircon.app.ui.common.activity.AbsBaseDialogFormActivity;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
