@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.zircon.app.model.response.ComplaintCommentResponse;
 import com.zircon.app.model.response.ComplaintListResponse;
 import com.zircon.app.ui.common.AbsBaseListFragment;
 import com.zircon.app.utils.HTTP;
@@ -41,17 +42,17 @@ public class ComplaintDetailsFragment extends AbsBaseListFragment {
 
     @Override
     public RecyclerView.Adapter getAdapter() {
-        return new ComplaintListAdapter();
+        return new ComplaintCommentsAdapter();
     }
 
     @Override
     public void fetchList() {
-        Call<ComplaintListResponse> call = HTTP.getAPI().gatUserComplaints(SessionManager.getToken());
-        call.enqueue(new Callback<ComplaintListResponse>() {
+        Call<ComplaintCommentResponse> call = HTTP.getAPI().getComplaintDetails(SessionManager.getToken(),"1");
+        call.enqueue(new Callback<ComplaintCommentResponse>() {
             @Override
-            public void onResponse(Response<ComplaintListResponse> response) {
+            public void onResponse(Response<ComplaintCommentResponse> response) {
                 if (response.isSuccess() && response.body() != null && response.body().body != null)
-                    ((ComplaintListAdapter) mListAdapter).addAll(response.body().body);
+                    ((ComplaintCommentsAdapter) mListAdapter).addAll(response.body().body.comments);
             }
 
             @Override

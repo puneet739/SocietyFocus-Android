@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zircon.app.R;
+import com.zircon.app.model.Comment;
 import com.zircon.app.model.Complaint;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  */
 public class ComplaintCommentsAdapter extends RecyclerView.Adapter<ComplaintCommentsAdapter.ViewHolder> {
 
-    private ArrayList<Complaint> complaintsList = new ArrayList<Complaint>();
+    private ArrayList<Comment> commentsList = new ArrayList<Comment>();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -27,24 +28,24 @@ public class ComplaintCommentsAdapter extends RecyclerView.Adapter<ComplaintComm
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.setComplaint(complaintsList.get(position));
+        holder.setComment(commentsList.get(position).comment);
 
     }
 
-    public void addAll(ArrayList<Complaint> complaints){
-        int i = complaintsList.size();
-        complaintsList.addAll(complaints);
-        notifyItemRangeInserted(i-1,complaints.size());
+    public void addAll(ArrayList<Comment> comments){
+        int i = commentsList.size();
+        commentsList.addAll(comments);
+        notifyItemRangeInserted(i-1,comments.size());
     }
 
-    public void add(Complaint complaint){
-        complaintsList.add(complaint);
-        notifyItemInserted(complaintsList.size() - 1);
+    public void add(Comment comment){
+        commentsList.add(comment);
+        notifyItemInserted(commentsList.size() - 1);
     }
 
     @Override
     public int getItemCount() {
-        return complaintsList.size();
+        return commentsList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -58,8 +59,8 @@ public class ComplaintCommentsAdapter extends RecyclerView.Adapter<ComplaintComm
 
         }
 
-        public void setCommment(String comment) {
-            titleTextView.setText(complaint.title);
+        public void setComment(String comment) {
+            titleTextView.setText(comment);
         }
     }
 

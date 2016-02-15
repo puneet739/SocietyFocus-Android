@@ -3,6 +3,7 @@ package com.zircon.app.utils;
 import com.zircon.app.model.request.Complaint;
 import com.zircon.app.model.response.AssetsResponse;
 import com.zircon.app.model.response.AssetSlotResponse;
+import com.zircon.app.model.response.ComplaintCommentResponse;
 import com.zircon.app.model.response.ComplaintListResponse;
 import com.zircon.app.model.response.ComplaintResponse;
 import com.zircon.app.model.response.LoginResponse;
@@ -71,10 +72,10 @@ public interface API {
     public Call<ComplaintResponse> saveComplaint(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken , @Body Complaint complaint);
 
     @GET(API_PATH_PATTERN+"v1/complaint/getusercomplaint")
-    public Call<ComplaintListResponse> gatUserComplaints(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken);
+    public Call<ComplaintListResponse> getUserComplaints(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
 
     @GET(API_PATH_PATTERN+"v1/complaint/get/{id}")
-    public Call<ComplaintListResponse> gatComplaintDetails(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken,@Path("id") String complaintID);
+    public Call<ComplaintCommentResponse> getComplaintDetails(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken,@Path("id") String complaintID);
 
 
 

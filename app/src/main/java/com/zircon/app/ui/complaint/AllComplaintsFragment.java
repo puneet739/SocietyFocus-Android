@@ -46,7 +46,7 @@ public class AllComplaintsFragment extends AbsBaseListFragment {
 
     @Override
     public void fetchList() {
-        Call<ComplaintListResponse> call = HTTP.getAPI().gatUserComplaints(SessionManager.getToken());
+        Call<ComplaintListResponse> call = HTTP.getAPI().getUserComplaints(SessionManager.getToken());
         call.enqueue(new Callback<ComplaintListResponse>() {
             @Override
             public void onResponse(Response<ComplaintListResponse> response) {
