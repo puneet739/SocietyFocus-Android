@@ -1,8 +1,10 @@
 package com.zircon.app.utils;
 
+import com.zircon.app.model.User;
 import com.zircon.app.model.request.Complaint;
 import com.zircon.app.model.response.AssetsResponse;
 import com.zircon.app.model.response.AssetSlotResponse;
+import com.zircon.app.model.response.BaseResponse;
 import com.zircon.app.model.response.ComplaintCommentResponse;
 import com.zircon.app.model.response.ComplaintListResponse;
 import com.zircon.app.model.response.ComplaintResponse;
@@ -10,6 +12,7 @@ import com.zircon.app.model.response.LoginResponse;
 import com.zircon.app.model.response.MembersResponse;
 import com.zircon.app.model.response.PanelResponse;
 import com.zircon.app.model.response.SocietyListResponse;
+import com.zircon.app.model.response.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -77,7 +80,10 @@ public interface API {
     @GET(API_PATH_PATTERN+"v1/complaint/get/{id}")
     public Call<ComplaintCommentResponse> getComplaintDetails(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken,@Path("id") String complaintID);
 
+    @POST(API_PATH_PATTERN+"user/modifyuser")
+    public Call<UserResponse> modifyUser(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken,@Body User user);
 
-
+    @GET(API_PATH_PATTERN+"user/modify/oldpass/{oldpassword}/newpass/{newpassword}/email/{email}")
+    public Call<BaseResponse> modifyPassword(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken,@Path("oldpassword") String oldpassword,@Path("newpassword") String newpassword,@Path("email") String email);
 
 }

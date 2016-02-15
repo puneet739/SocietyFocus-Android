@@ -97,6 +97,6 @@ public class SplashActivity extends AbsLoginActivity {
 
     @Override
     protected void showLoginError(String errormessage) {
-
+        showLogin();
     }
 }

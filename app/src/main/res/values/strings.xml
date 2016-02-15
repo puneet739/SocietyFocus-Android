@@ -40,5 +40,9 @@
     <string name="prompt_contact_number">Contact no</string>
     <string name="prompt_address">Address</string>
     <string name="enter_complaint_title">Enter title</string>
+    <string name="prompt_old_password">Old password</string>
+    <string name="prompt_new_password">New password</string>
+    <string name="prompt_new_password_confirm">Confirm new password</string>
+
 
 </resources>

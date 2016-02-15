@@ -32,6 +32,13 @@ public class SessionManager {
         editor.commit();
     }
 
+    public static void setLoggedInUser(User user) {
+        SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(PREF_LOG_IN_USER, new Gson().toJson(user));
+        editor.commit();
+    }
+
     public static void logoutUser(){
         SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -63,20 +70,29 @@ public class SessionManager {
     public static LoginCredentials getLoginCredentials(){
         LoginCredentials loginCredentials = null;
         SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
-        String loginJson = sharedPreferences.getString(PREF_LOG_IN_CREDENTIALS,null);
+        String loginJson = sharedPreferences.getString(PREF_LOG_IN_CREDENTIALS, null);
         if (loginJson != null && loginJson.trim().length()>0)
             loginCredentials = new Gson().fromJson(loginJson,LoginCredentials.class);
         return loginCredentials;
     }
 
+    public static void setLoginCredentials(LoginCredentials credentials) {
+        SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(PREF_LOG_IN_CREDENTIALS,new Gson().toJson(credentials));
+        editor.commit();
+    }
+
     public static boolean isUserLoggedIn(){
         SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(PREF_IS_LOGGED_IN,false);
+        return sharedPreferences.getBoolean(PREF_IS_LOGGED_IN, false);
     }
 
     public static String getToken(){
         SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(PREF_LOG_IN_TOKEN,null);
+        return sharedPreferences.getString(PREF_LOG_IN_TOKEN, null);
     }
+
+
 
 }

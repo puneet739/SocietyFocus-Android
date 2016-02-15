@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zircon.app.R;
+import com.zircon.app.model.User;
 import com.zircon.app.ui.assets.AssetsNavActivity;
 import com.zircon.app.ui.complaint.AllComplaintsActivity;
 import com.zircon.app.ui.complaint.ComplaintActivity;
@@ -34,6 +35,7 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
     protected RelativeLayout mFragmentLayout;
     protected AbsFragment mFragment;
 
+    private TextView mSocietyNameTextView;
     private ImageView mChangeProfileBtn;
     private TextView mNameTextView;
     private ImageView mProfileImageView;
@@ -65,19 +67,12 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        mSocietyNameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.society_name);
         mNameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.name);
         mEmailTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
         mProfileImageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.profile_pic);
 
-        String name = SessionManager.getLoggedInUser().firstname + " " +(SessionManager.getLoggedInUser().lastname != null ? SessionManager.getLoggedInUser().lastname:"");
-        String email = SessionManager.getLoggedInUser().email;
-        String profileImage = SessionManager.getLoggedInUser().profilePic;
 
-        ImageLoader.getInstance().displayImage(profileImage, mProfileImageView);
-
-
-        mNameTextView.setText(name);
-        mEmailTextView.setText(email);
 
         mChangeProfileBtn = (ImageView)navigationView.getHeaderView(0).findViewById(R.id.edit_profile);
         mChangeProfileBtn.setClickable(true);
@@ -94,10 +89,26 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
         mFragment = getFragment();
 
         if (mFragment != null)
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
+
+    }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        User loggedInUser = SessionManager.getLoggedInUser();
+        String societyName = SessionManager.getLoggedInSociety().name;
+        String name = loggedInUser.firstname + " " +(loggedInUser.lastname != null ? loggedInUser.lastname:"");
+        String email = loggedInUser.email;
+        String profileImage = loggedInUser.profilePic;
 
+        ImageLoader.getInstance().displayImage(profileImage, mProfileImageView);
+
+
+        mSocietyNameTextView.setText(societyName);
+        mNameTextView.setText(name);
+        mEmailTextView.setText(email);
     }
 
     @Override

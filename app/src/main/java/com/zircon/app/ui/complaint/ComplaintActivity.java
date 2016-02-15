@@ -91,6 +91,8 @@ public class ComplaintActivity  extends AbsBaseDialogFormActivity {
 
         if (description == null || description.trim().length() == 0){
             mcomplaintView.setError("This field is necessary");
+            if (isValid)
+                mcomplaintView.requestFocus();
             isValid = false;
         }
 
