@@ -1,16 +1,21 @@
 package com.zircon.app.utils;
 
+import com.zircon.app.model.request.Complaint;
 import com.zircon.app.model.response.AssetsResponse;
 import com.zircon.app.model.response.AssetSlotResponse;
+import com.zircon.app.model.response.ComplaintListResponse;
+import com.zircon.app.model.response.ComplaintResponse;
 import com.zircon.app.model.response.LoginResponse;
 import com.zircon.app.model.response.MembersResponse;
 import com.zircon.app.model.response.PanelResponse;
 import com.zircon.app.model.response.SocietyListResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by jikoobaruah on 21/01/16.
@@ -61,6 +66,15 @@ public interface API {
 
     @GET(API_PATH_PATTERN+"society")
     public Call<SocietyListResponse> getSocietyList();
+
+    @POST(API_PATH_PATTERN+"v1/complaint/save")
+    public Call<ComplaintResponse> saveComplaint(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken , @Body Complaint complaint);
+
+    @GET(API_PATH_PATTERN+"v1/complaint/getusercomplaint")
+    public Call<ComplaintListResponse> gatUserComplaints(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken);
+
+    @GET(API_PATH_PATTERN+"v1/complaint/get/{id}")
+    public Call<ComplaintListResponse> gatComplaintDetails(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken,@Path("id") String complaintID);
 
 
 

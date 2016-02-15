@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 public class ComplaintListResponse extends BaseResponse {
 
-    ArrayList<Complaint> body;
+    public ArrayList<Complaint> body;
 }

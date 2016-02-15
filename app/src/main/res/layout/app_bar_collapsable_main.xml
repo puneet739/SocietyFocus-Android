@@ -20,12 +20,18 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
-                android:id="@+id/society_bg"
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/collapse_content"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax" />
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/society_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax" />
+            </LinearLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

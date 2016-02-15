@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zircon.app.R;
 import com.zircon.app.ui.assets.AssetsNavActivity;
+import com.zircon.app.ui.complaint.AllComplaintsActivity;
 import com.zircon.app.ui.complaint.ComplaintActivity;
 import com.zircon.app.ui.home.MainNavActivity;
 import com.zircon.app.ui.login.LoginActivity;
@@ -92,6 +93,7 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
 
         mFragment = getFragment();
 
+        if (mFragment != null)
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
 
 
@@ -131,10 +133,6 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
         } else if (id == R.id.nav_residents) {
             intent = new Intent(AbsBaseNavActivity.this, MembersNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }else if (id == R.id.nav_logout){
             SessionManager.logoutUser();
             intent = new Intent(AbsBaseNavActivity.this, LoginActivity.class);
@@ -142,7 +140,7 @@ public abstract class AbsBaseNavActivity extends AbsBaseActivity
         }else if (id == R.id.nav_complaint_new) {
             intent = new Intent(AbsBaseNavActivity.this, ComplaintActivity.class);
         } else if (id == R.id.nav_complaint_track) {
-
+            intent = new Intent(AbsBaseNavActivity.this, AllComplaintsActivity.class);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

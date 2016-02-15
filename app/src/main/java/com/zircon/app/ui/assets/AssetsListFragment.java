@@ -34,9 +34,8 @@ public class AssetsListFragment extends AbsBaseListFragment {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                if (parent.getChildAdapterPosition(view) < parent.getAdapter().getItemCount() - 2) {
                     outRect.bottom = 50;
-                }
+
                 if (parent.getChildAdapterPosition(view) % 2 == 0) {
                     outRect.right = 50;
                 }
