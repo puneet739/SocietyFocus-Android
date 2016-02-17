@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.zircon.app.R;
+import com.zircon.app.ui.login.LoginActivity;
 
 /**
  * Created by jikoobaruah on 09/02/16.
@@ -17,6 +18,7 @@ import com.zircon.app.R;
 public class AbsBaseActivity extends AppCompatActivity {
 
     private static final int REQUEST_PHONE_CALL = 1;
+    public static final int REQUEST_LOGIN = 2;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,5 +65,31 @@ public class AbsBaseActivity extends AppCompatActivity {
                 startActivity(callIntent);
             }
         }
+    }
+
+    IAuthCallback authCallback;
+    public void onAuthError(IAuthCallback authCallback) {
+        if (authCallback == null)
+            throw new NullPointerException("authcallback cannot be null");
+        this.authCallback = authCallback;
+
+        Intent intent = new Intent(AbsBaseActivity.this, LoginActivity.class);
+        intent.putExtra("requestcode",REQUEST_LOGIN);
+        startActivityForResult(intent, REQUEST_LOGIN);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK){
+            switch (requestCode){
+                case REQUEST_LOGIN:
+                    authCallback.onAuthSuccess();
+                    break;
+            }
+        }
+    }
+
+    public interface IAuthCallback{
+        public void onAuthSuccess();
     }
 }

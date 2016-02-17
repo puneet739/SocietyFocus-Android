@@ -1,12 +1,16 @@
 package com.zircon.app.ui.residents;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zircon.app.model.response.MembersResponse;
+import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsBaseListFragment;
+import com.zircon.app.ui.login.LoginActivity;
+import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
@@ -47,16 +51,25 @@ public class MembersFragment extends AbsBaseListFragment {
     @Override
     public void fetchList() {
         Call<MembersResponse> call = HTTP.getAPI().getAllUsers(SessionManager.getToken());
-        call.enqueue(new Callback<MembersResponse>() {
-            @Override
-            public void onResponse(Response<MembersResponse> response) {
-                if (response.isSuccess() && response.body() != null && response.body().body != null)
-                    ((MembersListAdapter) mListAdapter).addAll(response.body().body);
-            }
-
+        call.enqueue(new AuthCallBack<MembersResponse>() {
             @Override
             public void onFailure(Throwable t) {
                 t.getLocalizedMessage();
+            }
+
+            @Override
+            protected void onAuthError() {
+                ((AbsBaseActivity)getActivity()).onAuthError(new AbsBaseActivity.IAuthCallback() {
+                    @Override
+                    public void onAuthSuccess() {
+                        fetchList();
+                    }
+                });
+            }
+
+            @Override
+            protected void parseSuccessResponse(Response<MembersResponse> response) {
+                ((MembersListAdapter) mListAdapter).addAll(response.body().body);
             }
         });
     }

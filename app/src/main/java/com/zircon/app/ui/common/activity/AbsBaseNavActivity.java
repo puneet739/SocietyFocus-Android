@@ -28,7 +28,7 @@ import com.zircon.app.ui.profile.ProfileActivity;
 import com.zircon.app.ui.residents.MembersNavActivity;
 import com.zircon.app.utils.SessionManager;
 
-public abstract class AbsBaseNavActivity extends AbsBaseActivity
+abstract class AbsBaseNavActivity extends AbsBaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     protected RelativeLayout mFragmentLayout;
