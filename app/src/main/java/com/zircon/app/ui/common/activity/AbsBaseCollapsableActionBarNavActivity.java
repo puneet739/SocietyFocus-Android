@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
 import com.zircon.app.utils.SessionManager;
 
@@ -24,7 +24,7 @@ public abstract class AbsBaseCollapsableActionBarNavActivity extends AbsBaseNavA
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mCollapsingLayout = (LinearLayout) findViewById(R.id.collapse_content);
@@ -33,15 +33,17 @@ public abstract class AbsBaseCollapsableActionBarNavActivity extends AbsBaseNavA
         String bgUrl = SessionManager.getLoggedInSociety().societypic;
         String title = SessionManager.getLoggedInSociety().name;
 
-        ImageLoader.getInstance().displayImage(bgUrl, mCollapseImageView);
+
+        Picasso.with(this).setIndicatorsEnabled(true);
+        Picasso.with(this).load(bgUrl).into(mCollapseImageView);
 
         setTitle(title);
 
     }
 
 
-    protected void setCollapsingContent(View view){
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,800));
+    protected void setCollapsingContent(View view) {
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 800));
         mCollapsingLayout.addView(view);
         mCollapsingLayout.removeViewAt(0);
         mCollapsingLayout.requestLayout();

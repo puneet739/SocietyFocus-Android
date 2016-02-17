@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +21,13 @@ public class AbsBaseActivity extends AppCompatActivity {
 
     private static final int REQUEST_PHONE_CALL = 1;
     public static final int REQUEST_LOGIN = 2;
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

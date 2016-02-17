@@ -15,10 +15,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
 import com.zircon.app.model.Society;
 import com.zircon.app.model.response.SocietyListResponse;
+import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsSearchListViewFragment;
 import com.zircon.app.utils.API;
 import com.zircon.app.utils.HTTP;
@@ -176,8 +177,8 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
 
                 societyAddressTextView.setText(society.address);
 
-                ImageLoader.getInstance().displayImage(society.societypic, societyImgView);
-
+                Picasso.with(getContext()).setIndicatorsEnabled(true);
+                Picasso.with(getContext()).load(society.societypic).into(societyImgView);
                 key = society.societyId;
             }
         }

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
@@ -88,7 +88,9 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
 
         public void setUser(User user) {
             if (user.profilePic != null && user.profilePic.trim().length()>0 && HTTPUtils.isValidUrl(user.profilePic))
-            ImageLoader.getInstance().displayImage(user.profilePic, profileImageView);
+            Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(true);
+            Picasso.with(profileImageView.getContext()).load(user.profilePic).into(profileImageView);
+
             nameTextView.setText(user.firstname + " " + (user.lastname != null ? user.lastname : ""));
             addressTextView.setText(user.description);
             emailTextView.setText(user.email);

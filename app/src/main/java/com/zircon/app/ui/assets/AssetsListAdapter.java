@@ -1,5 +1,6 @@
 package com.zircon.app.ui.assets;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
 import com.zircon.app.model.Asset;
+import com.zircon.app.ui.common.activity.AbsBaseActivity;
 
 import java.util.ArrayList;
 
@@ -20,10 +22,13 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
 
     private ArrayList<Asset> assetList = new ArrayList<Asset>();
 
+    private Context mContext;
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_asset,null,false);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mContext = view.getContext();
         return new ViewHolder(view);
     }
 
@@ -95,7 +100,11 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
         }
 
         public void setAsset(Asset asset) {
-            ImageLoader.getInstance().displayImage(asset.img, profileImageView);
+
+            Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(true);
+            Picasso.with(profileImageView.getContext()).load(asset.img).into(profileImageView);
+
+
             nameTextView.setText(asset.description);
             emailImageView.setTag(asset.email);
             phoneImageView.setTag(asset.contactno);

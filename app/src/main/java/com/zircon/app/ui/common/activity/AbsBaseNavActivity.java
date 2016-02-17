@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.assets.AssetsNavActivity;
@@ -102,7 +102,8 @@ abstract class AbsBaseNavActivity extends AbsBaseActivity
         String email = loggedInUser.email;
         String profileImage = loggedInUser.profilePic;
 
-        ImageLoader.getInstance().displayImage(profileImage, mProfileImageView);
+        Picasso.with(this).setIndicatorsEnabled(true);
+        Picasso.with(this).load(profileImage).into(mProfileImageView);
 
 
         mSocietyNameTextView.setText(societyName);
