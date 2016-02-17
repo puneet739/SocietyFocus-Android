@@ -25,6 +25,7 @@
             android:id="@+id/profile_pic"
             android:layout_width="0dp"
             android:layout_height="60dp"
+            android:src="@drawable/ic_avatar"
             android:scaleType="fitXY"
             />
 

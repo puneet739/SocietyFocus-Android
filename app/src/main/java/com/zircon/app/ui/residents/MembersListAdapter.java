@@ -12,6 +12,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
+import com.zircon.app.utils.HTTPUtils;
 
 import java.util.ArrayList;
 
@@ -86,6 +87,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         }
 
         public void setUser(User user) {
+            if (user.profilePic != null && user.profilePic.trim().length()>0 && HTTPUtils.isValidUrl(user.profilePic))
             ImageLoader.getInstance().displayImage(user.profilePic, profileImageView);
             nameTextView.setText(user.firstname + " " + (user.lastname != null ? user.lastname : ""));
             addressTextView.setText(user.description);

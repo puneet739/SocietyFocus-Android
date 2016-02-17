@@ -10,6 +10,7 @@ import com.zircon.app.model.User;
 import com.zircon.app.model.response.BaseResponse;
 import com.zircon.app.model.response.UserResponse;
 import com.zircon.app.ui.common.activity.AbsBaseDialogFormActivity;
+import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
@@ -97,13 +98,17 @@ public class ProfileActivity extends AbsBaseDialogFormActivity {
             return;
 
         Call<UserResponse> call = HTTP.getAPI().modifyUser(SessionManager.getToken(), user);
-        call.enqueue(new Callback<UserResponse>() {
+        call.enqueue(new AuthCallBack<UserResponse>() {
             @Override
-            public void onResponse(Response<UserResponse> response) {
+            protected void onAuthError() {
+                //TODO handle this
+            }
+
+            @Override
+            protected void parseSuccessResponse(Response<UserResponse> response) {
                 if (response.isSuccess()) {
                     SessionManager.setLoggedInUser(user);
                 }
-
             }
 
             @Override
@@ -111,6 +116,7 @@ public class ProfileActivity extends AbsBaseDialogFormActivity {
                 t.getLocalizedMessage();
             }
         });
+
     }
 
     public void onChangePassword(View view){

@@ -6,7 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zircon.app.model.response.PanelResponse;
+import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsBaseListFragment;
+import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
@@ -47,11 +49,20 @@ public class MembersFragment extends AbsBaseListFragment {
     @Override
     public void fetchList() {
         Call<PanelResponse> call = HTTP.getAPI().getSocietyPanel(SessionManager.getToken());
-        call.enqueue(new Callback<PanelResponse>() {
+        call.enqueue(new AuthCallBack<PanelResponse>() {
             @Override
-            public void onResponse(Response<PanelResponse> response) {
-                if (response.isSuccess() && response.body() != null && response.body().body != null)
-                    ((MembersListAdapter) mListAdapter).addAll(response.body().body);
+            protected void onAuthError() {
+                ((AbsBaseActivity)getActivity()).onAuthError(new AbsBaseActivity.IAuthCallback() {
+                    @Override
+                    public void onAuthSuccess() {
+                        fetchList();
+                    }
+                });
+            }
+
+            @Override
+            protected void parseSuccessResponse(Response<PanelResponse> response) {
+                ((MembersListAdapter) mListAdapter).addAll(response.body().body);
             }
 
             @Override
@@ -59,5 +70,6 @@ public class MembersFragment extends AbsBaseListFragment {
                 t.getLocalizedMessage();
             }
         });
+
     }
 }

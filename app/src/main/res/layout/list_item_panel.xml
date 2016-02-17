@@ -34,7 +34,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:scaleType="center"
-                android:src="@android:drawable/sym_def_app_icon" />
+                android:src="@drawable/ic_avatar" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

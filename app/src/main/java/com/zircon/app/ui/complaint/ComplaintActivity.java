@@ -9,6 +9,7 @@ import com.zircon.app.model.request.Complaint;
 import com.zircon.app.model.User;
 import com.zircon.app.model.response.ComplaintResponse;
 import com.zircon.app.ui.common.activity.AbsBaseDialogFormActivity;
+import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
@@ -54,18 +55,24 @@ public class ComplaintActivity  extends AbsBaseDialogFormActivity {
                     complaint.description = mcomplaintView.getText().toString().trim();
 
                     Call<ComplaintResponse> call = HTTP.getAPI().saveComplaint(SessionManager.getToken() , complaint);
-                    call.enqueue(new Callback<ComplaintResponse>() {
+                    call.enqueue(new AuthCallBack<ComplaintResponse>() {
                         @Override
-                        public void onResponse(Response<ComplaintResponse> response) {
+                        protected void onAuthError() {
+
+                        }
+
+                        @Override
+                        protected void parseSuccessResponse(Response<ComplaintResponse> response) {
                             response.isSuccess();
                             finish();
                         }
 
                         @Override
                         public void onFailure(Throwable t) {
-                            t.getLocalizedMessage();
+
                         }
                     });
+
                 }
             }
         });

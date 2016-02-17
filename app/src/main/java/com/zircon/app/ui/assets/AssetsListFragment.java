@@ -6,7 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.zircon.app.model.response.AssetsResponse;
+import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsBaseListFragment;
+import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
@@ -55,19 +57,29 @@ public class AssetsListFragment extends AbsBaseListFragment {
     public void fetchList() {
 
         Call<AssetsResponse> call = HTTP.getAPI().getAllSocietyAssets(SessionManager.getToken());
-        call.enqueue(new Callback<AssetsResponse>() {
+        call.enqueue(new AuthCallBack<AssetsResponse>() {
             @Override
-            public void onResponse(Response<AssetsResponse> response) {
-                if (response.isSuccess() && response.body() != null && response.body().body != null)
-                    ((AssetsListAdapter) mListAdapter).addAll(response.body().body);
+            protected void onAuthError() {
+                ((AbsBaseActivity)getActivity()).onAuthError(new AbsBaseActivity.IAuthCallback() {
+                    @Override
+                    public void onAuthSuccess() {
+                        fetchList();
+                    }
+                });
+            }
+
+            @Override
+            protected void parseSuccessResponse(Response<AssetsResponse> response) {
+                ((AssetsListAdapter) mListAdapter).addAll(response.body().body);
             }
 
             @Override
             public void onFailure(Throwable t) {
-
                 t.getLocalizedMessage();
             }
         });
+
+
 
     }
 }

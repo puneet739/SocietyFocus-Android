@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.zircon.app.model.response.ComplaintListResponse;
 import com.zircon.app.ui.common.fragment.AbsBaseListFragment;
+import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
@@ -47,11 +48,15 @@ public class AllComplaintsFragment extends AbsBaseListFragment {
     @Override
     public void fetchList() {
         Call<ComplaintListResponse> call = HTTP.getAPI().getUserComplaints(SessionManager.getToken());
-        call.enqueue(new Callback<ComplaintListResponse>() {
+        call.enqueue(new AuthCallBack<ComplaintListResponse>() {
             @Override
-            public void onResponse(Response<ComplaintListResponse> response) {
-                if (response.isSuccess() && response.body() != null && response.body().body != null)
-                    ((ComplaintListAdapter) mListAdapter).addAll(response.body().body);
+            protected void onAuthError() {
+
+            }
+
+            @Override
+            protected void parseSuccessResponse(Response<ComplaintListResponse> response) {
+                ((ComplaintListAdapter) mListAdapter).addAll(response.body().body);
             }
 
             @Override
@@ -59,5 +64,6 @@ public class AllComplaintsFragment extends AbsBaseListFragment {
                 t.getLocalizedMessage();
             }
         });
+
     }
 }
