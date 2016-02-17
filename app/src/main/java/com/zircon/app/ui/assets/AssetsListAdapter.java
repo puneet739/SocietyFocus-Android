@@ -63,7 +63,7 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
         public ViewHolder(View itemView) {
             super(itemView);
 
-            profileImageView = (ImageView) itemView.findViewById(R.id.profile_pic);
+            profileImageView = (ImageView) itemView.findViewById(R.id.asset_pic);
             nameTextView = (TextView) itemView.findViewById(R.id.name);
             emailImageView = (ImageView) itemView.findViewById(R.id.email);
             phoneImageView = (ImageView) itemView.findViewById(R.id.phone);
@@ -102,7 +102,8 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
         public void setAsset(Asset asset) {
 
             Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(true);
-            Picasso.with(profileImageView.getContext()).load(asset.img).into(profileImageView);
+
+            Picasso.with(profileImageView.getContext()).load(asset.img).placeholder(R.drawable.ic_1_1).into(profileImageView);
 
 
             nameTextView.setText(asset.description);
