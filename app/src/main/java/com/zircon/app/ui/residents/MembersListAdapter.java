@@ -87,9 +87,8 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         }
 
         public void setUser(User user) {
-            if (user.profilePic != null && user.profilePic.trim().length()>0 && HTTPUtils.isValidUrl(user.profilePic))
             Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(true);
-            Picasso.with(profileImageView.getContext()).load(user.profilePic).into(profileImageView);
+            Picasso.with(profileImageView.getContext()).load(user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
 
             nameTextView.setText(user.firstname + " " + (user.lastname != null ? user.lastname : ""));
             addressTextView.setText(user.description);

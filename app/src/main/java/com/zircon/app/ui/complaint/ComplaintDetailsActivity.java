@@ -8,13 +8,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.zircon.app.R;
-import com.zircon.app.ui.common.activity.AbsBaseCollapsableActionBarNavActivity;
+import com.zircon.app.ui.common.activity.nav.BaseCABNavActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 
 /**
  * Created by jikoobaruah on 15/02/16.
  */
-public class ComplaintDetailsActivity extends AbsBaseCollapsableActionBarNavActivity {
+public class ComplaintDetailsActivity extends BaseCABNavActivity {
 
     interface IBundle{
         String ID = "id";
@@ -56,7 +56,7 @@ public class ComplaintDetailsActivity extends AbsBaseCollapsableActionBarNavActi
         mCollapseHeader.setText("Complaint id : "+mID);
         mCollapseTitle.setText(mTitle);
         mCollapseDescription.setText(mDescription);
-        setCollapsingContent(v);
+//        setCollapsingContent(v);
     }
 
     @Override

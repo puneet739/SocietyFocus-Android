@@ -1,9 +1,7 @@
-package com.zircon.app.ui.common.activity;
+package com.zircon.app.ui.common.activity.nav;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.assets.AssetsNavActivity;
+import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 import com.zircon.app.ui.complaint.AllComplaintsActivity;
 import com.zircon.app.ui.complaint.ComplaintActivity;
@@ -28,7 +27,7 @@ import com.zircon.app.ui.profile.ProfileActivity;
 import com.zircon.app.ui.residents.MembersNavActivity;
 import com.zircon.app.utils.SessionManager;
 
-abstract class AbsBaseNavActivity extends AbsBaseActivity
+public abstract class BaseNavActivity extends AbsBaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     protected RelativeLayout mFragmentLayout;
@@ -44,17 +43,17 @@ abstract class AbsBaseNavActivity extends AbsBaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResID());
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });show
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -78,7 +77,7 @@ abstract class AbsBaseNavActivity extends AbsBaseActivity
         mChangeProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AbsBaseNavActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(BaseNavActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
@@ -132,26 +131,26 @@ abstract class AbsBaseNavActivity extends AbsBaseActivity
         boolean isFinishCurrActivity = false;
 
         if (id == R.id.nav_home) {
-            intent = new Intent(AbsBaseNavActivity.this, MainNavActivity.class);
+            intent = new Intent(BaseNavActivity.this, MainNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         } else if (id == R.id.nav_rwa_members) {
-            intent = new Intent(AbsBaseNavActivity.this, com.zircon.app.ui.panel.MembersNavActivity.class);
+            intent = new Intent(BaseNavActivity.this, com.zircon.app.ui.panel.MembersNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         } else if (id == R.id.nav_assets) {
-            intent = new Intent(AbsBaseNavActivity.this, AssetsNavActivity.class);
+            intent = new Intent(BaseNavActivity.this, AssetsNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         } else if (id == R.id.nav_residents) {
-            intent = new Intent(AbsBaseNavActivity.this, MembersNavActivity.class);
+            intent = new Intent(BaseNavActivity.this, MembersNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         }else if (id == R.id.nav_logout){
             SessionManager.logoutUser();
-            intent = new Intent(AbsBaseNavActivity.this, LoginActivity.class);
+            intent = new Intent(BaseNavActivity.this, LoginActivity.class);
             isFinishCurrActivity = true;
         }else if (id == R.id.nav_complaint_new) {
-            intent = new Intent(AbsBaseNavActivity.this, ComplaintActivity.class);
+            intent = new Intent(BaseNavActivity.this, ComplaintActivity.class);
         } else if (id == R.id.nav_complaint_track) {
-            intent = new Intent(AbsBaseNavActivity.this, AllComplaintsActivity.class);
+            intent = new Intent(BaseNavActivity.this, AllComplaintsActivity.class);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -3,13 +3,13 @@ package com.zircon.app.ui.assets;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.zircon.app.ui.common.activity.AbsBaseNormalActionBarNavActivity;
+import com.zircon.app.ui.common.activity.nav.BaseABNavActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 
 /**
  * Created by jikoobaruah on 03/02/16.
  */
-public class AssetSlotActivity extends AbsBaseNormalActionBarNavActivity {
+public class AssetSlotActivity extends BaseABNavActivity {
 
 
     @Override

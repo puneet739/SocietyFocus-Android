@@ -3,13 +3,13 @@ package com.zircon.app.ui.home;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 
-import com.zircon.app.ui.common.activity.AbsBaseNormalActionBarNavActivity;
+import com.zircon.app.ui.common.activity.nav.BaseABNavActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 
 /**
  * Created by jikoobaruah on 24/01/16.
  */
-public class MainNavActivity extends AbsBaseNormalActionBarNavActivity implements HomeFragment.OnFragmentInteractionListener {
+public class MainNavActivity extends BaseABNavActivity implements HomeFragment.OnFragmentInteractionListener {
 
 
     @Override

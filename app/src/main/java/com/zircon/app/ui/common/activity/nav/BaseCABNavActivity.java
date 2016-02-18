@@ -1,4 +1,4 @@
-package com.zircon.app.ui.common.activity;
+package com.zircon.app.ui.common.activity.nav;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,19 +13,20 @@ import com.zircon.app.utils.SessionManager;
 /**
  * Created by jikoobaruah on 24/01/16.
  */
-public abstract class AbsBaseCollapsableActionBarNavActivity extends AbsBaseNavActivity {
+public abstract class BaseCABNavActivity extends BaseNavActivity {
 
     private ImageView mCollapseImageView;
     private LinearLayout mCollapsingLayout;
 
     @Override
     int getLayoutResID() {
-        return R.layout.activity_collapsable_main;
+        return R.layout.activity_cab_nav_main;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         mCollapsingLayout = (LinearLayout) findViewById(R.id.collapse_content);
 

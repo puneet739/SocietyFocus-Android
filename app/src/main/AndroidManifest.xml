@@ -60,10 +60,18 @@
             android:name=".ui.residents.MembersNavActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ui.assets.AssetsNavActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ui.assets.AssetBookingActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
         <activity
             android:name=".ui.panel.MembersNavActivity"
             android:label="@string/app_name"

@@ -23,11 +23,6 @@ public class AbsBaseActivity extends AppCompatActivity {
     public static final int REQUEST_LOGIN = 2;
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

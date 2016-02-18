@@ -1,6 +1,7 @@
 package com.zircon.app.ui.assets;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +61,7 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
         ImageView emailImageView;
         ImageView phoneImageView;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
 
             profileImageView = (ImageView) itemView.findViewById(R.id.asset_pic);
@@ -72,6 +73,8 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
                 @Override
                 public void onClick(View v) {
                     System.out.println("fjjjgj");
+                    Intent intent =new Intent(itemView.getContext(),AssetBookingActivity.class);
+                    itemView.getContext().startActivity(intent);
                 }
             });
 
