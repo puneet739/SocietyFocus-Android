@@ -24,7 +24,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:scaleType="center"
-            android:src="@drawable/ic_1_1" />
+            android:src="@drawable/ic_1_2" />
 
         <LinearLayout
             android:layout_width="match_parent"

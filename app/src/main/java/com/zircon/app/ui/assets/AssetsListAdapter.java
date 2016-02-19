@@ -97,7 +97,7 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
 
         public void setAsset(Asset asset) {
             Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(true);
-            Picasso.with(profileImageView.getContext()).load(asset.img).placeholder(R.drawable.ic_1_1).into(profileImageView);
+            Picasso.with(profileImageView.getContext()).load(asset.img).placeholder(R.drawable.ic_1_2).into(profileImageView);
             nameTextView.setText(asset.description);
             nameTextView.setTag(asset);
             emailImageView.setTag(asset.email);
