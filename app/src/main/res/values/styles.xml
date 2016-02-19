@@ -21,6 +21,7 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:background">@color/colorPrimary</item>
 
     </style>
