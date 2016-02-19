@@ -20,7 +20,7 @@
         android:background="@android:color/darker_gray"
         android:orientation="vertical">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_gravity="center"
             android:id="@+id/asset_pic"
             android:layout_width="60dp"

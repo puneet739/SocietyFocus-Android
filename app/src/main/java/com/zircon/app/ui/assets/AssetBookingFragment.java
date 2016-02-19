@@ -1,5 +1,6 @@
 package com.zircon.app.ui.assets;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -87,6 +88,8 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
+        dpd.setAccentColor(getResources().getColor(R.color.mdtp_accent_color));
+
         dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
 
     }
@@ -99,6 +102,7 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
         }
         Calendar now = Calendar.getInstance();
         tpd = TimePickerDialog.newInstance(AssetBookingFragment.this, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), false);
+        tpd.setAccentColor(getResources().getColor(R.color.mdtp_accent_color));
 
         tpd.show(getActivity().getFragmentManager(), "Timepickerdialog");
 

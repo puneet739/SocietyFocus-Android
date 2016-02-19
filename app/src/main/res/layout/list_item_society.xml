@@ -7,7 +7,7 @@
     android:background="@android:color/white"
     android:layout_height="match_parent">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_gravity="center"
         android:id="@+id/society_img"
         android:layout_width="50dp"
