@@ -13,6 +13,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import com.zircon.app.R;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
@@ -41,6 +42,20 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
         dateEditText.setClickable(true);
         timeEditText.setClickable(true);
 
+        dateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDPD();
+            }
+        });
+
+        timeEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTPD();
+            }
+        });
+
         dateEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -59,9 +74,14 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
         });
     }
 
+    DatePickerDialog dpd = null;
     private void showDPD() {
+        if (dpd != null && dpd.isVisible()) {
+            dpd.dismiss();
+            dpd = null;
+        }
         Calendar now = Calendar.getInstance();
-        DatePickerDialog dpd = DatePickerDialog.newInstance(
+        dpd = DatePickerDialog.newInstance(
                 AssetBookingFragment.this,
                 now.get(Calendar.YEAR),
                 now.get(Calendar.MONTH),
@@ -71,9 +91,14 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
 
     }
 
+    TimePickerDialog tpd = null;
     private void showTPD() {
+        if (tpd != null && tpd.isVisible()){
+            tpd.dismiss();
+            tpd = null;
+        }
         Calendar now = Calendar.getInstance();
-        TimePickerDialog tpd = TimePickerDialog.newInstance(AssetBookingFragment.this, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), false);
+        tpd = TimePickerDialog.newInstance(AssetBookingFragment.this, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), false);
 
         tpd.show(getActivity().getFragmentManager(), "Timepickerdialog");
 
@@ -81,11 +106,19 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR,year);
+        c.set(Calendar.MONTH,monthOfYear);
+        c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        dateEditText.setText(new SimpleDateFormat("dd-MMM-yyyy").format(c.getTime()));
     }
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY,hourOfDay);
+        c.set(Calendar.MINUTE,minute);
+        timeEditText.setText(new SimpleDateFormat("hh:mm a").format(c.getTime()));
 
     }
 }

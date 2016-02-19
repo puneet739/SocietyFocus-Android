@@ -37,6 +37,8 @@ public abstract class AbsCABNoNavActivity extends BaseNoNavActivity implements A
     private static final float SCALE_MINIMUM = 0.5f;
 
     private ImageView mCollapseImageView;
+    private TextView mExpandedHeaderView;
+    private TextView mExpandedTagLineView;
 
     AppBarLayout appBarLayout;
 
@@ -68,6 +70,13 @@ public abstract class AbsCABNoNavActivity extends BaseNoNavActivity implements A
         mTitleContainer = (LinearLayout) findViewById(R.id.main_linearlayout_title);
         mAppBarLayout   = (AppBarLayout) findViewById(R.id.main_appbar);
 
+        mExpandedHeaderView = (TextView) findViewById(R.id.main_expanded_title);
+        mExpandedTagLineView = (TextView) findViewById(R.id.main_expanded_subtitle);
+
+        mExpandedHeaderView.setText(getExpandedHeaderText());
+        mExpandedTagLineView.setText(getExpandedTagLineText());
+        mTitle.setText(getMainTitleText());
+
 
         mToolbar.setTitle("");
         mAppBarLayout.addOnOffsetChangedListener(this);
@@ -84,6 +93,12 @@ public abstract class AbsCABNoNavActivity extends BaseNoNavActivity implements A
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
 
     }
+
+    protected abstract String getExpandedTagLineText();
+
+    protected abstract String getExpandedHeaderText();
+
+    protected abstract String getMainTitleText();
 
     protected abstract AbsFragment getFragment();
 

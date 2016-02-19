@@ -2,6 +2,7 @@ package com.zircon.app.ui.assets;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,7 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
         ImageView emailImageView;
         ImageView phoneImageView;
 
+
         public ViewHolder(final View itemView) {
             super(itemView);
 
@@ -72,44 +74,32 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("fjjjgj");
                     Intent intent =new Intent(itemView.getContext(),AssetBookingActivity.class);
+                    intent.putExtra(AssetBookingActivity.IARGS.ASSET, (Asset) nameTextView.getTag());
                     itemView.getContext().startActivity(intent);
                 }
             });
 
-            profileImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println("profile");
-                }
-            });
-
-            emailImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println(v.getTag());
-                }
-            });
-
-            phoneImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println(v.getTag());
-                }
-            });
-
-
+//            emailImageView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    System.out.println(v.getTag());
+//                }
+//            });
+//
+//            phoneImageView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    System.out.println(v.getTag());
+//                }
+//            });
         }
 
         public void setAsset(Asset asset) {
-
             Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(true);
-
             Picasso.with(profileImageView.getContext()).load(asset.img).placeholder(R.drawable.ic_1_1).into(profileImageView);
-
-
             nameTextView.setText(asset.description);
+            nameTextView.setTag(asset);
             emailImageView.setTag(asset.email);
             phoneImageView.setTag(asset.contactno);
         }
