@@ -9,12 +9,13 @@ import android.widget.TextView;
 
 import com.zircon.app.R;
 import com.zircon.app.ui.common.activity.nav.BaseCABNavActivity;
+import com.zircon.app.ui.common.activity.nonav.AbsCABNoNavActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 
 /**
  * Created by jikoobaruah on 15/02/16.
  */
-public class ComplaintDetailsActivity extends BaseCABNavActivity {
+public class ComplaintDetailsActivity extends AbsCABNoNavActivity{
 
     interface IBundle{
         String ID = "id";
@@ -42,28 +43,27 @@ public class ComplaintDetailsActivity extends BaseCABNavActivity {
 
         super.onCreate(savedInstanceState);
 
-        createCollapseContent();
-
     }
 
-    private void createCollapseContent() {
-        View v = LayoutInflater.from(this).inflate(R.layout.layout_complaint_collapse_header,null,false);
+    @Override
+    protected String getExpandedTagLineText() {
+        return mTitle;
+    }
 
-        mCollapseHeader = (TextView) v.findViewById(R.id.header);
-        mCollapseTitle = (TextView) v.findViewById(R.id.title);
-        mCollapseDescription = (TextView) v.findViewById(R.id.description);
+    @Override
+    protected String getExpandedHeaderText() {
+        return "Complaint ID : "+mID;
+    }
 
-        mCollapseHeader.setText("Complaint id : "+mID);
-        mCollapseTitle.setText(mTitle);
-        mCollapseDescription.setText(mDescription);
-//        setCollapsingContent(v);
+    @Override
+    protected String getMainTitleText() {
+        return mTitle;
     }
 
     @Override
     protected AbsFragment getFragment() {
-
         Bundle args = new Bundle();
-        args.putString(IBundle.ID,mID);
+        args.putString(ComplaintDetailsFragment.IARGS.COMPLAINT_ID,mID);
         return (AbsFragment) Fragment.instantiate(this, ComplaintDetailsFragment.class.getName(),args);
 
     }

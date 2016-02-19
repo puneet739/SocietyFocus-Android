@@ -12,6 +12,8 @@ public class Complaint {
     public String title;
     public String description;
 
+    public String creationdate;
+
 //    public User user;
 
     public String status;

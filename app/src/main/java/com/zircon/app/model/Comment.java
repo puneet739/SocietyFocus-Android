@@ -6,7 +6,7 @@ package com.zircon.app.model;
 public class Comment {
 
     public String commentid;
-    public String userid;
+    public User user;
     public String comment;
     public String complaintid;
     public String creationdate;

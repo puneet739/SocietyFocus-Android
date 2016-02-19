@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:card_view="http://schemas.android.com/apk/res-auto"
-android:id="@+id/card_view"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_gravity="center"
-card_view:cardCornerRadius="2dp">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    card_view:cardCornerRadius="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +15,14 @@ card_view:cardCornerRadius="2dp">
         android:orientation="vertical">
 
         <TextView
+            android:textStyle="italic"
+            android:textSize="12dp"
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="5dp"
             android:textSize="16dp"
             android:id="@+id/title"
             android:layout_width="match_parent"
@@ -23,19 +31,13 @@ card_view:cardCornerRadius="2dp">
             />
 
         <TextView
-            android:layout_marginTop="5dp"
+            android:gravity="right|bottom"
             android:textSize="14dp"
-            android:id="@+id/description"
+            android:id="@+id/comment_by"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:textStyle="italic"
-            android:gravity="bottom|right"
-            android:textSize="12dp"
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
 
 
 

@@ -9,8 +9,12 @@ import android.widget.TextView;
 
 import com.zircon.app.R;
 import com.zircon.app.model.Complaint;
+import com.zircon.app.model.response.BaseResponse;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by jikoobaruah on 24/01/16.
@@ -52,12 +56,14 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
 
         TextView titleTextView;
         TextView descriptionTextView;
+        TextView dateTextView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
 
             titleTextView = (TextView) itemView.findViewById(R.id.title);
             descriptionTextView = (TextView) itemView.findViewById(R.id.description);
+            dateTextView = (TextView) itemView.findViewById(R.id.date);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -75,6 +81,13 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
             titleTextView.setTag(complaint.complaintid);
             titleTextView.setText(complaint.title);
             descriptionTextView.setText(complaint.description);
+            try {
+                Date date = BaseResponse.API_SDF.parse(complaint.creationdate);
+                dateTextView.setText("created on "+new SimpleDateFormat("dd MMM yyyy").format(date));
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -47,6 +47,11 @@ public abstract class AbsBaseListFragment extends AbsFragment {
 
     }
 
+
+//    public RecyclerView getmRecyclerView(){
+//        return mRecyclerView;
+//    }
+
     public abstract RecyclerView.ItemDecoration getItemDecoration();
     public abstract RecyclerView.LayoutManager getLayoutManager();
     public abstract RecyclerView.Adapter getAdapter();
