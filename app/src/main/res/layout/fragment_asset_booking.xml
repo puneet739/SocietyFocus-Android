@@ -58,7 +58,35 @@
                         android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:hint="@string/prompt_description"
+                        android:inputType="textCapSentences"
+                        android:maxLines="4"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <Button
+                    android:id="@+id/book_now"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_now"
+                    />
+
             </LinearLayout>
+
+
 
         </android.support.v7.widget.CardView>
 

@@ -1,10 +1,12 @@
 package com.zircon.app.utils;
 
 import com.zircon.app.model.User;
+import com.zircon.app.model.request.BookAsset;
 import com.zircon.app.model.request.Complaint;
 import com.zircon.app.model.response.AssetsResponse;
 import com.zircon.app.model.response.AssetSlotResponse;
 import com.zircon.app.model.response.BaseResponse;
+import com.zircon.app.model.response.BookAssetResponse;
 import com.zircon.app.model.response.ComplaintCommentResponse;
 import com.zircon.app.model.response.ComplaintListResponse;
 import com.zircon.app.model.response.ComplaintResponse;
@@ -85,5 +87,8 @@ public interface API {
 
     @GET(API_PATH_PATTERN+"user/modify/oldpass/{oldpassword}/newpass/{newpassword}/email/{email}")
     public Call<BaseResponse> modifyPassword(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken,@Path("oldpassword") String oldpassword,@Path("newpassword") String newpassword,@Path("email") String email);
+
+    @POST(API_PATH_PATTERN+"society/asset/book")
+    public Call<BookAssetResponse> saveAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken , @Body BookAsset bookAsset);
 
 }

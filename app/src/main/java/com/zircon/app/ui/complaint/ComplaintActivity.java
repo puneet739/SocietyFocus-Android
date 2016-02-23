@@ -47,12 +47,13 @@ public class ComplaintActivity  extends AbsBaseDialogFormActivity {
 
                 if (isValidInput()){
                     User loogedInUser = SessionManager.getLoggedInUser();
-                    Complaint complaint = new Complaint();
-                    complaint.complainerName = loogedInUser.firstname + (loogedInUser.lastname != null ? " "+loogedInUser.lastname : "");
-                    complaint.complainerContactNo = loogedInUser.contactNumber;
-                    complaint.complainerEmail=loogedInUser.email;
-                    complaint.title = mcomplaintTitleView.getText().toString().trim();
-                    complaint.description = mcomplaintView.getText().toString().trim();
+                    String complainerName = loogedInUser.firstname + (loogedInUser.lastname != null ? " "+loogedInUser.lastname : "");
+                    String complainerContactNo = loogedInUser.contactNumber;
+                    String complainerEmail=loogedInUser.email;
+                    String title = mcomplaintTitleView.getText().toString().trim();
+                    String description = mcomplaintView.getText().toString().trim();
+                    Complaint complaint = new Complaint(complainerName,complainerContactNo,complainerEmail,title,description);
+
 
                     Call<ComplaintResponse> call = HTTP.getAPI().saveComplaint(SessionManager.getToken() , complaint);
                     call.enqueue(new AuthCallBack<ComplaintResponse>() {

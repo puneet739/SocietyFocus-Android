@@ -1,21 +1,31 @@
 package com.zircon.app.ui.assets;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import com.zircon.app.R;
+import com.zircon.app.model.request.BookAsset;
+import com.zircon.app.model.response.BaseResponse;
+import com.zircon.app.model.response.BookAssetResponse;
 import com.zircon.app.ui.common.fragment.AbsFragment;
+import com.zircon.app.utils.AuthCallBack;
+import com.zircon.app.utils.HTTP;
+import com.zircon.app.utils.SessionManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 
 /**
@@ -23,8 +33,30 @@ import java.util.Calendar;
  */
 public class AssetBookingFragment extends AbsFragment implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
+    interface IARGS {
+        String ASSET_ID = "asset_id";
+    }
+
     EditText dateEditText;
     EditText timeEditText;
+    EditText descriptionEditText;
+    Button submitButton;
+
+    String date;
+    String time;
+    String description;
+
+    Calendar bookingTime;
+
+    String assetID;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        assetID = getArguments().getString(IARGS.ASSET_ID,null);
+        if (assetID == null || assetID.trim().length()==0)
+            throw new NullPointerException("assetid is null");
+    }
 
     @Nullable
     @Override
@@ -37,8 +69,14 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        bookingTime = Calendar.getInstance();
+
         dateEditText = (EditText) view.findViewById(R.id.date);
         timeEditText = (EditText) view.findViewById(R.id.time);
+        descriptionEditText = (EditText) view.findViewById(R.id.description);
+        submitButton = (Button) view.findViewById(R.id.book_now);
+
 
         dateEditText.setClickable(true);
         timeEditText.setClickable(true);
@@ -60,19 +98,73 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
         dateEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    showDPD();
-                }
-            }
-        });
+                if (hasFocus) {showDPD();}}});
 
         timeEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
-                    showTPD();
+                if (hasFocus) showTPD();
             }
         });
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isValidInput()) {
+                    submitAssetBooking();
+                }
+            }
+        });
+    }
+
+    private void submitAssetBooking() {
+        BookAsset request = new BookAsset(assetID, BaseResponse.API_SDF_2.format(bookingTime.getTime()),false,description,BookAsset.STATUS.ACTIVE);
+
+        System.out.println(new Gson().toJson(request));
+        Call<BookAssetResponse> call = HTTP.getAPI().saveAssetBooking(SessionManager.getToken(),request);
+        call.enqueue(new AuthCallBack<BookAssetResponse>() {
+            @Override
+            protected void onAuthError() {
+                //TODO handle this
+            }
+
+            @Override
+            protected void parseSuccessResponse(Response<BookAssetResponse> response) {
+                response.body();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.getLocalizedMessage();
+            }
+        });
+    }
+
+    private boolean isValidInput() {
+        boolean isValid = true;
+
+        date = dateEditText.getText().toString().trim();
+        time = timeEditText.getText().toString().trim();
+        description = descriptionEditText.getText().toString().trim();
+
+        if (date == null || date.length() == 0 ){
+            isValid = false;
+            dateEditText.setError("Please fill this field");
+        }
+
+        if (time == null || time.length() == 0 ){
+            if (isValid)
+                dateEditText.setError("Please fill this field");
+            isValid = false;
+        }
+
+        if (description == null || description.length() == 0 ){
+            if (isValid)
+                descriptionEditText.setError("Please fill this field");
+            isValid = false;
+        }
+
+        return isValid;
     }
 
     DatePickerDialog dpd = null;
@@ -106,6 +198,7 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
 
         tpd.show(getActivity().getFragmentManager(), "Timepickerdialog");
 
+
     }
 
     @Override
@@ -113,16 +206,27 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR,year);
         c.set(Calendar.MONTH,monthOfYear);
-        c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         dateEditText.setText(new SimpleDateFormat("dd-MMM-yyyy").format(c.getTime()));
+
+
+        bookingTime.set(Calendar.YEAR, year);
+        bookingTime.set(Calendar.MONTH, monthOfYear);
+        bookingTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
     }
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY,hourOfDay);
-        c.set(Calendar.MINUTE,minute);
+        c.set(Calendar.MINUTE, minute);
         timeEditText.setText(new SimpleDateFormat("hh:mm a").format(c.getTime()));
+
+        bookingTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        bookingTime.set(Calendar.MINUTE, minute);
+        bookingTime.set(Calendar.SECOND, 0);
+
 
     }
 }

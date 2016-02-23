@@ -7,6 +7,15 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Complaint {
 
+
+    public Complaint(String title, String description, String complainerName, String complainerContactNo, String complainerEmail) {
+        this.title = title;
+        this.description = description;
+        this.complainerName = complainerName;
+        this.complainerContactNo = complainerContactNo;
+        this.complainerEmail = complainerEmail;
+    }
+
     public String title;
     public String description;
 

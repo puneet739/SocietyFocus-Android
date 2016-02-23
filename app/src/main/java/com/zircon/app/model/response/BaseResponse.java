@@ -15,6 +15,7 @@ public class BaseResponse {
     public String message;
 
     public static SimpleDateFormat API_SDF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss Z");
+    public static SimpleDateFormat API_SDF_2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
     static {
         API_SDF.setTimeZone(TimeZone.getTimeZone("GMT"));
     }

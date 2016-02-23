@@ -11,6 +11,7 @@
         android:layout_gravity="center"
         android:id="@+id/society_img"
         android:layout_width="50dp"
+        android:src="@drawable/ic_1_2"
         android:layout_height="50dp" />
 
 

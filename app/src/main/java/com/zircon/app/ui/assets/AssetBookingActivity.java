@@ -14,6 +14,7 @@ public class AssetBookingActivity extends AbsCABNoNavActivity{
 
     interface IARGS {
         String ASSET = "asset";
+        String ASSET_ID = "asset_id";
     }
 
     private Asset asset;
@@ -42,6 +43,8 @@ public class AssetBookingActivity extends AbsCABNoNavActivity{
 
     @Override
     protected AbsFragment getFragment() {
-        return (AbsFragment) Fragment.instantiate(AssetBookingActivity.this,AssetBookingFragment.class.getName());
+        Bundle args = new Bundle();
+        args.putString(IARGS.ASSET_ID,asset.id);
+        return (AbsFragment) Fragment.instantiate(AssetBookingActivity.this,AssetBookingFragment.class.getName(),args);
     }
 }
