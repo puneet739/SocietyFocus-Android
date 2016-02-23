@@ -4,8 +4,8 @@ import com.zircon.app.model.User;
 import com.zircon.app.model.request.BookAsset;
 import com.zircon.app.model.request.Complaint;
 import com.zircon.app.model.response.AssetsResponse;
-import com.zircon.app.model.response.AssetSlotResponse;
 import com.zircon.app.model.response.BaseResponse;
+import com.zircon.app.model.response.BookAssetListResponse;
 import com.zircon.app.model.response.BookAssetResponse;
 import com.zircon.app.model.response.ComplaintCommentResponse;
 import com.zircon.app.model.response.ComplaintListResponse;
@@ -67,9 +67,6 @@ public interface API {
     @GET(API_PATH_PATTERN+"society/panel")
     public Call<PanelResponse> getSocietyPanel(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
 
-    @GET(API_PATH_PATTERN+"society/asset/getAssetCalendar")
-    public Call<AssetSlotResponse> getAssetCalendar(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken,@Header(IAssetParams.ID) String assetID,@Header(IEventParams.MONTH) int month,@Header(IEventParams.YEAR) int year);
-
     @GET(API_PATH_PATTERN+"society")
     public Call<SocietyListResponse> getSocietyList();
 
@@ -91,4 +88,6 @@ public interface API {
     @POST(API_PATH_PATTERN+"society/asset/book")
     public Call<BookAssetResponse> saveAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken , @Body BookAsset bookAsset);
 
+    @POST(API_PATH_PATTERN+"society/asset/getassetbyuser")
+    public Call<BookAssetListResponse> getAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken );
 }

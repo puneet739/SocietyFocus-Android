@@ -1,10 +1,11 @@
-package com.zircon.app.ui.assets;
+package com.zircon.app.ui.assets.browsebooking;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
-import com.zircon.app.model.AssetDaySlot;
+import com.zircon.app.model.AssetBooking;
 import com.zircon.app.ui.common.fragment.AbsCalendarFragment;
 import com.zircon.app.ui.common.fragment.AbsMonthFragment;
 
@@ -51,31 +52,37 @@ public class AssetCalendarFragment extends AbsCalendarFragment implements AssetM
         return fragment;
     }
 
+    boolean isFirstTime = true;
     @Override
-    public void onAssetDataFetched(ArrayList<AssetDaySlot> assetDaySlots,Calendar c) {
-        for (AssetDaySlot daySlot : assetDaySlots){
-            c.set(Calendar.DATE,daySlot.date);
-            ((AssetCalendarListAdapter)mRecyclerView.getAdapter()).put(c,daySlot);
+    public void onAssetDataFetched(ArrayList<AssetBooking> assetBookings,Calendar c) {
+        for (AssetBooking assetBooking : assetBookings){
+            ((AssetCalendarListAdapter)mRecyclerView.getAdapter()).put(c,assetBookings);
         }
+
+        if (isFirstTime){
+            c = Calendar.getInstance();
+            onDayCellClicked(c.get(Calendar.MONTH), c.get(Calendar.DATE));
+            isFirstTime = false;
+        }
+
     }
 
     private class AssetCalendarListAdapter extends AbsCalendarRecycleViewAdapter{
 
-        private HashMap<String,AssetDaySlot> daySlotHashMap = new HashMap<>();
+        private HashMap<String,ArrayList<AssetBooking>> assetBookingHashMap = new HashMap<>();
 
-        public void put(Calendar c,AssetDaySlot assetDaySlot){
-            daySlotHashMap.put(new SimpleDateFormat("ddMMyyyy").format(c.getTime()),assetDaySlot);
+        public void put(Calendar c,ArrayList<AssetBooking> assetBookings){
+            ArrayList<AssetBooking> originalList = assetBookingHashMap.get(new SimpleDateFormat("ddMMyyyy").format(c.getTime()));
+            ArrayList<AssetBooking> newList = originalList == null ? new ArrayList<AssetBooking>() : originalList;
+            assetBookingHashMap.put(new SimpleDateFormat("ddMMyyyy").format(c.getTime()),newList);
             notifyItemChanged(getPositionForDate(c));
         }
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             super.onBindViewHolder(holder, position);
-            AssetDaySlot daySlot = daySlotHashMap.get(new SimpleDateFormat("ddMMyyyy").format(getCalendarForPosition(position).getTime()));
-            if (daySlot != null)
-                holder.infotextView.setText(daySlot.openSlots+"/"+daySlot.totalAvailableSlots);
-            else
-                holder.infotextView.setText("Book Now!");
+            ArrayList<AssetBooking> assetBookings = assetBookingHashMap.get(new SimpleDateFormat("ddMMyyyy").format(getCalendarForPosition(position).getTime()));
+            //TODO populate list view
         }
     }
 

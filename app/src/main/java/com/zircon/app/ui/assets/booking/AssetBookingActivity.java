@@ -1,4 +1,4 @@
-package com.zircon.app.ui.assets;
+package com.zircon.app.ui.assets.booking;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +12,7 @@ import com.zircon.app.ui.common.fragment.AbsFragment;
  */
 public class AssetBookingActivity extends AbsCABNoNavActivity{
 
-    interface IARGS {
+    public interface IARGS {
         String ASSET = "asset";
         String ASSET_ID = "asset_id";
     }
@@ -44,7 +44,7 @@ public class AssetBookingActivity extends AbsCABNoNavActivity{
     @Override
     protected AbsFragment getFragment() {
         Bundle args = new Bundle();
-        args.putString(IARGS.ASSET_ID,asset.id);
+        args.putString(IARGS.ASSET_ID, asset.id);
         return (AbsFragment) Fragment.instantiate(AssetBookingActivity.this,AssetBookingFragment.class.getName(),args);
     }
 }

@@ -1,4 +1,4 @@
-package com.zircon.app.ui.assets;
+package com.zircon.app.ui.assets.browse;
 
 import android.support.v4.app.Fragment;
 

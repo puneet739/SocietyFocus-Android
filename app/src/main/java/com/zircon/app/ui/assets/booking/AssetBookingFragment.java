@@ -1,4 +1,4 @@
-package com.zircon.app.ui.assets;
+package com.zircon.app.ui.assets.booking;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

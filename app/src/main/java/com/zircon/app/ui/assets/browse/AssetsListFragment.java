@@ -1,4 +1,4 @@
-package com.zircon.app.ui.assets;
+package com.zircon.app.ui.assets.browse;
 
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,7 +13,6 @@ import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**

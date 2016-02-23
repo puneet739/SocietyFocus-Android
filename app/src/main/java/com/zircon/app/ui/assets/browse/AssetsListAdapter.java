@@ -1,8 +1,7 @@
-package com.zircon.app.ui.assets;
+package com.zircon.app.ui.assets.browse;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
 import com.zircon.app.model.Asset;
-import com.zircon.app.ui.common.activity.AbsBaseActivity;
+import com.zircon.app.ui.assets.booking.AssetBookingActivity;
 
 import java.util.ArrayList;
 

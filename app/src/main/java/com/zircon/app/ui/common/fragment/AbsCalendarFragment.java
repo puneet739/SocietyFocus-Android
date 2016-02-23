@@ -1,5 +1,6 @@
 package com.zircon.app.ui.common.fragment;
 
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -127,17 +128,21 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
     }
 
     private void collapse() {
+        Point point = new Point();
+        getActivity().getWindowManager().getDefaultDisplay().getSize(point);
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mViewPager.getLayoutParams();
-        lp.height =lp.height > 0? lp.height/2:mViewPager.getMeasuredHeight()/2;
+//        lp.height =lp.height > 0? lp.height/2:mViewPager.getMeasuredHeight()/2;
+        lp.height = point.y/2;
+//        lp.height = lp.height;
         mViewPager.setLayoutParams(lp);
-        mViewPager.requestLayout();
+//        mViewPager.requestLayout();
 
         LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mRecyclerView.getLayoutParams();
         lp1.height =lp.height ;
         mRecyclerView.setLayoutParams(lp1);
 
         int recylerViewPos = ((AbsCalendarRecycleViewAdapter) mRecyclerView.getAdapter()).getPositionForDate(getCalendar(mViewPager.getCurrentItem()));
-        mRecyclerView.scrollToPosition(recylerViewPos);
+        mRecyclerView.smoothScrollToPosition(recylerViewPos);
 
         isViewPagerFullScreen = false;
     }

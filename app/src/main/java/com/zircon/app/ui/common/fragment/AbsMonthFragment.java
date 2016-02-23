@@ -191,18 +191,21 @@ public abstract class AbsMonthFragment extends AbsFragment {
             }
         }
 
-
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         Calendar calendar = Calendar.getInstance();
         calendar.set(year,month,1,0,0,0);
-        fetchEvents(calendar, position);
+        fetchData(calendar, position);
+
 
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(year,month,1,0,0,0);
+//        fetchData(calendar, position);
+//
+//    }
 
     public boolean isToday(int dateOfMonth) {
          return (Calendar.getInstance().get(Calendar.YEAR) == year && Calendar.getInstance().get(Calendar.MONTH) == month && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) == dateOfMonth);
@@ -213,7 +216,7 @@ public abstract class AbsMonthFragment extends AbsFragment {
     }
 
 
-    protected abstract void fetchEvents(Calendar calendar, int position);
+    protected abstract void fetchData(Calendar calendar, int position);
 
     interface IMonthInteractionListener {
 
