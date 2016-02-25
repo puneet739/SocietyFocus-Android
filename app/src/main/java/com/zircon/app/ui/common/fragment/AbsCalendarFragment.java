@@ -33,6 +33,7 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
     protected View mParentView;
     protected ViewPager mViewPager;
     protected RecyclerView mRecyclerView;
+    LinearLayoutManager layoutManager;
 
     private int startYear = 2016;
 
@@ -50,15 +51,36 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
         mViewPager.setAdapter(new CalendarAdapter(getFragmentManager(),startYear));
 
         mRecyclerView = (RecyclerView) mParentView.findViewById(R.id.calendar_recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(getCalendarRecycleViewAdapter());
-        mRecyclerView.addItemDecoration( new RecyclerView.ItemDecoration() {
+        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                    outRect.bottom = 50;
+                outRect.bottom = 50;
+            }
+        });
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+
+                int visibleItemCount = mRecyclerView.getChildCount();
+                int totalItemCount = layoutManager.getItemCount();
+                int firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
+
+                View firstVisibleView = layoutManager.getChildAt(firstVisibleItem);
+                View lastVisibleView = layoutManager.getChildAt(firstVisibleItem+visibleItemCount);
+
+
             }
         });
 
