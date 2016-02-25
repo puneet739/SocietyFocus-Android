@@ -11,4 +11,13 @@ public class AssetBooking {
     public boolean prepaid;
     public int status;
 
+    @Override
+    public boolean equals(Object o) {
+        return (((AssetBooking)o).id).equals(this.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.parseInt(id);
+    }
 }

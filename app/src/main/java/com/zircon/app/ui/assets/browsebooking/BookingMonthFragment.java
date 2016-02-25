@@ -103,64 +103,64 @@ public class BookingMonthFragment extends AbsMonthFragment {
 
     @Override
     public void fetchData(final Calendar calendar, final int position){
-//        if (call != null)
-//            call.cancel();
-//        call = getEventCALL(calendar);
-//        if (call == null) {
-//            return;
-//        }
-//        call.enqueue(new AuthCallBack<BookAssetListResponse>() {
-//            @Override
-//            protected void onAuthError() {
-//                //TODO handle this
-//            }
+        if (call != null)
+            call.cancel();
+        call = getEventCALL(calendar);
+        if (call == null) {
+            return;
+        }
+        call.enqueue(new AuthCallBack<BookAssetListResponse>() {
+            @Override
+            protected void onAuthError() {
+                //TODO handle this
+            }
+
+            @Override
+            protected void parseSuccessResponse(Response<BookAssetListResponse> response) {
+                if (response.body() != null && response.body().body != null && response.body().body.size() > 0){
+                    setAssetBookings(response.body().body);
+                    assetMonthInteractionListener.onAssetDataFetched(response.body().body, calendar);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.getLocalizedMessage();
+            }
+        });
+
+//        ArrayList<AssetBooking> bookings = new ArrayList<>();
 //
-//            @Override
-//            protected void parseSuccessResponse(Response<BookAssetListResponse> response) {
-//                if (response.body() != null && response.body().body != null && response.body().body.size() > 0){
-//                    setAssetBookings(response.body().body);
-////                    assetMonthInteractionListener.onAssetDataFetched(response.body().body, calendar);
-//                }
-//            }
+//        AssetBooking assetBooking = new AssetBooking();
+//        assetBooking.id= "10";
+//        assetBooking.assetid= "1";
+//        assetBooking.startTime = "2016-02-22T11:11:29 +0530";
+//        assetBooking.prepaid = false;
+//        assetBooking.status = 1;
 //
-//            @Override
-//            public void onFailure(Throwable t) {
-//                t.getLocalizedMessage();
-//            }
-//        });
-
-        ArrayList<AssetBooking> bookings = new ArrayList<>();
-
-        AssetBooking assetBooking = new AssetBooking();
-        assetBooking.id= "10";
-        assetBooking.assetid= "1";
-        assetBooking.startTime = "2016-02-22T11:11:29 +0530";
-        assetBooking.prepaid = false;
-        assetBooking.status = 1;
-
-        bookings.add(assetBooking);
-        bookings.add(assetBooking);
-        bookings.add(assetBooking);
-        bookings.add(assetBooking);
-
-        AssetBooking assetBooking1 = new AssetBooking();
-        assetBooking1.id= "10";
-        assetBooking1.assetid= "1";
-        assetBooking1.startTime = "2016-02-25T11:11:29 +0530";
-        assetBooking1.prepaid = false;
-        assetBooking1.status = 1;
-
-
-        bookings.add(assetBooking1);
-        bookings.add(assetBooking1);
-        bookings.add(assetBooking1);
-        bookings.add(assetBooking1);
-        bookings.add(assetBooking1);
-        bookings.add(assetBooking1);
-        bookings.add(assetBooking1);
-
-
-        setAssetBookings(bookings);
+//        bookings.add(assetBooking);
+//        bookings.add(assetBooking);
+//        bookings.add(assetBooking);
+//        bookings.add(assetBooking);
+//
+//        AssetBooking assetBooking1 = new AssetBooking();
+//        assetBooking1.id= "10";
+//        assetBooking1.assetid= "1";
+//        assetBooking1.startTime = "2016-02-25T11:11:29 +0530";
+//        assetBooking1.prepaid = false;
+//        assetBooking1.status = 1;
+//
+//
+//        bookings.add(assetBooking1);
+//        bookings.add(assetBooking1);
+//        bookings.add(assetBooking1);
+//        bookings.add(assetBooking1);
+//        bookings.add(assetBooking1);
+//        bookings.add(assetBooking1);
+//        bookings.add(assetBooking1);
+//
+//
+//        setAssetBookings(bookings);
 
 //        assetMonthInteractionListener.onAssetDataFetched(bookings, calendar);
 

@@ -28,7 +28,7 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
 
 
 
-    private boolean isViewPagerFullScreen = true;
+//    private boolean isViewPagerFullScreen = true;
 
     protected View mParentView;
     protected ViewPager mViewPager;
@@ -111,9 +111,9 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
 
             }
         });
-
         mViewPager.setPageTransformer(true, new DepthPageTransformer());
 
+        collapse();
 
     }
 
@@ -138,9 +138,9 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
 
     @Override
     public void onDayCellClicked(int month, int date) {
-        if (isViewPagerFullScreen){
-            collapse();
-        }
+//        if (isViewPagerFullScreen){
+//            collapse();
+//        }
 
         Calendar c = getCalendar(mViewPager.getCurrentItem());
         c.set(c.get(Calendar.YEAR), month, date, 0, 0, 0);
@@ -154,33 +154,33 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
         getActivity().getWindowManager().getDefaultDisplay().getSize(point);
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mViewPager.getLayoutParams();
 //        lp.height =lp.height > 0? lp.height/2:mViewPager.getMeasuredHeight()/2;
-        lp.height = point.y/2;
+        lp.height = point.y/3*2;
 //        lp.height = lp.height;
         mViewPager.setLayoutParams(lp);
         mViewPager.requestLayout();
 
         LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mRecyclerView.getLayoutParams();
-        lp1.height =lp.height ;
+        lp1.height =point.y/3*1 ;
         mRecyclerView.setLayoutParams(lp1);
 
         int recylerViewPos = ((AbsCalendarRecycleViewAdapter) mRecyclerView.getAdapter()).getPositionForDate(getCalendar(mViewPager.getCurrentItem()));
         mRecyclerView.smoothScrollToPosition(recylerViewPos);
 
-        isViewPagerFullScreen = false;
+//        isViewPagerFullScreen = false;
     }
-
-    private void expand() {
-        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mViewPager.getLayoutParams();
-        lp.height =lp.height > 0? lp.height*2:mViewPager.getMeasuredHeight()*2;
-        mViewPager.setLayoutParams(lp);
-        mViewPager.requestLayout();
-
-        LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mRecyclerView.getLayoutParams();
-        lp1.height = 0;
-        mRecyclerView.setLayoutParams(lp1);
-
-        isViewPagerFullScreen = true;
-    }
+//
+//    private void expand() {
+//        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mViewPager.getLayoutParams();
+//        lp.height =lp.height > 0? lp.height*2:mViewPager.getMeasuredHeight()*2;
+//        mViewPager.setLayoutParams(lp);
+//        mViewPager.requestLayout();
+//
+//        LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mRecyclerView.getLayoutParams();
+//        lp1.height = 0;
+//        mRecyclerView.setLayoutParams(lp1);
+//
+//        isViewPagerFullScreen = true;
+//    }
 
     protected abstract AbsMonthFragment getMonthFragment(Bundle args, int position);
 
@@ -258,6 +258,7 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
             v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             return new ViewHolder(v);
         }
+
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {

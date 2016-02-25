@@ -5,13 +5,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
 import com.zircon.app.model.AssetBooking;
+import com.zircon.app.model.response.BaseResponse;
 import com.zircon.app.ui.common.fragment.AbsCalendarFragment;
 import com.zircon.app.ui.common.fragment.AbsMonthFragment;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 /**
@@ -55,7 +58,12 @@ public class BookingCalendarFragment extends AbsCalendarFragment implements Book
     @Override
     public void onAssetDataFetched(ArrayList<AssetBooking> assetBookings,Calendar c) {
         for (AssetBooking assetBooking : assetBookings){
-            ((AssetCalendarListAdapter)mRecyclerView.getAdapter()).put(c,assetBooking);
+            try {
+                c.setTime(BaseResponse.API_SDF.parse(assetBooking.startTime));
+                ((AssetCalendarListAdapter)mRecyclerView.getAdapter()).put(c, assetBooking);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
         if (isFirstTime){
@@ -68,11 +76,11 @@ public class BookingCalendarFragment extends AbsCalendarFragment implements Book
 
     private class AssetCalendarListAdapter extends AbsCalendarRecycleViewAdapter{
 
-        private HashMap<String,ArrayList<AssetBooking>> assetBookingHashMap = new HashMap<>();
+        private HashMap<String,HashSet<AssetBooking>> assetBookingHashMap = new HashMap<>();
 
         public void put(Calendar c, AssetBooking assetBooking){
-            ArrayList<AssetBooking> originalList = assetBookingHashMap.get(new SimpleDateFormat("ddMMyyyy").format(c.getTime()));
-            ArrayList<AssetBooking> newList = originalList == null ? new ArrayList<AssetBooking>() : originalList;
+            HashSet<AssetBooking> originalList = assetBookingHashMap.get(new SimpleDateFormat("ddMMyyyy").format(c.getTime()));
+            HashSet<AssetBooking> newList = originalList == null ? new HashSet<AssetBooking>() : originalList;
             newList.add(assetBooking);
             assetBookingHashMap.put(new SimpleDateFormat("ddMMyyyy").format(c.getTime()),newList);
             notifyItemChanged(getPositionForDate(c));
@@ -81,8 +89,9 @@ public class BookingCalendarFragment extends AbsCalendarFragment implements Book
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             super.onBindViewHolder(holder, position);
-            ArrayList<AssetBooking> assetBookings = assetBookingHashMap.get(new SimpleDateFormat("ddMMyyyy").format(getCalendarForPosition(position).getTime()));
+            HashSet<AssetBooking> assetBookings = assetBookingHashMap.get(new SimpleDateFormat("ddMMyyyy").format(getCalendarForPosition(position).getTime()));
             //TODO populate list view
+            holder.infotextView.setText((assetBookings==null?0:assetBookings.size())+"");
         }
     }
 
