@@ -5,7 +5,6 @@
     android:layout_margin="5dp"
     android:padding="2dp"
     android:id="@+id/asset_day_cell"
-    android:background="#f00"
     >
 
     <TextView

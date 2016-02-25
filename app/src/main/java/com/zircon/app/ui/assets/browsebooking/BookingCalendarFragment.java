@@ -55,7 +55,7 @@ public class BookingCalendarFragment extends AbsCalendarFragment implements Book
     @Override
     public void onAssetDataFetched(ArrayList<AssetBooking> assetBookings,Calendar c) {
         for (AssetBooking assetBooking : assetBookings){
-            ((AssetCalendarListAdapter)mRecyclerView.getAdapter()).put(c,assetBookings);
+            ((AssetCalendarListAdapter)mRecyclerView.getAdapter()).put(c,assetBooking);
         }
 
         if (isFirstTime){
@@ -70,9 +70,10 @@ public class BookingCalendarFragment extends AbsCalendarFragment implements Book
 
         private HashMap<String,ArrayList<AssetBooking>> assetBookingHashMap = new HashMap<>();
 
-        public void put(Calendar c,ArrayList<AssetBooking> assetBookings){
+        public void put(Calendar c, AssetBooking assetBooking){
             ArrayList<AssetBooking> originalList = assetBookingHashMap.get(new SimpleDateFormat("ddMMyyyy").format(c.getTime()));
             ArrayList<AssetBooking> newList = originalList == null ? new ArrayList<AssetBooking>() : originalList;
+            newList.add(assetBooking);
             assetBookingHashMap.put(new SimpleDateFormat("ddMMyyyy").format(c.getTime()),newList);
             notifyItemChanged(getPositionForDate(c));
         }

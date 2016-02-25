@@ -38,10 +38,12 @@ public class DayCellView extends LinearLayout {
     private void init(){
         setOrientation(VERTICAL);
         View v = LayoutInflater.from(getContext()).inflate(R.layout.layout_day_view,null,false);
-        v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         addView(v);
 
         dateTextView = (TextView)findViewById(R.id.date);
+
+        setBackgroundResource(R.drawable.calendar_cell_transparent);
 
     }
 
