@@ -38,7 +38,7 @@ public class DayCellView extends LinearLayout {
     private void init(){
         setOrientation(VERTICAL);
         View v = LayoutInflater.from(getContext()).inflate(R.layout.layout_day_view,null,false);
-        v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         addView(v);
 
         dateTextView = (TextView)findViewById(R.id.date);

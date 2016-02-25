@@ -1,7 +1,6 @@
 package com.zircon.app.ui.assets.browsebooking;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
@@ -18,7 +17,7 @@ import java.util.HashMap;
 /**
  * Created by jikoobaruah on 04/02/16.
  */
-public class AssetCalendarFragment extends AbsCalendarFragment implements AssetMonthFragment.AssetMonthInteractionListener {
+public class BookingCalendarFragment extends AbsCalendarFragment implements BookingMonthFragment.AssetMonthInteractionListener {
 
     interface ARGS{
         String ASSET_ID ="id";
@@ -31,11 +30,11 @@ public class AssetCalendarFragment extends AbsCalendarFragment implements AssetM
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() == null)
-            throw new NullPointerException("AssetCalendarFragment must be instantiated with a not null value for argument id");
+            throw new NullPointerException("BookingCalendarFragment must be instantiated with a not null value for argument id");
 
         assetID = getArguments().getString(ARGS.ASSET_ID,null);
         if (assetID == null || assetID.trim().length()==0)
-            throw new NullPointerException("AssetCalendarFragment must be instantiated with a not null value for argument id");
+            throw new NullPointerException("BookingCalendarFragment must be instantiated with a not null value for argument id");
     }
 
 
@@ -47,8 +46,8 @@ public class AssetCalendarFragment extends AbsCalendarFragment implements AssetM
     @Override
     protected AbsMonthFragment getMonthFragment(Bundle args, int position) {
         args.putString(ARGS.ASSET_ID, assetID);
-        AbsMonthFragment fragment = (AbsMonthFragment) Fragment.instantiate(getContext(),AssetMonthFragment.class.getName(),args);
-        ((AssetMonthFragment)fragment).setAssetMonthInteractionListener(AssetCalendarFragment.this);
+        AbsMonthFragment fragment = (AbsMonthFragment) Fragment.instantiate(getContext(),BookingMonthFragment.class.getName(),args);
+        ((BookingMonthFragment)fragment).setAssetMonthInteractionListener(BookingCalendarFragment.this);
         return fragment;
     }
 

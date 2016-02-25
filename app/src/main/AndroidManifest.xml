@@ -51,7 +51,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.assets.browsebooking.AssetSlotActivity"
+            android:name=".ui.assets.browsebooking.BrowseAssetBookingActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 

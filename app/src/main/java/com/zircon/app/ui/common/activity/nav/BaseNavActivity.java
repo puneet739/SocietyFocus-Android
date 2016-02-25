@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.assets.browse.AssetsNavActivity;
-import com.zircon.app.ui.assets.browsebooking.AssetSlotActivity;
+import com.zircon.app.ui.assets.browsebooking.BrowseAssetBookingActivity;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 import com.zircon.app.ui.complaint.AllComplaintsActivity;
@@ -141,7 +141,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             intent = new Intent(BaseNavActivity.this, AssetsNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         }else if (id == R.id.nav_asset_booking) {
-            intent = new Intent(BaseNavActivity.this, AssetSlotActivity.class);
+            intent = new Intent(BaseNavActivity.this, BrowseAssetBookingActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         } else if (id == R.id.nav_residents) {
             intent = new Intent(BaseNavActivity.this, MembersNavActivity.class);

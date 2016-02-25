@@ -9,13 +9,13 @@ import com.zircon.app.ui.common.fragment.AbsFragment;
 /**
  * Created by jikoobaruah on 03/02/16.
  */
-public class AssetSlotActivity extends BaseABNavActivity {
+public class BrowseAssetBookingActivity extends BaseABNavActivity {
 
 
     @Override
     protected AbsFragment getFragment() {
         Bundle args = new Bundle();
-        args.putString(AssetCalendarFragment.ARGS.ASSET_ID , 100+"");
-        return (AbsFragment) Fragment.instantiate(this,AssetCalendarFragment.class.getName(),args);
+        args.putString(BookingCalendarFragment.ARGS.ASSET_ID , 100+"");
+        return (AbsFragment) Fragment.instantiate(this,BookingCalendarFragment.class.getName(),args);
     }
 }

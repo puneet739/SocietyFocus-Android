@@ -10,7 +10,6 @@ import com.zircon.app.R;
 import com.zircon.app.model.AssetBooking;
 import com.zircon.app.model.response.BookAssetListResponse;
 import com.zircon.app.ui.common.fragment.AbsMonthFragment;
-import com.zircon.app.ui.common.widget.DayCellView;
 import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
@@ -24,7 +23,7 @@ import retrofit2.Response;
 /**
  * Created by jikoobaruah on 04/02/16.
  */
-public class AssetMonthFragment extends AbsMonthFragment {
+public class BookingMonthFragment extends AbsMonthFragment {
 
     private ArrayList<AssetBooking> assetBookings;
 
@@ -35,7 +34,7 @@ public class AssetMonthFragment extends AbsMonthFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        assetID = getArguments().getString(AssetCalendarFragment.ARGS.ASSET_ID,null);
+        assetID = getArguments().getString(BookingCalendarFragment.ARGS.ASSET_ID,null);
     }
 
     private void setAssetBookings(ArrayList<AssetBooking> assetBookings) {

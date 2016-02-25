@@ -157,7 +157,7 @@ public abstract class AbsCalendarFragment extends AbsFragment  implements AbsMon
         lp.height = point.y/2;
 //        lp.height = lp.height;
         mViewPager.setLayoutParams(lp);
-//        mViewPager.requestLayout();
+        mViewPager.requestLayout();
 
         LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mRecyclerView.getLayoutParams();
         lp1.height =lp.height ;
