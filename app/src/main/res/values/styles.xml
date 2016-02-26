@@ -17,8 +17,8 @@
     <!--<style name="ActionBarTheme" parent="Theme.AppCompat.Ac">-->
     <!--</style>-->
 
-    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
-    </style>
+    <!--<style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">-->
+    <!--</style>-->
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>

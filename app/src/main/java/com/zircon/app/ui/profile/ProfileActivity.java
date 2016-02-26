@@ -53,7 +53,7 @@ public class ProfileActivity extends AbsBaseDialogFormActivity {
     @Override
     protected void initViews() {
 
-        setTitle("Edit Profile");
+        setTitle("Profile Settings");
 
         mFirstNameView = (TextView) findViewById(R.id.firstname);
         mLastNameView = (TextView) findViewById(R.id.lastname);
