@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.zircon.app.BuildConfig;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
@@ -87,7 +88,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         }
 
         public void setUser(User user) {
-            Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(true);
+            Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(BuildConfig.DEBUG);
             Picasso.with(profileImageView.getContext()).load(user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
 
             nameTextView.setText(user.firstname + " " + (user.lastname != null ? user.lastname : ""));

@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.squareup.picasso.Picasso;
+import com.zircon.app.BuildConfig;
 import com.zircon.app.R;
 import com.zircon.app.utils.SessionManager;
 
@@ -35,7 +36,7 @@ public abstract class BaseCABNavActivity extends BaseNavActivity {
         String title = SessionManager.getLoggedInSociety().name;
 
 
-        Picasso.with(this).setIndicatorsEnabled(true);
+        Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
         Picasso.with(this).load(bgUrl).into(mCollapseImageView);
 
         setTitle(title);

@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.zircon.app.BuildConfig;
 import com.zircon.app.R;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
@@ -60,7 +61,7 @@ public abstract class AbsCABNoNavActivity extends BaseNoNavActivity implements A
         String title = SessionManager.getLoggedInSociety().name;
 
 
-        Picasso.with(this).setIndicatorsEnabled(true);
+        Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
         Picasso.with(this).load(bgUrl).into(mCollapseImageView);
 
         setTitle(title);
