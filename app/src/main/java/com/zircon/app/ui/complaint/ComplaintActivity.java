@@ -1,6 +1,9 @@
 package com.zircon.app.ui.complaint;
 
+import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -25,6 +28,7 @@ public class ComplaintActivity  extends AbsBaseDialogFormActivity {
     private EditText mcomplaintView;
     private Button mSubmitButton;
     private Button mCancelButton;
+    private Snackbar snackBar;
 
     @Override
     protected int getContentViewResID() {
@@ -46,13 +50,25 @@ public class ComplaintActivity  extends AbsBaseDialogFormActivity {
                 mcomplaintView.setError(null);
 
                 if (isValidInput()){
-                    User loogedInUser = SessionManager.getLoggedInUser();
-                    String complainerName = loogedInUser.firstname + (loogedInUser.lastname != null ? " "+loogedInUser.lastname : "");
-                    String complainerContactNo = loogedInUser.contactNumber;
-                    String complainerEmail=loogedInUser.email;
+
+                    if(snackBar != null && snackBar.isShown()){
+                        snackBar.dismiss();
+                    }
+
+                    View view = ComplaintActivity.this.getCurrentFocus();
+                    if (view != null) {
+                        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                        view.clearFocus();
+                    }
+
+                    User loggedInUser = SessionManager.getLoggedInUser();
+                    String complainerName = loggedInUser.firstname + (loggedInUser.lastname != null ? " "+loggedInUser.lastname : "");
+                    String complainerContactNo = loggedInUser.contactNumber;
+                    String complainerEmail=loggedInUser.email;
                     String title = mcomplaintTitleView.getText().toString().trim();
                     String description = mcomplaintView.getText().toString().trim();
-                    Complaint complaint = new Complaint(complainerName,complainerContactNo,complainerEmail,title,description);
+                    Complaint complaint = new Complaint(title,description,complainerName,complainerContactNo,complainerEmail);
 
 
                     Call<ComplaintResponse> call = HTTP.getAPI().saveComplaint(SessionManager.getToken() , complaint);
@@ -64,13 +80,26 @@ public class ComplaintActivity  extends AbsBaseDialogFormActivity {
 
                         @Override
                         protected void parseSuccessResponse(Response<ComplaintResponse> response) {
-                            response.isSuccess();
-                            finish();
+                            if (response.isSuccess()){
+
+                                mcomplaintTitleView.setText("");
+                                mcomplaintView.setText("");
+
+                                snackBar = Snackbar.make(mSubmitButton,"Your complaint with COMPLAINT ID : "+response.body().body.complaintid + " has been registered.",Snackbar.LENGTH_INDEFINITE ).setAction("Continue.", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        finish();
+                                    }
+                                });
+                                snackBar.show();
+                            }else{
+                                showComplaintRegistrationError();
+                            }
                         }
 
                         @Override
                         public void onFailure(Throwable t) {
-
+                            showComplaintRegistrationError();
                         }
                     });
 
@@ -83,6 +112,16 @@ public class ComplaintActivity  extends AbsBaseDialogFormActivity {
                 finish();
             }
         });
+    }
+
+    private void showComplaintRegistrationError() {
+        snackBar = Snackbar.make(mSubmitButton,"Sorry! There was a problem in registering your complaint.",Snackbar.LENGTH_INDEFINITE ).setAction("Continue.", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        snackBar.show();
     }
 
     private boolean isValidInput() {

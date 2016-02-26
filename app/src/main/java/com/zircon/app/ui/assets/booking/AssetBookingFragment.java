@@ -1,10 +1,13 @@
 package com.zircon.app.ui.assets.booking;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -32,6 +35,8 @@ import retrofit2.Response;
  * Created by jikoobaruah on 19/02/16.
  */
 public class AssetBookingFragment extends AbsFragment implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+
+    private Snackbar snackBar;
 
     interface IARGS {
         String ASSET_ID = "asset_id";
@@ -95,6 +100,7 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
             }
         });
 
+
         dateEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -111,6 +117,11 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
             @Override
             public void onClick(View v) {
                 if (isValidInput()) {
+                    View view = getActivity().getCurrentFocus();
+                    if (view != null) {
+                        InputMethodManager imm = (InputMethodManager)(getActivity().getSystemService(Context.INPUT_METHOD_SERVICE));
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
                     submitAssetBooking();
                 }
             }
@@ -130,14 +141,42 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
 
             @Override
             protected void parseSuccessResponse(Response<BookAssetResponse> response) {
-                response.body();
+                if (response.isSuccess()) {
+
+
+                    timeEditText.setText("");
+                    dateEditText.setText("");
+                    descriptionEditText.setText("");
+
+                    snackBar = Snackbar.make(submitButton, "Your request to book asset has been registered.", Snackbar.LENGTH_INDEFINITE).setAction("Continue.", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            getActivity().finish();
+                        }
+                    });
+                    snackBar.show();
+                } else {
+                    showRegistrationError();
+                }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 t.getLocalizedMessage();
+                showRegistrationError();
+
             }
         });
+    }
+
+    private void showRegistrationError() {
+        snackBar = Snackbar.make(submitButton,"Sorry! There was a problem in registering your booking request.",Snackbar.LENGTH_INDEFINITE ).setAction("Continue.", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+        snackBar.show();
     }
 
     private boolean isValidInput() {

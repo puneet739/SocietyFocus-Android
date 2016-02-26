@@ -63,8 +63,7 @@
         <!-- complaint begin -->
         <activity
             android:name=".ui.complaint.ComplaintActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/app_name"/>
         <activity
             android:name=".ui.complaint.AllComplaintsActivity"
             android:label="@string/app_name"

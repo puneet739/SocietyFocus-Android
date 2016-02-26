@@ -7,5 +7,5 @@ import com.zircon.app.model.Complaint;
  */
 public class ComplaintResponse extends BaseResponse {
 
-    Complaint body;
+    public Complaint body;
 }
