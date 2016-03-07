@@ -22,19 +22,29 @@ import java.lang.ref.WeakReference;
  */
 public class Facebook implements FacebookCallback<LoginResult> {
 
+    private static Facebook instance;
+
+
     private WeakReference<Activity> hostActivity;
     private CallbackManager callbackManager;
 
     private LoginButton loginButton;
 
-    public Facebook(Activity activity){
-        hostActivity = new WeakReference<Activity>(activity);
+    private Facebook(){
         if (!FacebookSdk.isInitialized())
             FacebookSdk.sdkInitialize(ZirconApp.getAppContext());
 
     }
 
-    public void onCreate(){
+    public static Facebook getInstance(){
+        if (instance == null)
+            instance = new Facebook();
+        return instance;
+    }
+
+    public void onCreate(Activity activity){
+        clearMemory();
+        hostActivity = new WeakReference<Activity>(activity);
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -50,11 +60,15 @@ public class Facebook implements FacebookCallback<LoginResult> {
     }
 
     public void onDestroy(){
-        if (hostActivity.get() != null)
+       clearMemory();
+    }
+
+    private void clearMemory(){
+        if (hostActivity != null && hostActivity.get() != null)
             hostActivity.clear();
         hostActivity = null;
         loginButton = null;
-
+        callbackManager = null;
     }
 
     @Override
@@ -62,6 +76,7 @@ public class Facebook implements FacebookCallback<LoginResult> {
         loginResult.getAccessToken();
         loginResult.getRecentlyGrantedPermissions();
     }
+
 
     @Override
     public void onCancel() {
