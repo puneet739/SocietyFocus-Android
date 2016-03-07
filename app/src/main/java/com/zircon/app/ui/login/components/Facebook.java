@@ -29,17 +29,16 @@ public class Facebook implements FacebookCallback<LoginResult> {
 
     public Facebook(Activity activity){
         hostActivity = new WeakReference<Activity>(activity);
+        if (!FacebookSdk.isInitialized())
+            FacebookSdk.sdkInitialize(ZirconApp.getAppContext());
 
     }
 
     public void onCreate(){
-        if (!FacebookSdk.isInitialized())
-            FacebookSdk.sdkInitialize(ZirconApp.getAppContext());
-
-
 
         callbackManager = CallbackManager.Factory.create();
 
+        loginButton = (LoginButton) hostActivity.get().findViewById(R.id.fb_login);
         if (loginButton != null){
             loginButton.registerCallback(callbackManager,this);
         }
