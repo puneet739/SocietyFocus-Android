@@ -3,6 +3,7 @@ package com.zircon.app.ui.login;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.ui.common.activity.AbsLoginActivity;
+import com.zircon.app.ui.login.components.Facebook;
 
 /**
  * A login screen that offers login via email/password.
@@ -36,6 +38,8 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
     private EditText mPasswordView;
     private EditText mSocietyView;
 
+    //facebook
+    private Facebook facebook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +79,17 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
 
         mLoginFormView = findViewById(R.id.email_login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        facebook = new Facebook(this);
+        facebook.onCreate();
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        facebook.onActivityResult(requestCode,requestCode,data);
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -187,6 +199,8 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
+
+
 
     @Override
     protected void showLoginError(String errormessage) {

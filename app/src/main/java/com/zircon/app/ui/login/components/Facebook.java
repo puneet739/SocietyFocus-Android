@@ -1,0 +1,76 @@
+package com.zircon.app.ui.login.components;
+
+import android.app.Activity;
+import android.content.Intent;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.zircon.app.R;
+import com.zircon.app.ZirconApp;
+import com.zircon.app.ui.login.LoginActivity;
+import com.zircon.app.utils.Log;
+
+import java.lang.ref.WeakReference;
+
+
+/**
+ * Created by jikoobaruah on 07/03/16.
+ */
+public class Facebook implements FacebookCallback<LoginResult> {
+
+    private WeakReference<Activity> hostActivity;
+    private CallbackManager callbackManager;
+
+    private LoginButton loginButton;
+
+    public Facebook(Activity activity){
+        hostActivity = new WeakReference<Activity>(activity);
+
+    }
+
+    public void onCreate(){
+        if (!FacebookSdk.isInitialized())
+            FacebookSdk.sdkInitialize(ZirconApp.getAppContext());
+
+
+
+        callbackManager = CallbackManager.Factory.create();
+
+        if (loginButton != null){
+            loginButton.registerCallback(callbackManager,this);
+        }
+
+    }
+
+    public void onActivityResult(int requestCode, int code, Intent data){
+        callbackManager.onActivityResult(requestCode, code, data);
+    }
+
+    public void onDestroy(){
+        if (hostActivity.get() != null)
+            hostActivity.clear();
+        hostActivity = null;
+        loginButton = null;
+
+    }
+
+    @Override
+    public void onSuccess(LoginResult loginResult) {
+        loginResult.getAccessToken();
+        loginResult.getRecentlyGrantedPermissions();
+    }
+
+    @Override
+    public void onCancel() {
+        Log.d(Facebook.class.getName(),"FB login cancelled");
+    }
+
+    @Override
+    public void onError(FacebookException error) {
+        error.printStackTrace();
+    }
+}
