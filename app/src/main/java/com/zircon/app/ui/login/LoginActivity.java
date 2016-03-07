@@ -44,7 +44,7 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        facebook = new Facebook(this);
+        facebook = Facebook.getInstance();
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mSocietyView = (EditText) findViewById(R.id.society);
@@ -82,7 +82,7 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
         mProgressView = findViewById(R.id.login_progress);
 
 
-        facebook.onCreate();
+        facebook.onCreate(this);
     }
 
 
