@@ -1,6 +1,8 @@
 package com.zircon.app.ui.residents;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,6 +16,7 @@ import com.zircon.app.BuildConfig;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
+import com.zircon.app.ui.common.widget.SwipeView;
 import com.zircon.app.utils.HTTPUtils;
 import com.zircon.app.utils.datapasser.UserPasser;
 
@@ -30,7 +33,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user, null, false);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        return new ViewHolder(view);
+        return new ViewHolder((SwipeView)view);
     }
 
     @Override
@@ -64,9 +67,12 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         TextView emailTextView;
         TextView phoneTextView;
 
-        public ViewHolder(final View itemView) {
+        SwipeView itemview;
+
+        public ViewHolder(final SwipeView itemView) {
             super(itemView);
 
+            itemview = itemView;
             profileImageView = (ImageView) itemView.findViewById(R.id.profile_pic);
             nameTextView = (TextView) itemView.findViewById(R.id.name);
             addressTextView = (TextView) itemView.findViewById(R.id.address);
@@ -91,7 +97,6 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
             });
 
 
-            itemView.setOnTouchListener(new SwipeTouchListener());
         }
 
         public void setUser(User user) {
@@ -103,38 +108,9 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
             addressTextView.setText(user.description);
             emailTextView.setText(user.email);
             phoneTextView.setText(user.contactNumber);
+//            itemview.trackGesture();
         }
 
-        private class SwipeTouchListener implements View.OnTouchListener {
-            float historicX = Float.NaN, historicY = Float.NaN;
-            static final int TRIGGER_DELTA = 50; // Number of pixels to travel till trigger
-
-            @Override
-            public boolean onTouch(View v, MotionEvent e) {
-                switch (e.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        historicX = e.getX();
-                        historicY = e.getY();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        if (e.getX() - historicX > TRIGGER_DELTA) {
-                            System.out.println("call");
-                            ((AbsBaseActivity)v.getContext()).call((String) ((TextView) v.findViewById(R.id.phone)).getText());
-
-                            return true;
-                        }
-                        else if (historicX - e.getX() > TRIGGER_DELTA)  {
-//                            onSlideComplete(Direction.RIGHT);
-                            System.out.println("sms");
-
-                            return true;
-                        } break;
-                    default:
-                        return false;
-                }
-                return false;
-            }
-        }
     }
 
 }
