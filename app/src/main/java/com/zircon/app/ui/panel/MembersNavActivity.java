@@ -15,4 +15,9 @@ public class MembersNavActivity extends BaseCABNavActivity {
     protected AbsFragment getFragment() {
         return (AbsFragment) Fragment.instantiate(this, MembersFragment.class.getName());
     }
+
+    @Override
+    protected String getPageTitle() {
+        return "RWA Panel";
+    }
 }

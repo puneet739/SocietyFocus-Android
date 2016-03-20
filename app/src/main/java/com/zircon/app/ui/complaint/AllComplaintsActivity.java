@@ -15,4 +15,9 @@ public class AllComplaintsActivity extends BaseCABNavActivity {
     protected AbsFragment getFragment() {
         return (AbsFragment) Fragment.instantiate(this, AllComplaintsFragment.class.getName());
     }
+
+    @Override
+    protected String getPageTitle() {
+        return "Complaints";
+    }
 }

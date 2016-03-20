@@ -39,9 +39,11 @@ public abstract class BaseCABNavActivity extends BaseNavActivity {
         Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
         Picasso.with(this).load(bgUrl).into(mCollapseImageView);
 
-        setTitle(title);
+        setTitle(getPageTitle());
 
     }
+
+    protected abstract String getPageTitle();
 
 
     protected void setCollapsingContent(View view) {

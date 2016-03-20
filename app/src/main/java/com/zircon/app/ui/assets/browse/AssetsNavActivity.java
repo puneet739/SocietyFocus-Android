@@ -15,4 +15,9 @@ public class AssetsNavActivity extends BaseCABNavActivity {
     protected AbsFragment getFragment() {
         return (AbsFragment) Fragment.instantiate(this, AssetsListFragment.class.getName());
     }
+
+    @Override
+    protected String getPageTitle() {
+        return "Assets";
+    }
 }
