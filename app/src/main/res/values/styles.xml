@@ -6,31 +6,39 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--<item name="android:actionBarStyle">@style/ActionBarTheme</item>-->
     </style>
+
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!--Holo.Light.ActionBar-->
-    <!--<style name="ActionBarTheme" parent="Theme.AppCompat.Ac">-->
-    <!--</style>-->
-
-    <!--<style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">-->
-    <!--</style>-->
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
 
     </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-
     <style name="SplashTheme" parent="AppTheme.NoActionBar">
-        <!-- Disable window features like ActionBar, Title and Overlay. -->
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@drawable/background</item>
+    </style>
+
+    <style name="Text" parent="TextAppearance.AppCompat" />
+
+    <style name="Text.ScreenHeader" parent="Text" >
+        <item name="android:textSize">@dimen/screen_header_text_size</item>
+        <item name="android:layout_marginTop">@dimen/screen_header_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="Text.Header" parent="Text" >
+        <item name="android:textSize">@dimen/header_text_size</item>
+        <item name="android:layout_marginTop">@dimen/header_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
 </resources>

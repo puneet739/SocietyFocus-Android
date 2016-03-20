@@ -46,6 +46,11 @@ public class ComplaintDetailsActivity extends AbsCABNoNavActivity{
     }
 
     @Override
+    protected String getCircleImageURL() {
+        return null;
+    }
+
+    @Override
     protected String getExpandedTagLineText() {
         return mTitle;
     }

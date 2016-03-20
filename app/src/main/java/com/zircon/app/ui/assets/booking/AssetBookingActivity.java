@@ -27,6 +27,11 @@ public class AssetBookingActivity extends AbsCABNoNavActivity{
     }
 
     @Override
+    protected String getCircleImageURL() {
+        return null;
+    }
+
+    @Override
     protected String getExpandedTagLineText() {
         return asset.charges;
     }

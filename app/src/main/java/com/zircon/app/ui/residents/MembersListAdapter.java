@@ -1,5 +1,6 @@
 package com.zircon.app.ui.residents;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,6 +15,7 @@ import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.utils.HTTPUtils;
+import com.zircon.app.utils.datapasser.UserPasser;
 
 import java.util.ArrayList;
 
@@ -54,13 +56,15 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        private User user;
+
         ImageView profileImageView;
         TextView nameTextView;
         TextView addressTextView;
         TextView emailTextView;
         TextView phoneTextView;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
 
             profileImageView = (ImageView) itemView.findViewById(R.id.profile_pic);
@@ -72,7 +76,10 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("fjjjgj");
+                    UserPasser.getInstance().setUser(user);
+                    Intent intent = new Intent(itemView.getContext(),MemberDetaisActivity.class);
+                    itemView.getContext().startActivity(intent);
+
                 }
             });
 
@@ -88,6 +95,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         }
 
         public void setUser(User user) {
+            this.user = user;
             Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(BuildConfig.DEBUG);
             Picasso.with(profileImageView.getContext()).load(user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
 

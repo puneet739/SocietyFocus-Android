@@ -17,6 +17,8 @@ import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 import com.zircon.app.utils.SessionManager;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by jikoobaruah on 24/01/16.
  */
@@ -40,6 +42,8 @@ public abstract class AbsCABNoNavActivity extends BaseNoNavActivity implements A
     private ImageView mCollapseImageView;
     private TextView mExpandedHeaderView;
     private TextView mExpandedTagLineView;
+
+    private CircleImageView mCirleImage;
 
     AppBarLayout appBarLayout;
 
@@ -74,6 +78,14 @@ public abstract class AbsCABNoNavActivity extends BaseNoNavActivity implements A
         mExpandedHeaderView = (TextView) findViewById(R.id.main_expanded_title);
         mExpandedTagLineView = (TextView) findViewById(R.id.main_expanded_subtitle);
 
+        mCirleImage = (CircleImageView) findViewById(R.id.cirle_image);
+        String circleURL = getCircleImageURL();
+
+        if (circleURL !=  null && circleURL.trim().length() > 0 ){
+            Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
+            Picasso.with(this).load(circleURL).into(mCirleImage);
+        }
+
         mExpandedHeaderView.setText(getExpandedHeaderText());
         mExpandedTagLineView.setText(getExpandedTagLineText());
         mTitle.setText(getMainTitleText());
@@ -94,6 +106,8 @@ public abstract class AbsCABNoNavActivity extends BaseNoNavActivity implements A
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
 
     }
+
+    protected abstract String getCircleImageURL();
 
     protected abstract String getExpandedTagLineText();
 

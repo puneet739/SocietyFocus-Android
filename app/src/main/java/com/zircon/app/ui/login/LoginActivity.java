@@ -73,7 +73,7 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
+        mLoginFormView = findViewById(R.id.email_login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
 

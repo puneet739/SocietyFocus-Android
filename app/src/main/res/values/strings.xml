@@ -106,6 +106,8 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="info_register_society">REGISTER WITH SOCIETY FOCUS</string>
+    <string name="action_register">CLICK HERE</string>
 
 
 </resources>
