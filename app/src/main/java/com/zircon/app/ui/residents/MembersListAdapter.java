@@ -89,14 +89,6 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
                 }
             });
 
-            profileImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println("profile");
-                }
-            });
-
-
         }
 
         public void setUser(User user) {
