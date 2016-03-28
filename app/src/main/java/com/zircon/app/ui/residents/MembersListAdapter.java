@@ -100,7 +100,6 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
             addressTextView.setText(user.description);
             emailTextView.setText(user.email);
             phoneTextView.setText(user.contactNumber);
-//            itemview.trackGesture();
         }
 
     }

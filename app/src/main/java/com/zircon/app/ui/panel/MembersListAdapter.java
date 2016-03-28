@@ -1,5 +1,6 @@
 package com.zircon.app.ui.panel;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+import com.zircon.app.BuildConfig;
 import com.zircon.app.R;
 import com.zircon.app.model.Panel;
 import com.zircon.app.model.User;
+import com.zircon.app.ui.common.widget.SwipeView;
+import com.zircon.app.ui.residents.MemberDetaisActivity;
+import com.zircon.app.utils.datapasser.UserPasser;
 
 import java.util.ArrayList;
 
@@ -24,7 +30,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_panel,null,false);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        return new ViewHolder(view);
+        return new ViewHolder((SwipeView)view);
     }
 
     @Override
@@ -57,7 +63,9 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         TextView phoneTextView;
         TextView designationTextView;
 
-        public ViewHolder(View itemView) {
+        Panel panel;
+
+        public ViewHolder(final View itemView) {
             super(itemView);
 
             profileImageView = (ImageView) itemView.findViewById(R.id.profile_pic);
@@ -70,24 +78,26 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("fjjjgj");
+                    UserPasser.getInstance().setUser(panel.user);
+                    Intent intent = new Intent(itemView.getContext(),MemberDetaisActivity.class);
+                    itemView.getContext().startActivity(intent);
                 }
             });
 
-            profileImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println("profile");
-                }
-            });
+
         }
 
         public void setPanel(Panel panel) {
+            this.panel = panel;
+
+            Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(BuildConfig.DEBUG);
+            Picasso.with(profileImageView.getContext()).load(panel.user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
+
             designationTextView.setText(panel.designation);
-            nameTextView.setText(panel.user.firstname);
+            nameTextView.setText(panel.user.firstname + " " + (panel.user.lastname != null ? panel.user.lastname : ""));
             addressTextView.setText(panel.user.email);
             emailTextView.setText(panel.user.email);
-            phoneTextView.setText(panel.user.userid);
+            phoneTextView.setText(panel.user.contactNumber);
         }
     }
 

@@ -26,9 +26,6 @@ public class ComplaintDetailsActivity extends BaseCABNoNavActivity {
     private String mTitle;
     private String mDescription;
 
-    private TextView mCollapseHeader;
-    private TextView mCollapseTitle;
-    private TextView mCollapseDescription;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
