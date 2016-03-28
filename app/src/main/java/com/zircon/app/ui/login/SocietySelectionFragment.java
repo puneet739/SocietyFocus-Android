@@ -20,7 +20,6 @@ import com.zircon.app.BuildConfig;
 import com.zircon.app.R;
 import com.zircon.app.model.Society;
 import com.zircon.app.model.response.SocietyListResponse;
-import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsSearchListViewFragment;
 import com.zircon.app.utils.API;
 import com.zircon.app.utils.HTTP;

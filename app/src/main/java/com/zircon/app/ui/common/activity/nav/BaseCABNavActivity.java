@@ -33,7 +33,6 @@ public abstract class BaseCABNavActivity extends BaseNavActivity {
 
         mCollapseImageView = (ImageView) findViewById(R.id.society_bg);
         String bgUrl = SessionManager.getLoggedInSociety().societypic;
-        String title = SessionManager.getLoggedInSociety().name;
 
 
         Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);

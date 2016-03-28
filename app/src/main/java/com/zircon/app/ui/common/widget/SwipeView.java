@@ -62,9 +62,9 @@ public class SwipeView extends LinearLayout  {
         super.dispatchDraw(canvas);
         System.out.println("jyo:::: " + swipeLength);
 
-        FORCE_TRIGGER_DELTA = getWidth()*3/4;
-        TRIGGER_DELTA = getWidth()/2;
-        TRACK_DELTA = getWidth()/6;
+        FORCE_TRIGGER_DELTA = getWidth()/2;
+        TRIGGER_DELTA = getWidth()/4;
+        TRACK_DELTA = getWidth()/8;
 
         Paint paint = new Paint();
         Paint text = new Paint();
@@ -102,6 +102,7 @@ public class SwipeView extends LinearLayout  {
 
         @Override
         public boolean onTouch(View v, MotionEvent e) {
+            boolean result = false;
             switch (e.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     System.out.println("jyo MotionEvent.ACTION_DOWN");
@@ -114,25 +115,23 @@ public class SwipeView extends LinearLayout  {
 
                     if (Math.abs(e.getX() - historicX) > FORCE_TRIGGER_DELTA) {
                         swipeLength = 0;
-                        invalidate();
 
                          if (e.getX() > historicX){
                              System.out.println("jyo call");
                              ((AbsBaseActivity)v.getContext()).call((String) ((TextView) v.findViewById(R.id.phone)).getText());
+                             result = true;
                          }else{
                              System.out.println("jyo sms");
                              ((AbsBaseActivity)v.getContext()).sms((String) ((TextView) v.findViewById(R.id.phone)).getText());
+                             result = true;
                          }
 
-                    }else
-                    if (Math.abs(e.getX() - historicX) > TRACK_DELTA){
+                    }else if (Math.abs(e.getX() - historicX) > TRACK_DELTA){
                         swipeLength = e.getX() - historicX;
-                        SwipeView.this.invalidate();
                     }else {
                         swipeLength = 0;
-                        invalidate();
                     }
-
+                    invalidate();
                     break;
                 case MotionEvent.ACTION_UP:
                     System.out.println("jyo MotionEvent.ACTION_UP");
@@ -142,21 +141,20 @@ public class SwipeView extends LinearLayout  {
                     if (e.getX() - historicX > TRIGGER_DELTA) {
                         System.out.println("jyo call");
                         ((AbsBaseActivity)v.getContext()).call((String) ((TextView) v.findViewById(R.id.phone)).getText());
-                        return true;
+                        result = true;
                     }
                     else if (historicX - e.getX() > TRIGGER_DELTA)  {
                         System.out.println("jyo sms");
                         ((AbsBaseActivity) v.getContext()).sms((String) ((TextView) v.findViewById(R.id.phone)).getText());
-                        return true;
+                        result = true;
                     }
 
                     break;
                 default:
                     swipeLength = 0;
                     invalidate();
-                    return false;
             }
-            return false;
+            return result;
         }
     }
 

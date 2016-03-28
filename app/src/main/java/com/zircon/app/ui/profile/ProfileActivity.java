@@ -170,4 +170,9 @@ public class ProfileActivity extends AbsBaseDialogFormActivity {
         });
 
     }
+
+    @Override
+    protected View.OnClickListener getFABClickListener() {
+        return null;
+    }
 }

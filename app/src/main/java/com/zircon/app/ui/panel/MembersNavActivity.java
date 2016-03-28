@@ -1,6 +1,7 @@
 package com.zircon.app.ui.panel;
 
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.zircon.app.ui.common.activity.nav.BaseCABNavActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
@@ -19,5 +20,10 @@ public class MembersNavActivity extends BaseCABNavActivity {
     @Override
     protected String getPageTitle() {
         return "RWA Panel";
+    }
+
+    @Override
+    protected View.OnClickListener getFABClickListener() {
+        return null;
     }
 }

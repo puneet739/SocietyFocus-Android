@@ -2,17 +2,17 @@ package com.zircon.app.ui.residents;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.zircon.app.model.User;
-import com.zircon.app.ui.common.activity.nonav.AbsCABNoNavActivity;
+import com.zircon.app.ui.common.activity.nonav.BaseCABNoNavActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
-import com.zircon.app.ui.home.HomeFragment;
 import com.zircon.app.utils.datapasser.UserPasser;
 
 /**
  * Created by jyotishman on 20/03/16.
  */
-public class MemberDetaisActivity extends AbsCABNoNavActivity {
+public class MemberDetaisActivity extends BaseCABNoNavActivity {
 
     private User user;
 
@@ -23,6 +23,11 @@ public class MemberDetaisActivity extends AbsCABNoNavActivity {
             throw new NullPointerException("user is null");
         }
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected View.OnClickListener getFABClickListener() {
+        return null;
     }
 
     @Override

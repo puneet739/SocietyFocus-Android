@@ -1,6 +1,7 @@
 package com.zircon.app.ui.complaint;
 
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.zircon.app.ui.common.activity.nav.BaseCABNavActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
@@ -19,5 +20,10 @@ public class AllComplaintsActivity extends BaseCABNavActivity {
     @Override
     protected String getPageTitle() {
         return "Complaints";
+    }
+
+    @Override
+    protected View.OnClickListener getFABClickListener() {
+        return null;
     }
 }

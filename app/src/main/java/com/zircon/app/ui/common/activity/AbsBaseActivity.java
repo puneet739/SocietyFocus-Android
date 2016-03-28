@@ -7,9 +7,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.zircon.app.R;
 import com.zircon.app.ui.login.LoginActivity;
@@ -17,13 +20,18 @@ import com.zircon.app.ui.login.LoginActivity;
 /**
  * Created by jikoobaruah on 09/02/16.
  */
-public class AbsBaseActivity extends AppCompatActivity {
+public abstract class AbsBaseActivity extends AppCompatActivity {
 
     private static final int REQUEST_PHONE_CALL = 1;
     private static final int REQUEST_SMS = 3;
     public static final int REQUEST_LOGIN = 2;
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,6 +54,17 @@ public class AbsBaseActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void setupFAB(View.OnClickListener clickListener){
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (fab == null)
+            return;
+        fab.setVisibility(clickListener == null ? View.GONE:View.VISIBLE);
+        fab.setOnClickListener(clickListener);
+    }
+
+    protected abstract View.OnClickListener getFABClickListener();
+
 
     Intent callIntent;
     public void call(String number) {

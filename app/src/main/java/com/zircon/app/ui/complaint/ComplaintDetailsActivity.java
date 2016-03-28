@@ -1,21 +1,20 @@
 package com.zircon.app.ui.complaint;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.zircon.app.R;
-import com.zircon.app.ui.common.activity.nav.BaseCABNavActivity;
-import com.zircon.app.ui.common.activity.nonav.AbsCABNoNavActivity;
+import com.zircon.app.ui.common.activity.nonav.BaseCABNoNavActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 
 /**
  * Created by jikoobaruah on 15/02/16.
  */
-public class ComplaintDetailsActivity extends AbsCABNoNavActivity{
+public class ComplaintDetailsActivity extends BaseCABNoNavActivity {
 
     interface IBundle{
         String ID = "id";
@@ -43,6 +42,17 @@ public class ComplaintDetailsActivity extends AbsCABNoNavActivity{
 
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    protected View.OnClickListener getFABClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ComplaintDetailsActivity.this);
+                builder.setIcon(R.drawable.ic_1_1).setTitle("Add comment").create().show();
+            }
+        };
     }
 
     @Override

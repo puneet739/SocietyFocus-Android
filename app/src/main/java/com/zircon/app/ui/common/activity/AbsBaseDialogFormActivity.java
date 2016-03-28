@@ -1,6 +1,7 @@
 package com.zircon.app.ui.common.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 
 /**
@@ -20,4 +21,5 @@ public abstract class AbsBaseDialogFormActivity extends AbsBaseActivity {
 
         initViews();
     }
+
 }

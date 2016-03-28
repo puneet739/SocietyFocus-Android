@@ -145,4 +145,8 @@ public class ComplaintActivity  extends AbsBaseDialogFormActivity {
     }
 
 
+    @Override
+    protected View.OnClickListener getFABClickListener() {
+        return null;
+    }
 }

@@ -2,15 +2,16 @@ package com.zircon.app.ui.assets.booking;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.zircon.app.model.Asset;
-import com.zircon.app.ui.common.activity.nonav.AbsCABNoNavActivity;
+import com.zircon.app.ui.common.activity.nonav.BaseCABNoNavActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 
 /**
  * Created by jikoobaruah on 19/02/16.
  */
-public class AssetBookingActivity extends AbsCABNoNavActivity{
+public class AssetBookingActivity extends BaseCABNoNavActivity {
 
     public interface IARGS {
         String ASSET = "asset";
@@ -24,6 +25,11 @@ public class AssetBookingActivity extends AbsCABNoNavActivity{
         asset = getIntent().getParcelableExtra(IARGS.ASSET);
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    protected View.OnClickListener getFABClickListener() {
+        return null;
     }
 
     @Override

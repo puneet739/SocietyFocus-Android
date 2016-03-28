@@ -1,10 +1,15 @@
 package com.zircon.app.ui.complaint;
 
 import android.graphics.Rect;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.zircon.app.R;
 import com.zircon.app.model.response.ComplaintListResponse;
 import com.zircon.app.ui.common.fragment.AbsBaseListFragment;
 import com.zircon.app.utils.AuthCallBack;
@@ -19,6 +24,8 @@ import retrofit2.Response;
  * Created by jikoobaruah on 24/01/16.
  */
 public class AllComplaintsFragment extends AbsBaseListFragment {
+
+
 
     @Override
     public RecyclerView.ItemDecoration getItemDecoration() {
