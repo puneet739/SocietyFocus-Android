@@ -154,9 +154,9 @@ public class SwipeView extends LinearLayout  {
                 default:
                     swipeLength = 0;
                     invalidate();
-                    return true;
+                    return false;
             }
-            return true;
+            return false;
         }
     }
 
