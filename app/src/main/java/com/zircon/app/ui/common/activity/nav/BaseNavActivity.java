@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -101,6 +102,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         String profileImage = loggedInUser.profilePic;
 
         Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
+        if(!TextUtils.isEmpty(profileImage))
         Picasso.with(this).load(profileImage).into(mProfileImageView);
 
 
