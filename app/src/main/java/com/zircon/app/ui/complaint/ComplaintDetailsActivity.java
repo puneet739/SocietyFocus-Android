@@ -46,8 +46,7 @@ public class ComplaintDetailsActivity extends BaseCABNoNavActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ComplaintDetailsActivity.this);
-                builder.setIcon(R.drawable.ic_1_1).setTitle("Add comment").create().show();
+
             }
         };
     }

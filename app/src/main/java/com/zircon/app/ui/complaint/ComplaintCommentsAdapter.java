@@ -69,12 +69,15 @@ public class ComplaintCommentsAdapter extends RecyclerView.Adapter<ComplaintComm
 
         public void setComment(Comment comment) {
             titleTextView.setText(comment.comment);
-            try {
-                Date date = BaseResponse.API_SDF.parse(comment.creationdate);
-                dateTextView.setText(new SimpleDateFormat("dd MMM yyyy").format(date));
-            } catch (ParseException e) {
-                e.printStackTrace();
+            if (comment.creationdate != null){
+                try {
+                    Date date = BaseResponse.API_SDF.parse(comment.creationdate);
+                    dateTextView.setText(new SimpleDateFormat("dd MMM yyyy").format(date));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
+
             userTextView.setText(comment.user.firstname);
         }
     }
