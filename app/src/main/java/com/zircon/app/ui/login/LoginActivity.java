@@ -25,7 +25,7 @@ import com.zircon.app.ui.common.activity.AbsLoginActivity;
 import com.zircon.app.ui.login.components.Facebook;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via email/password. By Sagar_CBC
  */
 public class LoginActivity extends AbsLoginActivity implements SocietySelectionFragment.ISocietySelectionListener {
 
