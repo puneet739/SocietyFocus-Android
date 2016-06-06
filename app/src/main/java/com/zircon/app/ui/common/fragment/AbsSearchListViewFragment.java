@@ -39,7 +39,8 @@ public abstract class AbsSearchListViewFragment extends DialogFragment{
         mSearchView = (SearchView) mParentView.findViewById(R.id.search_view);
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
+            public boolean onQueryTextSubmit(String query)
+            {
                 return false;
             }
 

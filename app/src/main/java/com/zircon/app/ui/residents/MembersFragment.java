@@ -1,6 +1,5 @@
 package com.zircon.app.ui.residents;
 
-import android.content.Intent;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

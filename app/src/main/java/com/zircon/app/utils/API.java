@@ -56,7 +56,11 @@ public interface API {
     }
 
     @POST(API_PATH_PATTERN+"access/login")
-    public Call<LoginResponse> login(@Header(ILoginHeaderParams.SOCIETY) String society, @Header(ILoginHeaderParams.USERNAME) String username, @Header(ILoginHeaderParams.PASSWORD) String password, @Header(ILoginHeaderParams.DEVICE_ID) String deviceID);
+    public Call<LoginResponse>
+    login(@Header(ILoginHeaderParams.SOCIETY) String society,
+          @Header(ILoginHeaderParams.USERNAME) String username,
+          @Header(ILoginHeaderParams.PASSWORD) String password,
+          @Header(ILoginHeaderParams.DEVICE_ID) String deviceID);
 
     @GET(API_PATH_PATTERN+"user/getalluser")
     public Call<MembersResponse> getAllUsers(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);

@@ -13,14 +13,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.zircon.app.R;
 import com.zircon.app.ui.login.LoginActivity;
+import com.zircon.app.utils.Log;
 
 /**
  * Created by jikoobaruah on 09/02/16.
  */
-public abstract class AbsBaseActivity extends AppCompatActivity {
+    public abstract class AbsBaseActivity extends AppCompatActivity {
 
     private static final int REQUEST_PHONE_CALL = 1;
     private static final int REQUEST_SMS = 3;
@@ -97,6 +99,24 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
             }
         }else {
             startActivity(smsIntent);
+        }
+    }
+    Intent emailIntent;
+    public void sendEmail(String emailid) {
+        emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailid});
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email...", "");
+        }
+        catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(AbsBaseActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
 

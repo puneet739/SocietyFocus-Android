@@ -42,7 +42,7 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (!(activity instanceof ISocietySelectionListener)){
+        if (!(activity instanceof ISocietySelectionListener)) {
             throw new IllegalArgumentException(activity.getLocalClassName() + " must implement ISocietySelectionListener");
         }
         selectionListener = (ISocietySelectionListener) activity;
@@ -59,9 +59,11 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getDialog().setTitle("Choose society");
-        ((TextView)(getDialog().getWindow().findViewById(android.R.id.title))).setBackgroundColor(Color.BLUE);
-
-
+//        TextView Text=(TextView)getDialog().getWindow().findViewById(android.R.id.title);
+//        getDialog().getWindow().findViewById(R.layout.textview);
+//        getDialog().getWindow().findViewById(android.R.id.title).setBackgroundColor(Color.BLUE);
+//        TextView textView= (TextView) getDialog().getWindow().findViewById(android.R.id.title);
+//        textView.setBackgroundColor(Color.BLUE);
     }
 
     @Override
@@ -73,7 +75,7 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
         call.enqueue(new Callback<SocietyListResponse>() {
             @Override
             public void onResponse(Response<SocietyListResponse> response) {
-                if (response.isSuccess()){
+                if (response.isSuccess()) {
                     mAdapter.addAllItems(response.body().body);
                 }
             }
@@ -87,7 +89,7 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
 
     @Override
     protected RecyclerView.Adapter getListAdapter() {
-       mAdapter = new SocietyAdapter();
+        mAdapter = new SocietyAdapter();
         return mAdapter;
     }
 
@@ -96,14 +98,13 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
         return R.layout.fragment_society_selection;
     }
 
-    private class SocietyAdapter extends AbsSearchListViewFragment.ListAdapter<Society>{
-
+    private class SocietyAdapter extends AbsSearchListViewFragment.ListAdapter<Society> {
 
         @Override
         protected List<Society> getFilteredList(String query) {
             ArrayList<Society> filteredList = new ArrayList<>();
             if (query == null || query.trim().length() == 0)
-                filteredList  = masterItems;
+                filteredList = masterItems;
             else {
                 String societyName;
                 int size = masterItems.size();
@@ -120,7 +121,7 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
         @Override
         protected RecyclerView.ViewHolder createViewholder(ViewGroup parent, int viewType) {
 
-            View v = LayoutInflater.from(getContext()).inflate(R.layout.list_item_society,null,false);
+            View v = LayoutInflater.from(getContext()).inflate(R.layout.list_item_society, null, false);
             v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
             return new ViewHolder(v);
@@ -133,7 +134,7 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
 
         }
 
-        private class ViewHolder extends RecyclerView.ViewHolder{
+        private class ViewHolder extends RecyclerView.ViewHolder {
 
             private TextView societyAddressTextView;
             private ImageView societyImgView;
@@ -148,19 +149,17 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
                 societyImgView = (ImageView) itemView.findViewById(R.id.society_img);
 
 
-
-
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (selectionListener != null && society != null)
-                            selectionListener.onSocietySelected(society.name,society.societyId);
+                            selectionListener.onSocietySelected(society.name, society.societyId);
                         SocietySelectionFragment.this.dismiss();
                     }
                 });
             }
 
-            public void setSociety(Society society){
+            public void setSociety(Society society) {
                 this.society = society;
 
                 if (query != null && query.trim().length() > 0) {
@@ -171,7 +170,7 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
                         wordtoSpan.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), spanStartIndex, spanStartIndex + query.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
                     societyNameTextView.setText(wordtoSpan);
-                }else{
+                } else {
                     societyNameTextView.setText(society.name);
                 }
 
@@ -184,7 +183,7 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
         }
     }
 
-    public interface ISocietySelectionListener{
+    public interface ISocietySelectionListener {
         public void onSocietySelected(String societyName, String societyValue);
     }
 

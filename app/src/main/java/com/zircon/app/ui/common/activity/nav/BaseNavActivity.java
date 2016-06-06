@@ -155,7 +155,6 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         } else if (id == R.id.nav_complaint_track) {
             intent = new Intent(BaseNavActivity.this, AllComplaintsActivity.class);
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
@@ -164,10 +163,8 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             if (isFinishCurrActivity)
                 finish();
         }
-
         return true;
     }
-
     abstract int getLayoutResID();
 
     protected abstract AbsFragment getFragment();

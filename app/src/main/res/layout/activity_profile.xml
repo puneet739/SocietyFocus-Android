@@ -49,7 +49,7 @@
                         android:layout_marginRight="16dp">
 
                         <EditText
-                            android:id="@+id/firstname"
+                            android:id="@+id/profile_firstname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_firstname"
@@ -66,7 +66,7 @@
                         android:layout_marginRight="16dp">
 
                         <EditText
-                            android:id="@+id/lastname"
+                            android:id="@+id/profile_lastname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_lastname"
@@ -84,7 +84,7 @@
                         android:layout_marginRight="16dp">
 
                         <EditText
-                            android:id="@+id/mobile"
+                            android:id="@+id/profile_mobile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_contact_number"
@@ -101,7 +101,7 @@
                         android:layout_marginRight="16dp">
 
                         <EditText
-                            android:id="@+id/address"
+                            android:id="@+id/profile_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_address"
@@ -112,15 +112,17 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <Button
-                        android:id="@+id/submit"
+                        android:id="@+id/profile_btn_submit"
                         style="?android:textAppearanceSmall"
-                        android:layout_width="match_parent"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="16dp"
                         android:onClick="onChangeProfileSubmit"
-                        android:text="@android:string/ok"
+                        android:text="Update Profile"
+                        android:textAllCaps="false"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -148,7 +150,7 @@
                         android:paddingBottom="5dp"
                         android:paddingLeft="16dp"
                         android:paddingTop="5dp"
-                        android:text="Modify password"
+                        android:text="Change password"
                         android:textSize="15dp"
                         android:textStyle="italic|bold" />
 
@@ -160,7 +162,7 @@
                         android:layout_marginRight="16dp">
 
                         <EditText
-                            android:id="@+id/old_pass"
+                            android:id="@+id/profile_old_pass"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_old_password"
@@ -178,7 +180,7 @@
                         android:layout_marginRight="16dp">
 
                         <EditText
-                            android:id="@+id/new_pass"
+                            android:id="@+id/profile_new_pass"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_new_password"
@@ -196,7 +198,7 @@
                         android:layout_marginRight="16dp">
 
                         <EditText
-                            android:id="@+id/confirm_new_pass"
+                            android:id="@+id/profile_confirm_new_pass"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_new_password_confirm"
@@ -207,15 +209,17 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <Button
-                        android:id="@+id/submit_password"
+                        android:id="@+id/profile_btn_submit_password"
                         style="?android:textAppearanceSmall"
-                        android:layout_width="match_parent"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="16dp"
                         android:onClick="onChangePassword"
-                        android:text="@android:string/ok"
+                        android:textAllCaps="false"
+                        android:text="Change Password"
                         android:textStyle="bold" />
 
                 </LinearLayout>

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -108,13 +109,13 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
             return;
         }
 
-        // Reset errors.
+//        // Reset errors.
         mSocietyView.setError(null);
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+//        mEmailView.setError(null);
+//        mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String society = mSocietyView.getTag().toString();
+        String society = (mSocietyView.getTag()==null?null:mSocietyView.getTag().toString());
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
@@ -132,7 +133,7 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (Patterns.EMAIL_ADDRESS.matcher(email).matches() != true) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
