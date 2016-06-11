@@ -11,18 +11,31 @@ import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.ui.common.activity.AbsLoginActivity;
 import com.zircon.app.ui.login.components.Facebook;
+
+import java.util.Arrays;
 
 /**
  * A login screen that offers login via email/password. By Sagar_CBC
@@ -38,6 +51,7 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private EditText mSocietyView;
+    CallbackManager callbackManager;
 
     //facebook
     private Facebook facebook;
@@ -46,6 +60,39 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         facebook = Facebook.getInstance();
+/*
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        callbackManager=CallbackManager.Factory.create();
+        LoginButton loginButton=(LoginButton)mLoginFormView.findViewById(R.id.fb_login);
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>()
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>()
+        {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+        AccessToken accessToken = new AccessToken() {
+            @Override
+            protected void onCurrentAccessTokenChanged(
+                    AccessToken oldAccessToken,
+                    AccessToken currentAccessToken) {
+
+            }
+
+        };
+        accessToken = AccessToken.getCurrentAccessToken();
+        */
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mSocietyView = (EditText) findViewById(R.id.society);

@@ -33,7 +33,6 @@ public class Facebook implements FacebookCallback<LoginResult> {
     private Facebook(){
         if (!FacebookSdk.isInitialized())
             FacebookSdk.sdkInitialize(ZirconApp.getAppContext());
-
     }
 
     public static Facebook getInstance(){
@@ -75,8 +74,9 @@ public class Facebook implements FacebookCallback<LoginResult> {
     public void onSuccess(LoginResult loginResult) {
         loginResult.getAccessToken();
         loginResult.getRecentlyGrantedPermissions();
+        Log.e("Temp","FB GrantedPermission"+loginResult.getRecentlyGrantedPermissions().toString()+
+                " Access Token"+loginResult.getAccessToken().toString());
     }
-
 
     @Override
     public void onCancel() {
@@ -86,5 +86,7 @@ public class Facebook implements FacebookCallback<LoginResult> {
     @Override
     public void onError(FacebookException error) {
         error.printStackTrace();
+        Log.d(Facebook.class.getName(), "FB login onError ");
+
     }
 }
