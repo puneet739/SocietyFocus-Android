@@ -46,7 +46,7 @@ public class HomeFragment extends AbsFragment {
         mSocietyAddressView = (TextView) view.findViewById(R.id.society_address);
         mSocietyCallView = (ImageView) view.findViewById(R.id.society_call);
 
-        Picasso.with(getActivity()).setIndicatorsEnabled(BuildConfig.DEBUG);
+        Picasso.with(getActivity()).setIndicatorsEnabled(false);
         Picasso.with(getActivity()).load(SessionManager.getLoggedInSociety().societypic).placeholder(R.drawable.ic_1_2).into(mSocietyImgView);
 
         mSocietyNameView.setText(SessionManager.getLoggedInSociety().name);

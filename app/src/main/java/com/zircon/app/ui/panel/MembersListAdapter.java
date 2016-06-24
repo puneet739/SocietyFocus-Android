@@ -84,13 +84,12 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
                 }
             });
 
-
         }
 
         public void setPanel(Panel panel) {
             this.panel = panel;
 
-            Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(BuildConfig.DEBUG);
+            Picasso.with(profileImageView.getContext()).setIndicatorsEnabled(false);
             Picasso.with(profileImageView.getContext()).load(panel.user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
 
             designationTextView.setText(panel.designation);

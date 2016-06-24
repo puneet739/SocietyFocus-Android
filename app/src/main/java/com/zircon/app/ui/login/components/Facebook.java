@@ -7,6 +7,9 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.internal.CallbackManagerImpl;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.zircon.app.R;
@@ -15,6 +18,7 @@ import com.zircon.app.ui.login.LoginActivity;
 import com.zircon.app.utils.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.Arrays;
 
 
 /**
@@ -48,10 +52,12 @@ public class Facebook implements FacebookCallback<LoginResult> {
         callbackManager = CallbackManager.Factory.create();
 
         loginButton = (LoginButton) hostActivity.get().findViewById(R.id.fb_login);
-        if (loginButton != null){
+        loginButton.setReadPermissions(Arrays.asList("public_profile", "user_friends"));
+//                logInWithReadPermissions(hostActivity.get(), Arrays.asList("public_profile", "user_friends"));
+        /*if (loginButton != null){
             loginButton.registerCallback(callbackManager,this);
-        }
-
+        }*/
+        loginButton.registerCallback(callbackManager, this);
     }
 
     public void onActivityResult(int requestCode, int code, Intent data){
@@ -72,10 +78,15 @@ public class Facebook implements FacebookCallback<LoginResult> {
 
     @Override
     public void onSuccess(LoginResult loginResult) {
-        loginResult.getAccessToken();
-        loginResult.getRecentlyGrantedPermissions();
-        Log.e("Temp","FB GrantedPermission"+loginResult.getRecentlyGrantedPermissions().toString()+
-                " Access Token"+loginResult.getAccessToken().toString());
+//        Log.e("Profile","User first name "+ Profile.getCurrentProfile().getFirstName());
+//        if(Profile.getCurrentProfile()!=null){
+//            Log.e("Pofile",Profile.getCurrentProfile().getName()+Profile.getCurrentProfile().getFirstName()+Profile.getCurrentProfile().getLastName()+Profile.getCurrentProfile().getId());
+//        }else{
+//            Profile.fetchProfileForCurrentAccessToken();
+//            Log.e("Pofile",Profile.getCurrentProfile().getName()+Profile.getCurrentProfile().getFirstName()+Profile.getCurrentProfile().getLastName()+Profile.getCurrentProfile().getId());
+//        }
+        Log.e("Temp","FB GrantedPermission "+loginResult.getRecentlyGrantedPermissions().toString()+
+                " Access Token "+loginResult.getAccessToken().getToken());
     }
 
     @Override

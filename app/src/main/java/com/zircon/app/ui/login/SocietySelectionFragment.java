@@ -176,7 +176,7 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
 
                 societyAddressTextView.setText(society.address);
 
-                Picasso.with(getContext()).setIndicatorsEnabled(BuildConfig.DEBUG);
+                Picasso.with(getContext()).setIndicatorsEnabled(false);
                 Picasso.with(getContext()).load(society.societypic).placeholder(R.drawable.ic_1_2).into(societyImgView);
                 key = society.societyId;
             }

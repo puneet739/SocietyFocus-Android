@@ -101,7 +101,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         String email = loggedInUser.email;
         String profileImage = loggedInUser.profilePic;
 
-        Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
+        Picasso.with(this).setIndicatorsEnabled(false);
         if(!TextUtils.isEmpty(profileImage))
         Picasso.with(this).load(profileImage).into(mProfileImageView);
 

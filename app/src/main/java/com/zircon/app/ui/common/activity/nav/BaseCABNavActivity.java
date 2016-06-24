@@ -35,7 +35,7 @@ public abstract class BaseCABNavActivity extends BaseNavActivity {
         String bgUrl = SessionManager.getLoggedInSociety().societypic;
 
 
-        Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
+        Picasso.with(this).setIndicatorsEnabled(false);
         Picasso.with(this).load(bgUrl).into(mCollapseImageView);
 
         setTitle(getPageTitle());

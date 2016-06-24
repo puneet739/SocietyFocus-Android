@@ -65,7 +65,7 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
         String title = SessionManager.getLoggedInSociety().name;
 
 
-        Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
+        Picasso.with(this).setIndicatorsEnabled(false);
         Picasso.with(this).load(bgUrl).into(mCollapseImageView);
 
         setTitle(title);
@@ -82,7 +82,7 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
         String circleURL = getCircleImageURL();
 
         if (circleURL !=  null && circleURL.trim().length() > 0 ){
-            Picasso.with(this).setIndicatorsEnabled(BuildConfig.DEBUG);
+
             Picasso.with(this).load(circleURL).into(mCirleImage);
         }
 

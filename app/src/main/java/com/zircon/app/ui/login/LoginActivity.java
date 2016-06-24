@@ -137,7 +137,7 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        facebook.onActivityResult(requestCode,requestCode,data);
+        facebook.onActivityResult(requestCode,resultCode,data);
     }
 
     @Override
