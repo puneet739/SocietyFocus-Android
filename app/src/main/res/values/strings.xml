@@ -4,6 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="action_save">Save</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Sign in</string>
 
@@ -20,7 +21,7 @@
         completions."
     </string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Society Focus</string>
 
 
@@ -35,10 +36,10 @@
 
     <string name="enter_complaint">Enter your complaint</string>
 
-    <string name="prompt_firstname">Firstname</string>
-    <string name="prompt_lastname">Lastname</string>
-    <string name="prompt_contact_number">Contact no</string>
+    <string name="prompt_name">Name</string>
     <string name="prompt_address">Address</string>
+    <string name="prompt_aboutyourself">About Yourself(&lt; 100 Characters)</string>
+    <string name="prompt_phoneno">Phone No</string>
     <string name="enter_complaint_title">Enter title</string>
     <string name="prompt_old_password">Old password</string>
     <string name="prompt_new_password">New password</string>
@@ -50,9 +51,9 @@
     <string name="title_activity_settings">Settings</string>
 
 
+    <string name="facebook_app_id">594719010708233</string>
 
-    <string name="facebook_app_id">1749929318576139</string>
-
+    <!--<string name="facebook_app_id">1749929318576139</string>-->
 
 
     <!-- Strings related to Settings -->

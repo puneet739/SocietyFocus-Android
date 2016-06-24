@@ -1,8 +1,13 @@
 package com.zircon.app.ui.profile;
 
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,22 +32,23 @@ import retrofit2.Response;
 public class ProfileActivity extends AbsBaseDialogFormActivity {
 
     EditText mFirstNameView;
-    EditText mLastNameView;
-    EditText mContactNoView;
     EditText mAddressView;
+    EditText mPhoneNoView;
+    EditText mAboutYourselfView;
 
     EditText mOldPassView;
     EditText mNewPassView;
     EditText mConfirmNewPassView;
 
     String firstName;
-    String lastName;
-    String contactNo;
     String address;
+    String phoneNo;
+    String aboutyourself;
 
     String oldPass;
     String newPass;
     String newPassConfirm;
+    ImageButton back_button;
 
 
     User user;
@@ -55,43 +61,68 @@ public class ProfileActivity extends AbsBaseDialogFormActivity {
     @Override
     protected void initViews() {
 
-        setTitle("Profile Settings");
+        setTitle("Edit Profile");
 
-        mFirstNameView = (EditText) findViewById(R.id.profile_firstname);
-        mLastNameView = (EditText) findViewById(R.id.profile_lastname);
-        mContactNoView = (EditText) findViewById(R.id.profile_mobile);
+        mFirstNameView = (EditText) findViewById(R.id.profile_name);
         mAddressView = (EditText) findViewById(R.id.profile_address);
+        mPhoneNoView = (EditText) findViewById(R.id.profile_phoneno);
+        mAboutYourselfView = (EditText) findViewById(R.id.profile_aboutyourself);
 
         user = SessionManager.getLoggedInUser();
 
         mFirstNameView.setText("" + user.firstname);
-        mLastNameView.setText("" + user.lastname);
-        mContactNoView.setText("" + user.contactNumber);
         mAddressView.setText("" + user.address);
+        mPhoneNoView.setText("" + user.contactNumber);
+        mAboutYourselfView.setText("" + user.description);
 
+        Toolbar toolbar=(Toolbar)findViewById(R.id.tool);
+        setSupportActionBar(toolbar);
+        //Add back button
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.temp, menu);
+        return true;
+    }
+
+   @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+           case R.id.action:
+             //  this.finish();
+                onChangeProfileSubmit(item.getActionView());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void onChangeProfileSubmit(View view) {
         firstName = mFirstNameView.getText().toString().trim();
-        lastName = mLastNameView.getText().toString().trim();
-        contactNo = mContactNoView.getText().toString().trim();
         address = mAddressView.getText().toString().trim();
+        phoneNo = mPhoneNoView.getText().toString().trim();
+        aboutyourself = mAboutYourselfView.getText().toString().trim();
 
         boolean isDataChanged = false;
         if ((firstName != null) && (firstName.length() > 0) && (!firstName.equals(user.firstname))) {
             user.firstname = firstName;
             isDataChanged = true;
         }
-        if ((lastName != null) && (lastName.length() > 0) && (!lastName.equals(user.lastname))) {
-            user.lastname = lastName;
-            isDataChanged = true;
-        }
-        if ((contactNo != null) && (contactNo.length() > 0) && (!contactNo.equals(user.contactNumber))) {
-            user.contactNumber = contactNo;
-            isDataChanged = true;
-        }
-        if ((address != null) && (address.length() > 0) && (!address.equals(user.address))) {
+        if ((address != null) && (address.length() > 0) && (!address.equals(user.lastname))) {
             user.address = address;
+            isDataChanged = true;
+        }
+        if ((phoneNo != null) && (phoneNo.length() > 0) && (!phoneNo.equals(user.contactNumber))) {
+            user.contactNumber = phoneNo;
+            isDataChanged = true;
+        }
+        if ((aboutyourself != null) && (aboutyourself.length() > 0) && (!aboutyourself.equals(user.address))) {
+            user.description = aboutyourself;
             isDataChanged = true;
         }
 
@@ -121,7 +152,7 @@ public class ProfileActivity extends AbsBaseDialogFormActivity {
 
     }
 
-    public void onChangePassword(View view) {
+   /* public void onChangePassword(View view) {
         mOldPassView = (EditText) findViewById(R.id.profile_old_pass);
         mNewPassView = (EditText) findViewById(R.id.profile_new_pass);
         mConfirmNewPassView = (EditText) findViewById(R.id.profile_confirm_new_pass);
@@ -171,7 +202,7 @@ public class ProfileActivity extends AbsBaseDialogFormActivity {
             });
 
         }
-    }
+    }*/
 
     @Override
     protected View.OnClickListener getFABClickListener() {

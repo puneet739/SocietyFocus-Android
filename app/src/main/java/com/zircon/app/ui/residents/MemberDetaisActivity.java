@@ -2,6 +2,7 @@ package com.zircon.app.ui.residents;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Menu;
 import android.view.View;
 
 import com.zircon.app.model.User;
@@ -24,6 +25,8 @@ public class MemberDetaisActivity extends BaseCABNoNavActivity {
         }
         super.onCreate(savedInstanceState);
     }
+
+
 
     @Override
     protected View.OnClickListener getFABClickListener() {
@@ -53,5 +56,10 @@ public class MemberDetaisActivity extends BaseCABNoNavActivity {
     @Override
     protected AbsFragment getFragment() {
         return (AbsFragment) Fragment.instantiate(this, MemberDetailsFragment.class.getName());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return false;
     }
 }

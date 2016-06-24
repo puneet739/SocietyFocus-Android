@@ -5,228 +5,169 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/profile_form"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="center"
+        android:background="?attr/colorPrimary"
+        app:layout_collapseMode="pin" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="1"
+        android:padding="7dp"
+        android:text="BASIC INFORMATION" />
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
+            android:src="@drawable/profile_name" />
+
+        <EditText
+            android:id="@+id/profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:alpha=".4"
+            android:hint="@string/prompt_name"
+            android:inputType="textCapSentences"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
+            android:src="@drawable/city" />
+
+        <EditText
+            android:id="@+id/profile_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:alpha=".4"
+            android:hint="@string/prompt_address"
+            android:inputType="textCapSentences"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardElevation="8dp">
+    <LinearLayout
+        android:layout_width="match_parent"
 
-                <LinearLayout
-                    android:id="@+id/edit_profile_form"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:alpha=".4"
-                        android:background="@color/colorPrimary"
-                        android:backgroundTint="@color/mdtp_calendar_selected_date_text"
-                        android:gravity="center_vertical"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="5dp"
-                        android:text="Edit Profile"
-                        android:textSize="15dp"
-                        android:textStyle="italic|bold" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
+            android:src="@drawable/short_text_black" />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
+        <EditText
+            android:id="@+id/profile_aboutyourself"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha=".4"
+            android:hint="@string/prompt_aboutyourself"
+            android:inputType="textMultiLine"
+            android:maxLength="100"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
 
-                        <EditText
-                            android:id="@+id/profile_firstname"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/prompt_firstname"
-                            android:inputType="textCapSentences"
-                            android:maxLines="1"
-                            android:singleLine="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
-                    </android.support.design.widget.TextInputLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
+            android:src="@drawable/phone_black" />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
+        <EditText
+            android:id="@+id/profile_phoneno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha=".4"
+            android:hint="@string/prompt_phoneno"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
 
-                        <EditText
-                            android:id="@+id/profile_lastname"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/prompt_lastname"
-                            android:inputType="textCapSentences"
-                            android:maxLines="1"
-                            android:singleLine="true" />
+    <TextView
+        android:id="@+id/pf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="1"
+        android:gravity="center_vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="15dp"
+        android:text="PROFILE PICTURE"
+        android:textStyle="normal" />
 
-                    </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
 
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:src="@android:drawable/ic_menu_gallery" />
 
-                        <EditText
-                            android:id="@+id/profile_mobile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/prompt_contact_number"
-                            android:inputType="phone"
-                            android:maxLines="1"
-                            android:singleLine="true" />
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:alpha=".7"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:text="Change Picture"
+            android:textSize="15dp" />
+    </LinearLayout>
 
-                    </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:src="@android:drawable/ic_menu_gallery" />
 
-                        <EditText
-                            android:id="@+id/profile_address"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/prompt_address"
-                            android:inputType="text"
-                            android:maxLines="1"
-                            android:singleLine="true" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <Button
-                        android:id="@+id/profile_btn_submit"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="onChangeProfileSubmit"
-                        android:text="Update Profile"
-                        android:textAllCaps="false"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:alpha=".4"
-                        android:background="@color/colorPrimary"
-                        android:backgroundTint="@color/mdtp_calendar_selected_date_text"
-                        android:gravity="center_vertical"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="16dp"
-                        android:paddingTop="5dp"
-                        android:text="Change password"
-                        android:textSize="15dp"
-                        android:textStyle="italic|bold" />
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
-
-                        <EditText
-                            android:id="@+id/profile_old_pass"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/prompt_old_password"
-                            android:inputType="textCapSentences"
-                            android:maxLines="1"
-                            android:singleLine="true" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
-
-                        <EditText
-                            android:id="@+id/profile_new_pass"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/prompt_new_password"
-                            android:inputType="textCapSentences"
-                            android:maxLines="1"
-                            android:singleLine="true" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
-
-                        <EditText
-                            android:id="@+id/profile_confirm_new_pass"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/prompt_new_password_confirm"
-                            android:inputType="textCapSentences"
-                            android:maxLines="1"
-                            android:singleLine="true" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <Button
-                        android:id="@+id/profile_btn_submit_password"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="onChangePassword"
-                        android:textAllCaps="false"
-                        android:text="Change Password"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
-    </ScrollView>
-
-
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:alpha=".7"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:text="Remove Picture"
+            android:textSize="15dp" />
+    </LinearLayout>
 </LinearLayout>
