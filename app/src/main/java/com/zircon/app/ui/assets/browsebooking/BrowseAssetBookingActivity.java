@@ -12,7 +12,6 @@ import com.zircon.app.ui.common.fragment.AbsFragment;
  */
 public class BrowseAssetBookingActivity extends BaseABNavActivity {
 
-
     @Override
     protected AbsFragment getFragment() {
         Bundle args = new Bundle();

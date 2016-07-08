@@ -22,14 +22,22 @@ import com.zircon.app.utils.datapasser.UserPasser;
  */
 public class MemberDetailsFragment extends AbsFragment {
 
-    private TextView mUserAddressView;
     private TextView mUseDdescriptionView;
-
+    private TextView mUserAddressView;
+    private TextView mUserEmailView;
     private TextView mUserPhoneView;
-    private ImageView mUserCallView;
-    private ImageView mUserSmsView;
-    private ImageView mUserEmailView;
+
+    private View mUserDescriptionLayout;
+    private View mUserAddressLayout;
+    private View mUserEmailLayout;
+    private View mUserPhoneLayout;
+
+
+    private ImageView mUserCallButton;
+    private ImageView mUserSmsButton;
+    private ImageView mUserEmailButton;
     User user;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,33 +54,45 @@ public class MemberDetailsFragment extends AbsFragment {
         super.onViewCreated(view, savedInstanceState);
 
         mUserAddressView = (TextView) view.findViewById(R.id.address);
-        mUserPhoneView = (TextView) view.findViewById(R.id.phonenumber);
-        mUserCallView = (ImageView) view.findViewById(R.id.call);
-        mUserSmsView = (ImageView) view.findViewById(R.id.sms);
-        mUserEmailView = (ImageView) view.findViewById(R.id.email);
-
+        mUserPhoneView = (TextView) view.findViewById(R.id.phone);
         mUseDdescriptionView = (TextView) view.findViewById(R.id.description);
+        mUserEmailView = (TextView) view.findViewById(R.id.email);
 
-        mUseDdescriptionView.setText(""+(user.description==null?"":user.description));
-        mUserPhoneView.setText(""+(user.contactNumber==null?"":user.contactNumber));
-        mUserAddressView.setText(""+(user.address==null?"":user.address));
+        mUserDescriptionLayout=view.findViewById(R.id.description_layout);
+        mUserEmailLayout=view.findViewById(R.id.email_layout);
+        mUserPhoneLayout=view.findViewById(R.id.phone_layout);
+        mUserAddressLayout=view.findViewById(R.id.address_layout);
 
-        mUserCallView.setOnClickListener(new View.OnClickListener() {
+        mUserCallButton = (ImageView) view.findViewById(R.id.callbtn);
+        mUserSmsButton = (ImageView) view.findViewById(R.id.smsbtn);
+        mUserEmailButton = (ImageView) view.findViewById(R.id.emailbtn);
+
+        mUseDdescriptionView.setText("" + (user.description == null ? "" : user.description));
+        mUserPhoneView.setText("" + (user.contactNumber == null ? "" : user.contactNumber));
+        mUserAddressView.setText("" + (user.address == null ? "" : user.address));
+        mUserEmailView.setText(""+(user.email==null?"":user.email));
+
+        mUserDescriptionLayout.setVisibility((user.description==null?View.GONE:View.VISIBLE));
+        mUserPhoneLayout.setVisibility((user.contactNumber==null?View.GONE:View.VISIBLE));
+        mUserEmailLayout.setVisibility((user.email==null?View.GONE:View.VISIBLE));
+        mUserAddressLayout.setVisibility((user.address==null?View.GONE:View.VISIBLE));
+
+        mUserCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((AbsBaseActivity) getActivity()).call(user.contactNumber);
             }
         });
-        mUserSmsView.setOnClickListener(new View.OnClickListener() {
+        mUserSmsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AbsBaseActivity)getActivity()).sms(user.contactNumber);
+                ((AbsBaseActivity) getActivity()).sms(user.contactNumber);
             }
         });
-        mUserEmailView.setOnClickListener(new View.OnClickListener() {
+        mUserEmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AbsBaseActivity)getActivity()).sendEmail(user.email);
+                ((AbsBaseActivity) getActivity()).sendEmail(user.email);
             }
         });
     }

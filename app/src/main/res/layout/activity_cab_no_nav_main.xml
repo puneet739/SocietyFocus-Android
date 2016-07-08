@@ -83,13 +83,8 @@
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
-
         <include layout="@layout/content_main"
-            app:behavior_overlapTop="60dp"
-
-            />
-
-
+            app:behavior_overlapTop="60dp"/>
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/main.toolbar"

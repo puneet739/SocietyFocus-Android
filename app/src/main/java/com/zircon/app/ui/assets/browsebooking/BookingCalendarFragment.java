@@ -94,6 +94,4 @@ public class BookingCalendarFragment extends AbsCalendarFragment implements Book
             holder.infotextView.setText((assetBookings==null?0:assetBookings.size())+"");
         }
     }
-
-
 }

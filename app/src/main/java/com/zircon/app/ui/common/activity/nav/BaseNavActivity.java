@@ -54,7 +54,6 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         setSupportActionBar(toolbar);
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -71,8 +70,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         mProfileImageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.profile_pic);
 
 
-
-        mChangeProfileBtn = (ImageView)navigationView.getHeaderView(0).findViewById(R.id.edit_profile);
+        mChangeProfileBtn = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.edit_profile);
         mChangeProfileBtn.setClickable(true);
         mChangeProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +80,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             }
         });
 
-        mFragmentLayout = (RelativeLayout)findViewById(R.id.fragment_container);
+        mFragmentLayout = (RelativeLayout) findViewById(R.id.fragment_container);
 
         mFragment = getFragment();
 
@@ -97,13 +95,12 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         super.onResume();
         User loggedInUser = SessionManager.getLoggedInUser();
         String societyName = SessionManager.getLoggedInSociety().name;
-        String name = loggedInUser.firstname + " " +(loggedInUser.lastname != null ? loggedInUser.lastname:"");
+        String name = loggedInUser.firstname + " " + (loggedInUser.lastname != null ? loggedInUser.lastname : "");
         String email = loggedInUser.email;
         String profileImage = loggedInUser.profilePic;
 
-        Picasso.with(this).setIndicatorsEnabled(false);
-        if(!TextUtils.isEmpty(profileImage))
-        Picasso.with(this).load(profileImage).into(mProfileImageView);
+        if (!TextUtils.isEmpty(profileImage))
+            Picasso.with(this).load(profileImage).into(mProfileImageView);
 
 
         mSocietyNameTextView.setText(societyName);
@@ -120,7 +117,6 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             super.onBackPressed();
         }
     }
-
 
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -140,17 +136,17 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         } else if (id == R.id.nav_assets) {
             intent = new Intent(BaseNavActivity.this, AssetsNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        }else if (id == R.id.nav_asset_booking) {
+        } else if (id == R.id.nav_asset_booking) {
             intent = new Intent(BaseNavActivity.this, BrowseAssetBookingActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         } else if (id == R.id.nav_residents) {
             intent = new Intent(BaseNavActivity.this, MembersNavActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        }else if (id == R.id.nav_logout){
+        } else if (id == R.id.nav_logout) {
             SessionManager.logoutUser();
             intent = new Intent(BaseNavActivity.this, LoginActivity.class);
             isFinishCurrActivity = true;
-        }else if (id == R.id.nav_complaint_new) {
+        } else if (id == R.id.nav_complaint_new) {
             intent = new Intent(BaseNavActivity.this, ComplaintActivity.class);
         } else if (id == R.id.nav_complaint_track) {
             intent = new Intent(BaseNavActivity.this, AllComplaintsActivity.class);
@@ -158,13 +154,14 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
-        if (intent != null){
+        if (intent != null) {
             startActivity(intent);
             if (isFinishCurrActivity)
                 finish();
         }
         return true;
     }
+
     abstract int getLayoutResID();
 
     protected abstract AbsFragment getFragment();

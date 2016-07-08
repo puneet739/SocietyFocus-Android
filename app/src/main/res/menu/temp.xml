@@ -6,6 +6,6 @@
         android:id="@+id/action"
         android:orderInCategory="100"
         android:title="@string/action_save"
-        android:icon="@drawable/check_black"
+        android:icon="@drawable/check_white"
         app:showAsAction="always" />
 </menu>

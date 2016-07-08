@@ -82,7 +82,6 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
         descriptionEditText = (EditText) view.findViewById(R.id.description);
         submitButton = (Button) view.findViewById(R.id.book_now);
 
-
         dateEditText.setClickable(true);
         timeEditText.setClickable(true);
 

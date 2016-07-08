@@ -5,13 +5,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tool"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="center"
-        android:background="?attr/colorPrimary"
-        app:layout_collapseMode="pin" />
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <TextView
         android:id="@+id/textView"
@@ -37,7 +43,6 @@
             android:id="@+id/profile_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:alpha=".4"
             android:hint="@string/prompt_name"
             android:inputType="textCapSentences"
             android:maxLines="1"
@@ -61,7 +66,6 @@
             android:id="@+id/profile_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha=".4"
             android:hint="@string/prompt_address"
             android:inputType="textCapSentences"
             android:maxLines="1"
@@ -85,7 +89,6 @@
             android:id="@+id/profile_aboutyourself"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha=".4"
             android:hint="@string/prompt_aboutyourself"
             android:inputType="textMultiLine"
             android:maxLength="100"
@@ -108,7 +111,6 @@
             android:id="@+id/profile_phoneno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha=".4"
             android:hint="@string/prompt_phoneno"
             android:inputType="phone"
             android:maxLines="1"

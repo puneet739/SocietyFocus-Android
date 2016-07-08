@@ -35,6 +35,7 @@ import com.zircon.app.utils.Log;
 
     }
 
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -55,7 +56,7 @@ import com.zircon.app.utils.Log;
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     public void setupFAB(View.OnClickListener clickListener){
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
