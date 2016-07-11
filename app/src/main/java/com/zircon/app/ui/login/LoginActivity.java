@@ -201,16 +201,8 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
             // form field with an error.
             focusView.requestFocus();
         } else {
-
           login(new LoginCredentials(society, email, password));
         }
-    }
-
-
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {

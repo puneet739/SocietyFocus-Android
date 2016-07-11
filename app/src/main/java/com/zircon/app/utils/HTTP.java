@@ -18,6 +18,7 @@ public class HTTP {
                 .build();
 
         mApi = retrofit.create(API.class);
+
     }
 
     private API mApi;
@@ -28,4 +29,6 @@ public class HTTP {
 
         return mInstance.mApi;
     }
+
+
 }

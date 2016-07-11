@@ -32,6 +32,16 @@ public class SessionManager {
         editor.commit();
     }
 
+    public static void setFBLoggedInUser(User user, String token, Society society){
+        SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(PREF_IS_LOGGED_IN, true);
+        editor.putString(PREF_LOG_IN_USER, new Gson().toJson(user));
+        editor.putString(PREF_LOG_IN_TOKEN, token);
+        editor.putString(PREF_LOG_IN_SOCIETY, new Gson().toJson(society));
+        editor.commit();
+    }
+
     public static void setLoggedInUser(User user) {
         SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

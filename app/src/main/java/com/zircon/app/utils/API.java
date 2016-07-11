@@ -22,6 +22,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by jikoobaruah on 21/01/16.
@@ -54,6 +55,10 @@ public interface API {
         String MONTH ="month";
         String YEAR ="year";
     }
+
+    @GET(API_PATH_PATTERN+"social/fblogin")
+    public Call<LoginResponse>
+    fblogin(@Query("accesstoken") String fbtoken);
 
     @POST(API_PATH_PATTERN+"access/login")
     public Call<LoginResponse>
