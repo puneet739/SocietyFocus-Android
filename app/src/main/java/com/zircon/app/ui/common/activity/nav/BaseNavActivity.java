@@ -37,12 +37,13 @@ public abstract class BaseNavActivity extends AbsBaseActivity
 
     protected RelativeLayout mFragmentLayout;
     protected AbsFragment mFragment;
+    protected ImageView mNavHeaderView;
 
     private TextView mSocietyNameTextView;
     private ImageView mChangeProfileBtn;
     private TextView mNameTextView;
     private ImageView mProfileImageView;
-    private TextView mEmailTextView;
+    private TextView mEmailTextView, mPhoneTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,9 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         mSocietyNameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.society_name);
         mNameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.name);
         mEmailTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
+        mPhoneTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.phone);
+        mNavHeaderView =(ImageView) navigationView.getHeaderView(0).findViewById(R.id.nav_header_background);
+
         mProfileImageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.profile_pic);
 
 
@@ -95,14 +99,20 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         super.onResume();
         User loggedInUser = SessionManager.getLoggedInUser();
         String societyName = SessionManager.getLoggedInSociety().name;
+        String societyPic=SessionManager.getLoggedInSociety().societypic;
+
         String name = loggedInUser.firstname + " " + (loggedInUser.lastname != null ? loggedInUser.lastname : "");
         String email = loggedInUser.email;
+        String phone=loggedInUser.contactNumber;
         String profileImage = loggedInUser.profilePic;
 
         if (!TextUtils.isEmpty(profileImage))
             Picasso.with(this).load(profileImage).into(mProfileImageView);
 
+        if (!TextUtils.isEmpty(societyPic))
+            Picasso.with(this).load(societyPic).into(mNavHeaderView);
 
+        mPhoneTextView.setText(""+phone);
         mSocietyNameTextView.setText(societyName);
         mNameTextView.setText(name);
         mEmailTextView.setText(email);

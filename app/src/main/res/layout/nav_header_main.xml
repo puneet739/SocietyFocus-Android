@@ -1,59 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:background="@drawable/side_nav_bar"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark" android:orientation="vertical"
-    android:gravity="bottom">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp">
 
-
-    <TextView
-        android:id="@+id/society_name"
-        android:textAllCaps="true"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing" android:text="Android Studio"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@drawable/ic_avatar" android:id="@+id/profile_pic" />
-
-    <LinearLayout
+    <ImageView
+        android:id="@+id/nav_header_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/side_nav_bar" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <TextView
+            android:id="@+id/society_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:text="Android Studio"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_pic"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:src="@drawable/ic_avatar" />
 
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:paddingTop="@dimen/nav_header_vertical_spacing" android:text="Android Studio"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="android.studio@android.com" android:id="@+id/email" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    android:text="Android Studio"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="android.studio@android.com" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3456789754"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/edit_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:src="@android:drawable/ic_menu_edit" />
+
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/edit_profile"
-            android:layout_gravity="bottom|end"
-            android:src="@android:drawable/ic_menu_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
     </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

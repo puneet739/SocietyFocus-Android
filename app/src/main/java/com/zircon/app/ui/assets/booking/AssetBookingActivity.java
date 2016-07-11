@@ -24,7 +24,6 @@ public class AssetBookingActivity extends BaseCABNoNavActivity {
     public void onCreate(Bundle savedInstanceState) {
         asset = getIntent().getParcelableExtra(IARGS.ASSET);
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -34,7 +33,7 @@ public class AssetBookingActivity extends BaseCABNoNavActivity {
 
     @Override
     protected String getCircleImageURL() {
-        return null;
+        return asset.img;
     }
 
     @Override
@@ -55,7 +54,8 @@ public class AssetBookingActivity extends BaseCABNoNavActivity {
     @Override
     protected AbsFragment getFragment() {
         Bundle args = new Bundle();
-        args.putString(IARGS.ASSET_ID, asset.id);
-        return (AbsFragment) Fragment.instantiate(AssetBookingActivity.this,AssetBookingFragment.class.getName(),args);
+        args.putParcelable(IARGS.ASSET,asset);
+//        args.putString(IARGS.ASSET, asset.toString());
+        return (AbsFragment) Fragment.instantiate(AssetBookingActivity.this, AssetBookingFragment.class.getName(), args);
     }
 }

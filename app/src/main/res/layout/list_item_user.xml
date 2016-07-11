@@ -28,14 +28,13 @@
         android:padding="2dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_weight="1"
             android:layout_gravity="center"
             android:id="@+id/profile_pic"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_avatar"
-            android:scaleType="fitXY"
             />
 
         <LinearLayout
