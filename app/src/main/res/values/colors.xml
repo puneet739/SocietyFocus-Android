@@ -8,5 +8,7 @@
     <color name="mdtp_accent_color_dark">@color/colorPrimaryDark</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="Login_BG">#222222</color>
+
 </resources>
 

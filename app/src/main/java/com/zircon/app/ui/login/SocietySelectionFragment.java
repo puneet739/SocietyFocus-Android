@@ -52,7 +52,6 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
     }
 
     @Override
@@ -125,6 +124,8 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
             v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
             return new ViewHolder(v);
+
+
         }
 
         @Override

@@ -40,6 +40,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setUser(membersList.get(position));
 
+
     }
 
     public void addAll(ArrayList<User> users) {

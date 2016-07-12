@@ -38,7 +38,7 @@ public class AssetBookingActivity extends BaseCABNoNavActivity {
 
     @Override
     protected String getExpandedTagLineText() {
-        return asset.charges;
+        return "₹ "+asset.charges;
     }
 
     @Override

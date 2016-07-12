@@ -60,39 +60,6 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         facebook = Facebook.getInstance();
-/*
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        callbackManager=CallbackManager.Factory.create();
-        LoginButton loginButton=(LoginButton)mLoginFormView.findViewById(R.id.fb_login);
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>()
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>()
-        {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
-        AccessToken accessToken = new AccessToken() {
-            @Override
-            protected void onCurrentAccessTokenChanged(
-                    AccessToken oldAccessToken,
-                    AccessToken currentAccessToken) {
-
-            }
-
-        };
-        accessToken = AccessToken.getCurrentAccessToken();
-        */
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mSocietyView = (EditText) findViewById(R.id.society);
@@ -100,8 +67,8 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
         mSocietyView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                SocietySelectionFragment newFragment = (SocietySelectionFragment) Fragment.instantiate(LoginActivity.this,SocietySelectionFragment.class.getName());
-                newFragment.show(getSupportFragmentManager(),"dialog");
+                SocietySelectionFragment newFragment = (SocietySelectionFragment) Fragment.instantiate(LoginActivity.this, SocietySelectionFragment.class.getName());
+                newFragment.show(getSupportFragmentManager(), "dialog");
             }
         });
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -137,7 +104,7 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        facebook.onActivityResult(requestCode,resultCode,data);
+        facebook.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -162,7 +129,7 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
 //        mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String society = (mSocietyView.getTag()==null?null:mSocietyView.getTag().toString());
+        String society = (mSocietyView.getTag() == null ? null : mSocietyView.getTag().toString());
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
@@ -174,40 +141,40 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
             mSocietyView.setError(getString(R.string.error_field_required));
             focusView = mSocietyView;
             cancel = true;
-        }else
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (Patterns.EMAIL_ADDRESS.matcher(email).matches() != true) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }else
-        // Check for a valid password
-        if (TextUtils.isEmpty(password)) {
-            mPasswordView.setError(getString(R.string.error_field_required));
-            focusView = mPasswordView;
-            cancel = true;
-        }else if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
+        } else
+            // Check for a valid email address.
+            if (TextUtils.isEmpty(email)) {
+                mEmailView.setError(getString(R.string.error_field_required));
+                focusView = mEmailView;
+                cancel = true;
+            } else if (Patterns.EMAIL_ADDRESS.matcher(email).matches() != true) {
+                mEmailView.setError(getString(R.string.error_invalid_email));
+                focusView = mEmailView;
+                cancel = true;
+            } else
+                // Check for a valid password
+                if (TextUtils.isEmpty(password)) {
+                    mPasswordView.setError(getString(R.string.error_field_required));
+                    focusView = mPasswordView;
+                    cancel = true;
+                } else if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+                    mPasswordView.setError(getString(R.string.error_invalid_password));
+                    focusView = mPasswordView;
+                    cancel = true;
+                }
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
         } else {
-          login(new LoginCredentials(society, email, password));
+            login(new LoginCredentials(society, email, password));
         }
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() >2 ;
+        return password.length() > 2;
     }
 
 
@@ -246,7 +213,6 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
 
 
     @Override

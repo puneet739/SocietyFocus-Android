@@ -87,7 +87,7 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
         }
 
         mExpandedHeaderView.setText(getExpandedHeaderText());
-        mExpandedTagLineView.setText("₹ "+getExpandedTagLineText());
+        mExpandedTagLineView.setText(getExpandedTagLineText());
         mTitle.setText(getMainTitleText());
 
 

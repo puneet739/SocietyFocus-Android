@@ -10,6 +10,11 @@
         android:scaleType="fitXY"
         android:src="@drawable/side_nav_bar" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#50ffffff" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="220dp"
@@ -27,7 +32,9 @@
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="Android Studio"
             android:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_pic"
@@ -55,13 +62,16 @@
                     android:text="Android Studio"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    />
 
                 <TextView
                     android:id="@+id/email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="android.studio@android.com" />
+                    android:text="android.studio@android.com"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/black"
+                   />
 
                 <TextView
                     android:id="@+id/phone"
@@ -69,15 +79,15 @@
                     android:layout_height="wrap_content"
                     android:text="3456789754"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/edit_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="bottom|end"
-                android:src="@android:drawable/ic_menu_edit" />
+                android:src="@drawable/edit_pencil_black" />
 
         </LinearLayout>
 
