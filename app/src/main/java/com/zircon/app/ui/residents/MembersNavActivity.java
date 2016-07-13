@@ -11,7 +11,6 @@ import com.zircon.app.ui.common.fragment.AbsFragment;
  */
 public class MembersNavActivity extends BaseCABNavActivity {
 
-
     @Override
     protected AbsFragment getFragment() {
         return (AbsFragment) Fragment.instantiate(this, MembersFragment.class.getName());

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.zircon.app.BuildConfig;
+import com.zircon.app.Changepassword;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.ui.assets.browse.AssetsNavActivity;
@@ -160,6 +161,8 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             intent = new Intent(BaseNavActivity.this, ComplaintActivity.class);
         } else if (id == R.id.nav_complaint_track) {
             intent = new Intent(BaseNavActivity.this, AllComplaintsActivity.class);
+        }else if (id == R.id.nav_changepassword) {
+            intent = new Intent(BaseNavActivity.this, Changepassword.class);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

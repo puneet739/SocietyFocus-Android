@@ -15,8 +15,9 @@ public class BrowseAssetBookingActivity extends BaseABNavActivity {
     @Override
     protected AbsFragment getFragment() {
         Bundle args = new Bundle();
-        args.putString(BookingCalendarFragment.ARGS.ASSET_ID , 100+"");
-        return (AbsFragment) Fragment.instantiate(this,BookingCalendarFragment.class.getName(),args);
+     /*   args.putString(BookingCalendarFragment.ARGS.ASSET_ID , 100+"");
+        return (AbsFragment) Fragment.instantiate(this,BookingCalendarFragment.class.getName(),args);*/
+        return (AbsFragment) Fragment.instantiate(this,BookingAssetListFragment.class.getName());
     }
 
     @Override

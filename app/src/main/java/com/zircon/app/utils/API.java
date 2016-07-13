@@ -98,5 +98,5 @@ public interface API {
     public Call<BookAssetResponse> saveAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken , @Body BookAsset bookAsset);
 
     @POST(API_PATH_PATTERN+"society/asset/getassetbyuser")
-    public Call<BookAssetListResponse> getAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken );
+    public Call<BookAssetListResponse> getAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken);
 }

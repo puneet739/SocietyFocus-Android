@@ -16,7 +16,7 @@ import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.model.User;
 import com.zircon.app.model.response.BaseResponse;
 import com.zircon.app.model.response.UserResponse;
-import com.zircon.app.ui.common.activity.AbsBaseDialogFormActivity;
+import com.zircon.app.ui.common.activity.nonav.BaseABNoNavActivity;
 import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.Log;
@@ -29,7 +29,7 @@ import retrofit2.Response;
 /**
  * Created by jikoobaruah on 09/02/16.
  */
-public class ProfileActivity extends AbsBaseDialogFormActivity {
+public class ProfileActivity extends BaseABNoNavActivity {
 
     EditText mFirstNameView;
     EditText mAddressView;
@@ -75,14 +75,8 @@ public class ProfileActivity extends AbsBaseDialogFormActivity {
         mPhoneNoView.setText("" + user.contactNumber);
         mAboutYourselfView.setText("" + user.description);
 
-        Toolbar toolbar=(Toolbar)findViewById(R.id.tool);
-        setSupportActionBar(toolbar);
-        //Add back button
-        if (getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -90,11 +84,11 @@ public class ProfileActivity extends AbsBaseDialogFormActivity {
         return true;
     }
 
-   @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-           case R.id.action:
-             //  this.finish();
+            case R.id.action:
+                //  this.finish();
                 onChangeProfileSubmit(item.getActionView());
                 return true;
             default:

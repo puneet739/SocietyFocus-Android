@@ -11,5 +11,4 @@ import com.zircon.app.ui.common.fragment.AbsFragment;
  */
 public abstract class BaseNoNavActivity extends AbsBaseActivity {
 
-
 }

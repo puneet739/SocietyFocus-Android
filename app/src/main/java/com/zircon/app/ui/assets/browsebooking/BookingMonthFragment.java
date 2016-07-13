@@ -44,7 +44,6 @@ public class BookingMonthFragment extends AbsMonthFragment {
 
     private void setAssetBookings(ArrayList<AssetBooking> assetBookings) {
 
-
         this.assetBookings = assetBookings;
         if (assetBookings == null || assetBookings.size() == 0)
             return;

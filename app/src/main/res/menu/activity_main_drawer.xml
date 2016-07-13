@@ -2,20 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_home" android:icon="@android:drawable/ic_menu_camera"
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@android:drawable/ic_menu_camera"
             android:title="Home" />
-        <item android:id="@+id/nav_rwa_members" android:icon="@android:drawable/ic_menu_camera"
+        <item
+            android:id="@+id/nav_rwa_members"
+            android:icon="@android:drawable/ic_menu_camera"
             android:title="RWA" />
-        <item android:id="@+id/nav_residents" android:icon="@android:drawable/ic_menu_gallery"
+        <item
+            android:id="@+id/nav_residents"
+            android:icon="@android:drawable/ic_menu_gallery"
             android:title="Residents" />
 
     </group>
 
     <item android:title="Assets">
         <menu>
-            <item android:id="@+id/nav_assets" android:icon="@android:drawable/ic_input_add"
+            <item
+                android:id="@+id/nav_assets"
+                android:icon="@android:drawable/ic_input_add"
                 android:title="Book an asset" />
-            <item android:id="@+id/nav_asset_booking" android:icon="@android:drawable/ic_input_get"
+            <item
+                android:id="@+id/nav_asset_booking"
+                android:icon="@android:drawable/ic_input_get"
                 android:title="My asset bookings" />
 
         </menu>
@@ -23,9 +33,13 @@
 
     <item android:title="Complaints">
         <menu>
-            <item android:id="@+id/nav_complaint_new" android:icon="@android:drawable/ic_input_add"
+            <item
+                android:id="@+id/nav_complaint_new"
+                android:icon="@android:drawable/ic_input_add"
                 android:title="Lodge new complaint" />
-            <item android:id="@+id/nav_complaint_track" android:icon="@android:drawable/ic_input_get"
+            <item
+                android:id="@+id/nav_complaint_track"
+                android:icon="@android:drawable/ic_input_get"
                 android:title="Track existing complaints" />
 
         </menu>
@@ -34,10 +48,16 @@
     <item android:title="Tools">
         <menu>
             <!--<item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"-->
-                <!--android:title="Share" />-->
+            <!--android:title="Share" />-->
             <!--<item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"-->
-                <!--android:title="Send" />Send-->
-            <item android:id="@+id/nav_logout" android:icon="@android:drawable/ic_menu_delete"
+            <!--android:title="Send" />Send-->
+            <item
+                android:id="@+id/nav_changepassword"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="Change Password" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@android:drawable/ic_menu_delete"
                 android:title="Logout" />
 
         </menu>

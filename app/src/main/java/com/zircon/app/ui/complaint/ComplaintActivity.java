@@ -11,7 +11,7 @@ import com.zircon.app.R;
 import com.zircon.app.model.request.Complaint;
 import com.zircon.app.model.User;
 import com.zircon.app.model.response.ComplaintResponse;
-import com.zircon.app.ui.common.activity.AbsBaseDialogFormActivity;
+import com.zircon.app.ui.common.activity.nonav.BaseABNoNavActivity;
 import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
@@ -23,7 +23,7 @@ import retrofit2.Response;
 /**
  * Created by jikoobaruah on 09/02/16.
  */
-public class ComplaintActivity  extends AbsBaseDialogFormActivity {
+public class ComplaintActivity  extends BaseABNoNavActivity {
     private EditText mcomplaintTitleView;
     private EditText mcomplaintView;
     private Button mSubmitButton;

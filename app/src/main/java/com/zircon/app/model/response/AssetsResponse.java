@@ -10,6 +10,4 @@ import java.util.ArrayList;
 public class AssetsResponse extends BaseResponse {
 
     public ArrayList<Asset> body;
-
-
 }

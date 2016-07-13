@@ -15,7 +15,6 @@ import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.model.response.MembersResponse;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
-import com.zircon.app.ui.common.fragment.AbsBaseListFragment;
 import com.zircon.app.ui.common.fragment.AbsResidentsSearchListViewFragment;
 import com.zircon.app.ui.common.widget.SwipeView;
 import com.zircon.app.ui.login.LoginActivity;
