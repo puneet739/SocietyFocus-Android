@@ -34,7 +34,7 @@
                 android:textSize="17dp" />
 
             <TextView
-                android:id="@+id/assetbookingtext"
+                android:id="@+id/assetchargestext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
@@ -43,7 +43,7 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/assetbooking"
+                android:id="@+id/assetcharges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"

@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
 import com.zircon.app.BuildConfig;
 import com.zircon.app.Changepassword;
@@ -49,6 +51,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(getLayoutResID());
         setupFAB(getFABClickListener());
 
@@ -113,7 +116,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         if (!TextUtils.isEmpty(societyPic))
             Picasso.with(this).load(societyPic).into(mNavHeaderView);
 
-        mPhoneTextView.setText(""+phone);
+        mPhoneTextView.setText((phone==null?"":phone));
         mSocietyNameTextView.setText(societyName);
         mNameTextView.setText(name);
         mEmailTextView.setText(email);
@@ -155,6 +158,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         } else if (id == R.id.nav_logout) {
             SessionManager.logoutUser();
+            LoginManager.getInstance().logOut();
             intent = new Intent(BaseNavActivity.this, LoginActivity.class);
             isFinishCurrActivity = true;
         } else if (id == R.id.nav_complaint_new) {

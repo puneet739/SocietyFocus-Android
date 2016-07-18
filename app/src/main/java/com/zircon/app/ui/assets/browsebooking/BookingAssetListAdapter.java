@@ -1,6 +1,7 @@
 package com.zircon.app.ui.assets.browsebooking;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,8 +58,8 @@ public class BookingAssetListAdapter extends RecyclerView.Adapter<BookingAssetLi
 
         TextView nameTextview;
         TextView nametextTextView;
-        TextView bookingdateTextView;
-        TextView bookingdatetextTextView;
+        TextView bookingchargesTextView;
+        TextView bookingchargestextTextView;
         AssetBooking assetbookinglist;
 
         public ViewHolder(final View itemView) {
@@ -66,8 +67,8 @@ public class BookingAssetListAdapter extends RecyclerView.Adapter<BookingAssetLi
 
             nameTextview = (TextView) itemView.findViewById(R.id.assetname);
             nametextTextView = (TextView) itemView.findViewById(R.id.assetnametext);
-            bookingdateTextView = (TextView) itemView.findViewById(R.id.assetbooking);
-            bookingdatetextTextView = (TextView) itemView.findViewById(R.id.assetbookingtext);
+            bookingchargesTextView = (TextView) itemView.findViewById(R.id.assetcharges);
+            bookingchargestextTextView = (TextView) itemView.findViewById(R.id.assetchargestext);
 
            /* itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,17 +83,18 @@ public class BookingAssetListAdapter extends RecyclerView.Adapter<BookingAssetLi
 
         public void setPanel(AssetBooking assetbookinglist) {
             this.assetbookinglist = assetbookinglist;
-            Date startdate = new Date();
-            try {
-                startdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(assetbookinglist.startTime);
-            } catch (ParseException e) {
-                e.printStackTrace();
+
+            if (!TextUtils.isEmpty(assetbookinglist.description)) {
+                nameTextview.setVisibility(View.VISIBLE);
+                nametextTextView.setVisibility(View.VISIBLE);
+                nameTextview.setText(assetbookinglist.description);
             }
-            if (!assetbookinglist.startTime.isEmpty()) {
-                bookingdatetextTextView.setVisibility(View.VISIBLE);
-                bookingdateTextView.setVisibility(View.VISIBLE);
-                bookingdateTextView.setText(startdate.toString());
+            if (assetbookinglist.charges!=0) {
+                bookingchargesTextView.setVisibility(View.VISIBLE);
+                bookingchargestextTextView.setVisibility(View.VISIBLE);
+                bookingchargesTextView.setText("₹ "+assetbookinglist.charges);
             }
+
         }
     }
 

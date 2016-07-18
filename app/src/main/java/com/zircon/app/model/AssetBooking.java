@@ -6,9 +6,13 @@ package com.zircon.app.model;
 public class AssetBooking {
 
     public String id;
-    public String assetid;
-    public String startTime;
-    public boolean prepaid;
+    public String description;
+    public String contactno;
+    public String email;
+    public String img_url;
+    public int duration;
+    public int charges;
+    public int category;
     public int status;
 
     @Override

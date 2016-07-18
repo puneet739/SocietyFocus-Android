@@ -29,11 +29,13 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.facebook.login.widget.DeviceLoginButton;
 import com.facebook.login.widget.LoginButton;
 import com.zircon.app.R;
+import com.zircon.app.ZirconApp;
 import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.ui.common.activity.AbsLoginActivity;
-import com.zircon.app.ui.login.components.Facebook;
+import com.zircon.app.utils.Log;
 
 import java.util.Arrays;
 
@@ -46,21 +48,27 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
     private View mProgressView;
     private View mLoginFormView;
 
+    private CallbackManager callbackManager;
+
+    private LoginButton loginButton;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private EditText mSocietyView;
-    CallbackManager callbackManager;
 
     //facebook
-    private Facebook facebook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        facebook = Facebook.getInstance();
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
         setContentView(R.layout.activity_login);
+
+        // Initialising FaceBook.
+
+
         // Set up the login form.
         mSocietyView = (EditText) findViewById(R.id.society);
         mSocietyView.setClickable(true);
@@ -95,22 +103,42 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
 
         mLoginFormView = findViewById(R.id.email_login_form);
         mProgressView = findViewById(R.id.login_progress);
+        callbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) findViewById(R.id.fb_login);
 
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.e("Temp", "FB GrantedPermission " + loginResult.getRecentlyGrantedPermissions().toString() +
+                        " Access Token " + loginResult.getAccessToken().getToken());
+                fblogin(loginResult.getAccessToken().getToken());
+            }
 
-        facebook.onCreate(this);
+            @Override
+            public void onCancel() {
+                Log.e("FaceBook", "FB login cancelled");
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                error.printStackTrace();
+                Log.e("FaceBook", "FB login onError ");
+            }
+        });
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        facebook.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        facebook.onDestroy();
+//        facebook.onDestroy();
     }
 
     /**

@@ -32,17 +32,13 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
 
     protected Call<LoginResponse> mFBLoginCall;
 
-    private String FBAccessToken;
-    private com.zircon.app.model.LoginCredentials loginCredentials;
-
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
     }
-    Intent intent;
-    protected void fblogin(String FBAccessToken) {
-        this.FBAccessToken = FBAccessToken;
-//        showProgress(true);
+
+    protected void fblogin(final String FBAccessToken) {
+        showProgress(true);
         API api = HTTP.getAPI();
         if (api == null) {
             //TODO handle no inernet scenario;
@@ -52,39 +48,37 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
         mFBLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Response<LoginResponse> response) {
-//                showProgress(false);
+                showProgress(false);
                 mFBLoginCall = null;
                 if (response.isSuccess()) {
-                    SessionManager.setFBLoggedInUser(response.body().body.userDetails.user, response.body().body.token, response.body().body.society);
-                    intent = new Intent(AbsLoginActivity.this, MainNavActivity.class);
+                    SessionManager.setFBLoggedInUser(FBAccessToken,response.body().body.userDetails.user, response.body().body.token, response.body().body.society);
                     if (getIntent().getIntExtra("requestcode", -1) == AbsBaseActivity.REQUEST_LOGIN) {
                         setResult(RESULT_OK);
                     } else {
+                        Intent intent = new Intent(AbsLoginActivity.this, MainNavActivity.class);
                         startActivity(intent);
                     }
                     finish();
-                    Log.e("TEMP",response.body().body.userDetails.toString());
-
+                    Log.e("TEMP", response.body().body.userDetails.user.email.toString());
                 } else {
-                    Log.e("TEMP",response.message());
+                    Log.e("TEMP", response.message());
 
-//                    showLoginError(response.message());
+                    showLoginError(response.message());
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-//                showProgress(false);
+                showProgress(false);
                 mFBLoginCall = null;
-                Log.e(getClass().getSimpleName(),t.getMessage());
+                Log.e(getClass().getSimpleName(), t.getMessage());
 
-//                showLoginError(t.getMessage());
+                showLoginError(t.getMessage());
             }
         });
     }
 
     protected void login(final LoginCredentials loginCredentials) {
-        this.loginCredentials = loginCredentials;
         showProgress(true);
         API api = HTTP.getAPI();
         if (api == null) {

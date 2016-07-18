@@ -58,12 +58,12 @@ public class BookingCalendarFragment extends AbsCalendarFragment implements Book
     @Override
     public void onAssetDataFetched(ArrayList<AssetBooking> assetBookings,Calendar c) {
         for (AssetBooking assetBooking : assetBookings){
-            try {
-                c.setTime(BaseResponse.API_SDF.parse(assetBooking.startTime));
+            /*try {
+//                c.setTime(BaseResponse.API_SDF.parse(assetBooking.startTime));
                 ((AssetCalendarListAdapter)mRecyclerView.getAdapter()).put(c, assetBooking);
             } catch (ParseException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
         if (isFirstTime){

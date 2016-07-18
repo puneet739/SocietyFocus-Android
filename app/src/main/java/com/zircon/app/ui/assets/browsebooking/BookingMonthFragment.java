@@ -54,7 +54,7 @@ public class BookingMonthFragment extends AbsMonthFragment {
         HashMap<Integer,ArrayList<AssetBooking>> dateBookingMap = new HashMap<>();
         ArrayList<AssetBooking> dayBookingList= new ArrayList<>();
         for (AssetBooking assetBooking : assetBookings){
-            try {
+            /*try {
                 c.setTime(BaseResponse.API_SDF.parse(assetBooking.startTime));
                 if (c.get(Calendar.MONTH) == month && c.get(Calendar.YEAR) == year){
                     date = c.get(Calendar.DATE);
@@ -66,7 +66,7 @@ public class BookingMonthFragment extends AbsMonthFragment {
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
         int size = 0;

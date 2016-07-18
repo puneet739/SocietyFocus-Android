@@ -42,66 +42,56 @@ import retrofit2.Response;
 /**
  * Created by jikoobaruah on 07/03/16.
  */
-public class Facebook extends AbsLoginActivity implements FacebookCallback<LoginResult> {
+/*public class Facebook implements FacebookCallback<LoginResult> {
 
     private static Facebook instance;
 
 
-    private WeakReference<Activity> hostActivity;
-    private CallbackManager callbackManager;
+    private WeakReference<Activity> hostActivity;*/
+//        private CallbackManager callbackManager;
 
-    private LoginButton loginButton;
+//        private LoginButton loginButton;
 
-    private Facebook() {
-        if (!FacebookSdk.isInitialized())
-            FacebookSdk.sdkInitialize(ZirconApp.getAppContext());
-    }
+//    private Facebook() {
+//        if (!FacebookSdk.isInitialized())
+//            FacebookSdk.sdkInitialize(ZirconApp.getAppContext());
+//    }
+//
+//    public static Facebook getInstance() {
+//        if (instance == null)
+//            instance = new Facebook();
+//        return instance;
+//    }
+//
+//    public void onCreate(Activity activity) {
+////        clearMemory();
+////        hostActivity = new WeakReference<Activity>(activity);
+////
+////        callbackManager = CallbackManager.Factory.create();
+////
+////        loginButton = (LoginButton) hostActivity.get().findViewById(R.id.fb_login);
+////        loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
+////
+////        loginButton.registerCallback(callbackManager, this);
+//    }
+//
+//    public void onActivityResult(int requestCode, int code, Intent data) {
+//        callbackManager.onActivityResult(requestCode, code, data);
+//    }
+//
+//    public void onDestroy() {
+//        clearMemory();
+//    }
+//
+//    private void clearMemory() {
+//        if (hostActivity != null && hostActivity.get() != null)
+//            hostActivity.clear();
+//        hostActivity = null;
+//        loginButton = null;
+//        callbackManager = null;
+//    }
 
-    public static Facebook getInstance() {
-        if (instance == null)
-            instance = new Facebook();
-        return instance;
-    }
-
-    public void onCreate(Activity activity) {
-        clearMemory();
-        hostActivity = new WeakReference<Activity>(activity);
-
-        callbackManager = CallbackManager.Factory.create();
-
-        loginButton = (LoginButton) hostActivity.get().findViewById(R.id.fb_login);
-        loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
-
-        loginButton.registerCallback(callbackManager, this);
-    }
-
-    public void onActivityResult(int requestCode, int code, Intent data) {
-        callbackManager.onActivityResult(requestCode, code, data);
-    }
-
-    @Override
-    protected void showProgress(boolean show) {
-
-    }
-
-    @Override
-    protected void showLoginError(String errormessage) {
-
-    }
-
-    public void onDestroy() {
-        clearMemory();
-    }
-
-    private void clearMemory() {
-        if (hostActivity != null && hostActivity.get() != null)
-            hostActivity.clear();
-        hostActivity = null;
-        loginButton = null;
-        callbackManager = null;
-    }
-
-    @Override
+/*    @Override
     public void onSuccess(LoginResult loginResult) {
 //        Log.e("Profile","User first name "+ Profile.getCurrentProfile().getFirstName());
 //        if(Profile.getCurrentProfile()!=null){
@@ -113,11 +103,11 @@ public class Facebook extends AbsLoginActivity implements FacebookCallback<Login
         Log.e("Temp", "FB GrantedPermission " + loginResult.getRecentlyGrantedPermissions().toString() +
                 " Access Token " + loginResult.getAccessToken().getToken());
         fblogin(loginResult.getAccessToken().getToken());
-    }
+    }*/
 
-    protected Call<LoginResponse> mFBLoginCall;
+//    protected Call<LoginResponse> mFBLoginCall;
 
-    private String FBAccessToken;
+//    private String FBAccessToken;
     /*protected void fblogin(String FBAccessToken) {
         this.FBAccessToken = FBAccessToken;
 //        showProgress(true);
@@ -161,6 +151,7 @@ public class Facebook extends AbsLoginActivity implements FacebookCallback<Login
         });
     }
 */
+/*
     @Override
     public void onCancel() {
         Log.d(Facebook.class.getName(), "FB login cancelled");
@@ -172,6 +163,7 @@ public class Facebook extends AbsLoginActivity implements FacebookCallback<Login
         Log.d(Facebook.class.getName(), "FB login onError ");
 
     }
+*/
 
 
-}
+//}
