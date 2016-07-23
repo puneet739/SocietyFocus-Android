@@ -95,7 +95,7 @@ public interface API {
     public Call<BaseResponse> modifyPassword(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken,@Path("oldpassword") String oldpassword,@Path("newpassword") String newpassword,@Path("email") String email);
 
     @POST(API_PATH_PATTERN+"society/asset/book")
-    public Call<BookAssetResponse> saveAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken , @Body BookAsset bookAsset);
+    public Call<BookAssetResponse> saveAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken , @Body BookAsset bookAsset) ;
 
     @POST(API_PATH_PATTERN+"society/asset/getassetbyuser")
     public Call<BookAssetListResponse> getAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN)String authToken);

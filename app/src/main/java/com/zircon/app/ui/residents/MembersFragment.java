@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,8 +88,8 @@ public class MembersFragment extends AbsResidentsSearchListViewFragment {
                 int size = masterItems.size();
                 for (int i = 0; i < size; i++) {
                     FirstName = masterItems.get(i).firstname;
-                    LastName = (masterItems.get(i).lastname==null?"":masterItems.get(i).lastname);
-                    if ((FirstName.toLowerCase().contains(query.toLowerCase()))||(LastName.toLowerCase().contains(query.toLowerCase()))) {
+                    LastName = (masterItems.get(i).lastname == null ? "" : masterItems.get(i).lastname);
+                    if ((FirstName.toLowerCase().contains(query.toLowerCase())) || (LastName.toLowerCase().contains(query.toLowerCase()))) {
                         filteredList.add(masterItems.get(i));
                     }
                 }
@@ -146,7 +147,9 @@ public class MembersFragment extends AbsResidentsSearchListViewFragment {
 
             public void setUser(User user) {
                 this.user = user;
-                Picasso.with(profileImageView.getContext()).load(user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
+                if (!TextUtils.isEmpty(user.profilePic))
+                    Picasso.with(profileImageView.getContext()).load(user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
+
                 nameTextView.setText(user.firstname + " " + (user.lastname != null ? user.lastname : ""));
                 addressTextView.setText(user.description);
                 emailTextView.setText(user.email);

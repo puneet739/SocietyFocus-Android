@@ -106,6 +106,7 @@ public class LoginActivity extends AbsLoginActivity implements SocietySelectionF
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.fb_login);
 
+        loginButton.setReadPermissions(Arrays.asList("public_profile","email"));
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {

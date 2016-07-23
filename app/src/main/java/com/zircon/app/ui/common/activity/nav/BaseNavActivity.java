@@ -58,7 +58,6 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -68,12 +67,11 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         mSocietyNameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.society_name);
         mNameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.name);
         mEmailTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
         mPhoneTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.phone);
-        mNavHeaderView =(ImageView) navigationView.getHeaderView(0).findViewById(R.id.nav_header_background);
+        mNavHeaderView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.nav_header_background);
 
         mProfileImageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.profile_pic);
 
@@ -103,11 +101,11 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         super.onResume();
         User loggedInUser = SessionManager.getLoggedInUser();
         String societyName = SessionManager.getLoggedInSociety().name;
-        String societyPic=SessionManager.getLoggedInSociety().societypic;
+        String societyPic = SessionManager.getLoggedInSociety().societypic;
 
         String name = loggedInUser.firstname + " " + (loggedInUser.lastname != null ? loggedInUser.lastname : "");
         String email = loggedInUser.email;
-        String phone=loggedInUser.contactNumber;
+        String phone = loggedInUser.contactNumber;
         String profileImage = loggedInUser.profilePic;
 
         if (!TextUtils.isEmpty(profileImage))
@@ -116,7 +114,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         if (!TextUtils.isEmpty(societyPic))
             Picasso.with(this).load(societyPic).into(mNavHeaderView);
 
-        mPhoneTextView.setText((phone==null?"":phone));
+        mPhoneTextView.setText((phone == null ? "" : phone));
         mSocietyNameTextView.setText(societyName);
         mNameTextView.setText(name);
         mEmailTextView.setText(email);
@@ -165,7 +163,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             intent = new Intent(BaseNavActivity.this, ComplaintActivity.class);
         } else if (id == R.id.nav_complaint_track) {
             intent = new Intent(BaseNavActivity.this, AllComplaintsActivity.class);
-        }else if (id == R.id.nav_changepassword) {
+        } else if (id == R.id.nav_changepassword) {
             intent = new Intent(BaseNavActivity.this, Changepassword.class);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

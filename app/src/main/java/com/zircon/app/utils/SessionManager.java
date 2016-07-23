@@ -24,7 +24,7 @@ public class SessionManager {
     private static final String PREF_LOG_IN_SOCIAL = "login_social";
     private static final String PREF_LOG_IN_SOCIAL_TOKEN = "social_token";
 
-    public static void setLoggedInUser(User user, LoginCredentials loginCredentials, String token, Society society) {
+    public static void setLoggedInUser(User user, LoginCredentials  loginCredentials, String token, Society society) {
         SharedPreferences sharedPreferences = ZirconApp.getAppContext().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(PREF_IS_LOGGED_IN, true);

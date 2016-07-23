@@ -136,7 +136,8 @@ import com.zircon.app.utils.Log;
     }
 
     IAuthCallback authCallback;
-    public void onAuthError(IAuthCallback authCallback) {
+    public void onAuthError(IAuthCallback authCallback)
+    {
         if (authCallback == null)
             throw new NullPointerException("authcallback cannot be null");
         this.authCallback = authCallback;

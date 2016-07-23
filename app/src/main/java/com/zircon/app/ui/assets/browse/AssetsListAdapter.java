@@ -25,7 +25,6 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
     private ArrayList<Asset> assetList = new ArrayList<Asset>();
 
     private Context mContext;
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_asset,null,false);
@@ -37,7 +36,6 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setAsset(assetList.get(position));
-
     }
 
     public void addAll(ArrayList<Asset> assets){
