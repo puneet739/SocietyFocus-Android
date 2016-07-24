@@ -8,8 +8,8 @@ android {
         applicationId "com.zircon.app"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 27022017
-        versionName "1.2"
+        versionCode 27022018
+        versionName "1.3"
         multiDexEnabled true
 
     }
