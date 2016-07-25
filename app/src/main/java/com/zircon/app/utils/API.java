@@ -39,7 +39,7 @@ public interface API {
         String USERNAME = "X-Username";
         String PASSWORD = "X-Password";
         String DEVICE_ID = "X-DeviceID";
-
+        String DEVICE_IDOld = "X-DeviceIDOld";
     }
 
     interface IPostLoginHeaderParams{
@@ -58,14 +58,15 @@ public interface API {
 
     @GET(API_PATH_PATTERN+"social/fblogin")
     public Call<LoginResponse>
-    fblogin(@Query("accesstoken") String fbtoken);
+    fblogin(@Header(ILoginHeaderParams.DEVICE_ID) String deviceID,@Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld,@Query("accesstoken") String fbtoken);
 
     @POST(API_PATH_PATTERN+"access/login")
     public Call<LoginResponse>
     login(@Header(ILoginHeaderParams.SOCIETY) String society,
           @Header(ILoginHeaderParams.USERNAME) String username,
           @Header(ILoginHeaderParams.PASSWORD) String password,
-          @Header(ILoginHeaderParams.DEVICE_ID) String deviceID);
+          @Header(ILoginHeaderParams.DEVICE_ID) String deviceID,
+          @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld);
 
     @GET(API_PATH_PATTERN+"user/getalluser")
     public Call<MembersResponse> getAllUsers(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);

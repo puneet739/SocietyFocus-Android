@@ -68,8 +68,8 @@ public class Changepassword extends BaseABNoNavActivity {
 
                                      @Override
                                      protected void parseSuccessResponse(Response<BaseResponse> response) {
-                                         if (response.isSuccess() && response.body() != null && response.body().body != null) {
-                                         }
+//                                         if (response.isSuccess() && response.body() != null && response.body().body != null) {
+//                                         }
                                      }
 
                                      @Override

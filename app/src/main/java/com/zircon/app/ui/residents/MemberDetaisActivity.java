@@ -26,8 +26,6 @@ public class MemberDetaisActivity extends BaseCABNoNavActivity {
         super.onCreate(savedInstanceState);
     }
 
-
-
     @Override
     protected View.OnClickListener getFABClickListener() {
         return null;

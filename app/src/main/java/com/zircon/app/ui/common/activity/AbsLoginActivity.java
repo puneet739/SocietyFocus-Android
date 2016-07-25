@@ -6,6 +6,7 @@ import android.os.PersistableBundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.model.response.LoginResponse;
 import com.zircon.app.ui.home.MainNavActivity;
@@ -44,7 +45,10 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
             //TODO handle no inernet scenario;
             return;
         }
-        mFBLoginCall = HTTP.getAPI().fblogin(FBAccessToken);
+        Log.e("FaceBook","DeviceId "+Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.ANDROID_ID));
+        mFBLoginCall = HTTP.getAPI().fblogin(FirebaseInstanceId.getInstance().getToken(),Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.ANDROID_ID),FBAccessToken);
         mFBLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Response<LoginResponse> response) {
@@ -85,7 +89,7 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
             //TODO handle no inernet scenario;
             return;
         }
-        mLoginCall = HTTP.getAPI().login(loginCredentials.societyId, loginCredentials.userName, loginCredentials.password, Settings.Secure.getString(getContentResolver(),
+        mLoginCall = HTTP.getAPI().login(FirebaseInstanceId.getInstance().getToken(),loginCredentials.societyId, loginCredentials.userName, loginCredentials.password, Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID));
         mLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override

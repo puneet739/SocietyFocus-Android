@@ -1,4 +1,3 @@
-/*
 package com.zircon.app;
 
 import android.util.Log;
@@ -6,10 +5,7 @@ import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
-*/
-/**
- * Created by Cbc-03 on 07/18/16.
- *//*
+
 
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
@@ -25,4 +21,3 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     }
 
 }
-*/
