@@ -29,7 +29,7 @@ android {
     signingConfigs {
         release {
             storeFile file("test.jks")
-            storePassword "test123"
+            storePassword "password"
             keyAlias "selfsigned"
             keyPassword "password"
         }
