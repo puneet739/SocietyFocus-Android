@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_weight=".5"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/month_year"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="7"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/sunday"
+            />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/monday"
+            />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/tuesday"
+            />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/wednesday"
+            />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/thursday"
+            />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/friday"
+            />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/saturday"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="6"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            >
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:gravity="start"
+                android:id="@+id/d_1_1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_margin="1dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_1_2"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_1_3"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_1_4"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_1_5"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_1_6"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_1_7"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            >
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_2_1"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:layout_margin="1dp"
+                android:id="@+id/d_2_2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_2_3"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_2_4"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_2_5"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_2_6"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_margin="1dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_2_7"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            >
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_3_1"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_3_2"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_3_3"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_3_4"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_3_5"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_3_6"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_3_7"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            >
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_4_1"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_4_2"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_4_3"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_4_4"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_4_5"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_4_6"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_4_7"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            >
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_5_1"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_5_2"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_5_3"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_5_4"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_5_5"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_5_6"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_5_7"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            >
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_6_1"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_6_2"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_6_3"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_6_4"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_6_5"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_6_6"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <com.zircon.app.ui.common.widget.DayCellView
+                android:id="@+id/d_6_7"
+                android:layout_weight="1"
+                android:layout_margin="1dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
