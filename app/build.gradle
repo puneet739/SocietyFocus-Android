@@ -18,12 +18,20 @@ android {
         javaMaxHeapSize "4g"
     }
 
+    // signingConfigs {
+    //     release {
+    //         storeFile file("zircon.jks")
+    //         storePassword "zircon"
+    //         keyAlias "zircon"
+    //         keyPassword "zircon"
+    //     }
+    // }
     signingConfigs {
         release {
-            storeFile file("zircon.jks")
-            storePassword "zircon"
-            keyAlias "zircon"
-            keyPassword "zircon"
+            storeFile file("test.jks")
+            storePassword "test123"
+            keyAlias "selfsigned"
+            keyPassword "password"
         }
     }
 
