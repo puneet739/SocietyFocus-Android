@@ -45,7 +45,7 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
             //TODO handle no inernet scenario;
             return;
         }
-        Log.e("FaceBook","DeviceId "+Settings.Secure.getString(getContentResolver(),
+        Log.e("FaceBook", "DeviceId " + Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID));
        /* mFBLoginCall = HTTP.getAPI().fblogin(FirebaseInstanceId.getInstance().getToken(),Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID),FBAccessToken);*/
@@ -56,7 +56,7 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
                 showProgress(false);
                 mFBLoginCall = null;
                 if (response.isSuccess()) {
-                    SessionManager.setFBLoggedInUser(FBAccessToken,response.body().body.userDetails.user, response.body().body.token, response.body().body.society);
+                    SessionManager.setFBLoggedInUser(FBAccessToken, response.body().body.userDetails.user, response.body().body.token, response.body().body.society);
                     if (getIntent().getIntExtra("requestcode", -1) == AbsBaseActivity.REQUEST_LOGIN) {
                         setResult(RESULT_OK);
                     } else {
@@ -90,11 +90,13 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
             //TODO handle no inernet scenario;
             return;
         }
-      /*  mLoginCall = HTTP.getAPI().login(FirebaseInstanceId.getInstance().getToken(),loginCredentials.societyId, loginCredentials.userName, loginCredentials.password, Settings.Secure.getString(getContentResolver(),
-                Settings.Secure.ANDROID_ID));*/
-        mLoginCall = HTTP.getAPI().login(loginCredentials.societyId,loginCredentials.userName,loginCredentials.password,
+        mLoginCall = HTTP.getAPI().login(loginCredentials.societyId, loginCredentials.userName, loginCredentials.password,
+                FirebaseInstanceId.getInstance().getToken(),
                 Settings.Secure.getString(getContentResolver(),
                         Settings.Secure.ANDROID_ID));
+       /* mLoginCall = HTTP.getAPI().login(loginCredentials.societyId,loginCredentials.userName,loginCredentials.password,
+                Settings.Secure.getString(getContentResolver(),
+                        Settings.Secure.ANDROID_ID));*/
         mLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Response<LoginResponse> response) {
