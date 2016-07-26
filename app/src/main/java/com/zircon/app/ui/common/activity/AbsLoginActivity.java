@@ -47,8 +47,9 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
         }
         Log.e("FaceBook","DeviceId "+Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID));
-        mFBLoginCall = HTTP.getAPI().fblogin(FirebaseInstanceId.getInstance().getToken(),Settings.Secure.getString(getContentResolver(),
-                Settings.Secure.ANDROID_ID),FBAccessToken);
+       /* mFBLoginCall = HTTP.getAPI().fblogin(FirebaseInstanceId.getInstance().getToken(),Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.ANDROID_ID),FBAccessToken);*/
+        mFBLoginCall = HTTP.getAPI().fblogin(FBAccessToken);
         mFBLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Response<LoginResponse> response) {
@@ -89,8 +90,11 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
             //TODO handle no inernet scenario;
             return;
         }
-        mLoginCall = HTTP.getAPI().login(FirebaseInstanceId.getInstance().getToken(),loginCredentials.societyId, loginCredentials.userName, loginCredentials.password, Settings.Secure.getString(getContentResolver(),
-                Settings.Secure.ANDROID_ID));
+      /*  mLoginCall = HTTP.getAPI().login(FirebaseInstanceId.getInstance().getToken(),loginCredentials.societyId, loginCredentials.userName, loginCredentials.password, Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.ANDROID_ID));*/
+        mLoginCall = HTTP.getAPI().login(loginCredentials.societyId,loginCredentials.userName,loginCredentials.password,
+                Settings.Secure.getString(getContentResolver(),
+                        Settings.Secure.ANDROID_ID));
         mLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Response<LoginResponse> response) {

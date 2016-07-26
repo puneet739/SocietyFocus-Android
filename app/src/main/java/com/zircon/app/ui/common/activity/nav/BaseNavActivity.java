@@ -1,6 +1,7 @@
 package com.zircon.app.ui.common.activity.nav;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,7 @@ import com.zircon.app.BuildConfig;
 import com.zircon.app.Changepassword;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
+import com.zircon.app.model.response.GraphPhotoResponse;
 import com.zircon.app.ui.assets.browse.AssetsNavActivity;
 import com.zircon.app.ui.assets.browsebooking.BrowseAssetBookingActivity;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
@@ -33,7 +35,12 @@ import com.zircon.app.ui.home.MainNavActivity;
 import com.zircon.app.ui.login.LoginActivity;
 import com.zircon.app.ui.profile.ProfileActivity;
 import com.zircon.app.ui.residents.MembersNavActivity;
+import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public abstract class BaseNavActivity extends AbsBaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -108,8 +115,22 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         String phone = loggedInUser.contactNumber;
         String profileImage = loggedInUser.profilePic;
 
-        if (!TextUtils.isEmpty(profileImage))
-            Picasso.with(this).load(profileImage).into(mProfileImageView);
+//        if (!TextUtils.isEmpty(profileImage))
+//        Picasso.with(this).load("http://graph.facebook.com/10203757628318921/picture?type=large").into(mProfileImageView);
+
+        Call<GraphPhotoResponse> call = HTTP.getAPI().graphcall("http://graph.facebook.com/10203757628318921/picture?type=large"+"&redirect=false");
+        call.enqueue(new Callback<GraphPhotoResponse>() {
+            @Override
+            public void onResponse(Response<GraphPhotoResponse> response) {
+                if (response.isSuccess()) {
+                    Picasso.with(BaseNavActivity.this).load(response.body().getData().getUrl()).into(mProfileImageView);
+                }
+            }
+            @Override
+            public void onFailure(Throwable t)  {
+                t.getLocalizedMessage();
+            }
+        });
 
         if (!TextUtils.isEmpty(societyPic))
             Picasso.with(this).load(societyPic).into(mNavHeaderView);

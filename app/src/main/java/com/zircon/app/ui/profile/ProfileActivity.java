@@ -71,9 +71,9 @@ public class ProfileActivity extends BaseABNoNavActivity {
         user = SessionManager.getLoggedInUser();
 
         mFirstNameView.setText("" + user.firstname);
-        mAddressView.setText("" + user.address);
-        mPhoneNoView.setText("" + user.contactNumber);
-        mAboutYourselfView.setText("" + user.description);
+        mAddressView.setText("" + (user.address==null?"":user.address));
+        mPhoneNoView.setText("" + (user.contactNumber==null?"":user.contactNumber));
+        mAboutYourselfView.setText("" + (user.description==null?"":user.description));
 
     }
 

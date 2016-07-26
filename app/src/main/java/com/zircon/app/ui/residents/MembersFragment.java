@@ -147,9 +147,11 @@ public class MembersFragment extends AbsResidentsSearchListViewFragment {
 
             public void setUser(User user) {
                 this.user = user;
-                if (!TextUtils.isEmpty(user.profilePic))
+                if (!TextUtils.isEmpty(user.profilePic)) {
                     Picasso.with(profileImageView.getContext()).load(user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
-
+                } else {
+                    profileImageView.setImageDrawable(itemview.getContext().getResources().getDrawable(R.drawable.ic_avatar));
+                }
                 nameTextView.setText(user.firstname + " " + (user.lastname != null ? user.lastname : ""));
                 addressTextView.setText(user.description);
                 emailTextView.setText(user.email);

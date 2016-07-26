@@ -10,6 +10,7 @@ import com.zircon.app.model.response.BookAssetResponse;
 import com.zircon.app.model.response.ComplaintCommentResponse;
 import com.zircon.app.model.response.ComplaintListResponse;
 import com.zircon.app.model.response.ComplaintResponse;
+import com.zircon.app.model.response.GraphPhotoResponse;
 import com.zircon.app.model.response.LoginResponse;
 import com.zircon.app.model.response.MembersResponse;
 import com.zircon.app.model.response.PanelResponse;
@@ -23,6 +24,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by jikoobaruah on 21/01/16.
@@ -56,16 +58,32 @@ public interface API {
         String YEAR ="year";
     }
 
+/*
     @GET(API_PATH_PATTERN+"social/fblogin")
     public Call<LoginResponse>
     fblogin(@Header(ILoginHeaderParams.DEVICE_ID) String deviceID,@Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld,@Query("accesstoken") String fbtoken);
+*/
 
+    @GET
+    public Call<GraphPhotoResponse> graphcall(@Url String url);
+
+    @GET(API_PATH_PATTERN+"social/fblogin")
+    public Call<LoginResponse>
+    fblogin(@Query("accesstoken") String fbtoken);
+
+    /*   @POST(API_PATH_PATTERN+"access/login")
+        public Call<LoginResponse>
+        login(@Header(ILoginHeaderParams.SOCIETY) String society,
+          @Header(ILoginHeaderParams.USERNAME) String username,
+          @Header(ILoginHeaderParams.PASSWORD) String password,
+          @Header(ILoginHeaderParams.DEVICE_ID) String deviceID,
+          @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld);
+*/
     @POST(API_PATH_PATTERN+"access/login")
     public Call<LoginResponse>
     login(@Header(ILoginHeaderParams.SOCIETY) String society,
           @Header(ILoginHeaderParams.USERNAME) String username,
           @Header(ILoginHeaderParams.PASSWORD) String password,
-          @Header(ILoginHeaderParams.DEVICE_ID) String deviceID,
           @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld);
 
     @GET(API_PATH_PATTERN+"user/getalluser")

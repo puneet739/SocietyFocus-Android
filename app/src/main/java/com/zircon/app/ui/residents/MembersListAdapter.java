@@ -1,9 +1,11 @@
+/*
 package com.zircon.app.ui.residents;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,9 +24,11 @@ import com.zircon.app.utils.datapasser.UserPasser;
 
 import java.util.ArrayList;
 
+*/
 /**
  * Created by jikoobaruah on 24/01/16.
- */
+ *//*
+
 public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.ViewHolder> {
 
     private ArrayList<User> membersList = new ArrayList<User>();
@@ -33,7 +37,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user, null, false);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        return new ViewHolder((SwipeView)view);
+        return new ViewHolder((SwipeView) view);
     }
 
     @Override
@@ -84,7 +88,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
                 @Override
                 public void onClick(View v) {
                     UserPasser.getInstance().setUser(user);
-                    Intent intent = new Intent(itemView.getContext(),MemberDetaisActivity.class);
+                    Intent intent = new Intent(itemView.getContext(), MemberDetaisActivity.class);
                     itemView.getContext().startActivity(intent);
 
                 }
@@ -93,14 +97,18 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         }
 
         public void setUser(User user) {
+
             this.user = user;
-            Picasso.with(profileImageView.getContext()).load(user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
+            Picasso.with(profileImageView.getContext()).load(this.user.profilePic).placeholder(R.drawable.ic_avatar).into(profileImageView);
             nameTextView.setText(user.firstname + " " + (user.lastname != null ? user.lastname : ""));
             addressTextView.setText(user.description);
             emailTextView.setText(user.email);
             phoneTextView.setText(user.contactNumber);
+            if (this.user.profilePic.isEmpty())
+                profileImageView.setImageDrawable(itemview.getContext().getResources().getDrawable(R.drawable.ic_avatar));
         }
 
     }
 
 }
+*/
