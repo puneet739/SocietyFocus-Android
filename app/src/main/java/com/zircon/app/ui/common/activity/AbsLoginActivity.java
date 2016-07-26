@@ -47,9 +47,10 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
         }
         Log.e("FaceBook", "DeviceId " + Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID));
-       /* mFBLoginCall = HTTP.getAPI().fblogin(FirebaseInstanceId.getInstance().getToken(),Settings.Secure.getString(getContentResolver(),
-                Settings.Secure.ANDROID_ID),FBAccessToken);*/
-        mFBLoginCall = HTTP.getAPI().fblogin(FBAccessToken);
+        mFBLoginCall = HTTP.getAPI().fblogin(FirebaseInstanceId.getInstance().getToken()
+                ,Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID)
+                ,FBAccessToken);
+        /*mFBLoginCall = HTTP.getAPI().fblogin(FBAccessToken);*/
         mFBLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Response<LoginResponse> response) {

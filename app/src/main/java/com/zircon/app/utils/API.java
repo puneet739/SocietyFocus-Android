@@ -42,6 +42,7 @@ public interface API {
         String PASSWORD = "X-Password";
         String DEVICE_ID = "X-DeviceID";
         String DEVICE_IDOld = "X-DeviceIDOld";
+        String ACCESS_TOKEN = "X-AccessToken";
     }
 
     interface IPostLoginHeaderParams {
@@ -58,18 +59,18 @@ public interface API {
         String YEAR = "year";
     }
 
-/*
-    @GET(API_PATH_PATTERN+"social/fblogin")
+    @GET(API_PATH_PATTERN + "social/fblogin")
     public Call<LoginResponse>
-    fblogin(@Header(ILoginHeaderParams.DEVICE_ID) String deviceID,@Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld,@Query("accesstoken") String fbtoken);
-*/
+    fblogin(@Header(ILoginHeaderParams.DEVICE_ID) String deviceID,
+            @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld,
+            @Query("accesstoken") String FBToken);
 
     @GET
     public Call<GraphPhotoResponse> graphcall(@Url String url);
-
+/*
     @GET(API_PATH_PATTERN + "social/fblogin")
     public Call<LoginResponse>
-    fblogin(@Query("accesstoken") String fbtoken);
+    fblogin(@Query("accesstoken") String fbtoken);*/
 
     @POST(API_PATH_PATTERN + "access/login")
     public Call<LoginResponse>
@@ -79,13 +80,13 @@ public interface API {
           @Header(ILoginHeaderParams.DEVICE_ID) String deviceID,
           @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld);
 
-   /* @POST(API_PATH_PATTERN+"access/login")
-    public Call<LoginResponse>
-    login(@Header(ILoginHeaderParams.SOCIETY) String society,
-          @Header(ILoginHeaderParams.USERNAME) String username,
-          @Header(ILoginHeaderParams.PASSWORD) String password,
-          @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld);
-*/
+    /* @POST(API_PATH_PATTERN+"access/login")
+     public Call<LoginResponse>
+     login(@Header(ILoginHeaderParams.SOCIETY) String society,
+           @Header(ILoginHeaderParams.USERNAME) String username,
+           @Header(ILoginHeaderParams.PASSWORD) String password,
+           @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld);
+ */
     @GET(API_PATH_PATTERN + "user/getalluser")
     public Call<MembersResponse> getAllUsers(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
 
