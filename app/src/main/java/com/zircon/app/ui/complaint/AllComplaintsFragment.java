@@ -58,14 +58,11 @@ public class AllComplaintsFragment extends AbsBaseListFragment {
         call.enqueue(new AuthCallBack<ComplaintListResponse>() {
             @Override
             protected void onAuthError() {
-
             }
-
             @Override
             protected void parseSuccessResponse(Response<ComplaintListResponse> response) {
                 ((ComplaintListAdapter) mListAdapter).addAll(response.body().body);
             }
-
             @Override
             public void onFailure(Throwable t) {
                 t.getLocalizedMessage();

@@ -1,4 +1,4 @@
-package com.zircon.app;
+package com.zircon.app.ui.common.Notification;
 
 
 import android.app.NotificationManager;
@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.zircon.app.R;
 import com.zircon.app.utils.Notifications.notificationPanel;
 
 import java.io.IOException;
@@ -29,12 +30,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         //Displaying data in log
         //It is optional 
         Log.e(TAG, "From: " + remoteMessage.getFrom());
-        Log.e(TAG, "Notification Message Body: " + remoteMessage.getNotification());
+        Log.e(TAG, "Notification Message Body: " + remoteMessage.getData().get("title"));
 
         //Calling method to generate notification
 //        sendNotification(remoteMessage.getNotification().getBody());
-        sendNotification(remoteMessage.getData().get("main_picture"), remoteMessage.getNotification().getBody(),
-                remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getIcon());
+        sendNotification(remoteMessage.getData().get("main_picture"),remoteMessage.getData().get("body"),
+                remoteMessage.getData().get("title"),remoteMessage.getData().get("icon"));
+       /* sendNotification(remoteMessage.getData().get("main_picture"), remoteMessage.getNotification().getBody(),
+                remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getIcon());*/
     }
 
     //This method is only generating push notification

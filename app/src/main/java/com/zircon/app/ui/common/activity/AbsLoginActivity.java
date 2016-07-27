@@ -11,6 +11,7 @@ import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.model.response.LoginResponse;
 import com.zircon.app.ui.home.MainNavActivity;
 import com.zircon.app.utils.API;
+import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.Log;
 import com.zircon.app.utils.SessionManager;
@@ -48,10 +49,44 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
         Log.e("FaceBook", "DeviceId " + Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID));
         mFBLoginCall = HTTP.getAPI().fblogin(FirebaseInstanceId.getInstance().getToken()
-                ,Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID)
-                ,FBAccessToken);
-        /*mFBLoginCall = HTTP.getAPI().fblogin(FBAccessToken);*/
-        mFBLoginCall.enqueue(new Callback<LoginResponse>() {
+                , Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+                , FBAccessToken);
+                /*mFBLoginCall = HTTP.getAPI().fblogin(FBAccessToken);*/
+
+        mFBLoginCall.enqueue(new AuthCallBack<LoginResponse>() {
+            @Override
+            protected void onAuthError() {
+            }
+
+            @Override
+            protected void parseSuccessResponse(Response<LoginResponse> response) {
+                showProgress(false);
+                mFBLoginCall = null;
+                if (response.isSuccess()) {
+                    SessionManager.setFBLoggedInUser(FBAccessToken, response.body().body.userDetails.user, response.body().body.token, response.body().body.society);
+                    if (getIntent().getIntExtra("requestcode", -1) == AbsBaseActivity.REQUEST_LOGIN) {
+                        setResult(RESULT_OK);
+                    } else {
+                        Intent intent = new Intent(AbsLoginActivity.this, MainNavActivity.class);
+                        startActivity(intent);
+                    }
+                    finish();
+                    Log.e("TEMP", response.body().body.userDetails.user.email.toString());
+                } else {
+                    Log.e("TEMP", response.message());
+                    showLoginError(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                showProgress(false);
+                mFBLoginCall = null;
+                Log.e(getClass().getSimpleName(), t.getMessage());
+                showLoginError(t.getMessage());
+            }
+        });
+        /*mFBLoginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Response<LoginResponse> response) {
                 showProgress(false);
@@ -81,7 +116,7 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
 
                 showLoginError(t.getMessage());
             }
-        });
+        });*/
     }
 
     protected void login(final LoginCredentials loginCredentials) {
@@ -95,7 +130,7 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
                 FirebaseInstanceId.getInstance().getToken(),
                 Settings.Secure.getString(getContentResolver(),
                         Settings.Secure.ANDROID_ID));
-       /* mLoginCall = HTTP.getAPI().login(loginCredentials.societyId,loginCredentials.userName,loginCredentials.password,
+         /* mLoginCall = HTTP.getAPI().login(loginCredentials.societyId,loginCredentials.userName,loginCredentials.password,
                 Settings.Secure.getString(getContentResolver(),
                         Settings.Secure.ANDROID_ID));*/
         mLoginCall.enqueue(new Callback<LoginResponse>() {
