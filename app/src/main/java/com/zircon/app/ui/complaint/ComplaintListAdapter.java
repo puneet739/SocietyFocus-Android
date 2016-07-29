@@ -26,7 +26,7 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_complaint,null,false);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         return new ViewHolder(view);
     }
 
@@ -57,13 +57,16 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
         TextView titleTextView;
         TextView descriptionTextView;
         TextView dateTextView;
+        TextView statusTextView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
 
             titleTextView = (TextView) itemView.findViewById(R.id.title);
             descriptionTextView = (TextView) itemView.findViewById(R.id.description);
+            statusTextView = (TextView) itemView.findViewById(R.id.status);
             dateTextView = (TextView) itemView.findViewById(R.id.date);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,6 +84,8 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
             titleTextView.setTag(complaint.complaintid);
             titleTextView.setText(complaint.title);
             descriptionTextView.setText(complaint.description);
+            statusTextView.setText((complaint.status==null?"":"["+complaint.status+"]"));
+
             try {
                 Date date = BaseResponse.API_SDF.parse(complaint.creationdate);
                 dateTextView.setText("created on "+new SimpleDateFormat("dd MMM yyyy").format(date));

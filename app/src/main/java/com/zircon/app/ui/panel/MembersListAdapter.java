@@ -28,9 +28,8 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_panel,null,false);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        return new ViewHolder((SwipeView)view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_panel, parent, false);
+        return new ViewHolder((SwipeView) view);
     }
 
     @Override
@@ -39,12 +38,12 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
 
     }
 
-    public void addAll(ArrayList<Panel> panels){
+    public void addAll(ArrayList<Panel> panels) {
         membersList.addAll(panels);
         notifyDataSetChanged();
     }
 
-    public void add(Panel panel){
+    public void add(Panel panel) {
         membersList.add(panel);
         notifyDataSetChanged();
     }
@@ -54,7 +53,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         return membersList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView profileImageView;
         TextView nameTextView;
@@ -79,7 +78,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
                 @Override
                 public void onClick(View v) {
                     UserPasser.getInstance().setUser(panel.user);
-                    Intent intent = new Intent(itemView.getContext(),MemberDetaisActivity.class);
+                    Intent intent = new Intent(itemView.getContext(), MemberDetaisActivity.class);
                     itemView.getContext().startActivity(intent);
                 }
             });

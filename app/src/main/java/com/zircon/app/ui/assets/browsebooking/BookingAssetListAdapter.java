@@ -28,15 +28,13 @@ public class BookingAssetListAdapter extends RecyclerView.Adapter<BookingAssetLi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_asset_detail, null, false);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_asset_detail1, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setPanel(assetlist.get(position));
-
     }
 
     public void addAll(ArrayList<AssetBooking> assetbookinglist) {
@@ -89,10 +87,10 @@ public class BookingAssetListAdapter extends RecyclerView.Adapter<BookingAssetLi
                 nametextTextView.setVisibility(View.VISIBLE);
                 nameTextview.setText(assetbookinglist.description);
             }
-            if (assetbookinglist.charges!=0) {
+            if (assetbookinglist.charges != 0) {
                 bookingchargesTextView.setVisibility(View.VISIBLE);
                 bookingchargestextTextView.setVisibility(View.VISIBLE);
-                bookingchargesTextView.setText("₹ "+assetbookinglist.charges);
+                bookingchargesTextView.setText("₹ " + assetbookinglist.charges);
             }
 
         }

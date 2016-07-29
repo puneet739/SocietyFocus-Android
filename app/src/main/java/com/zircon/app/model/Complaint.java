@@ -14,10 +14,6 @@ public class Complaint {
 
     public String creationdate;
 
-//    public User user;
-
     public String status;
-
-
 
 }

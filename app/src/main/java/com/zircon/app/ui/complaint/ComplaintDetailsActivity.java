@@ -16,7 +16,7 @@ import com.zircon.app.ui.common.fragment.AbsFragment;
  */
 public class ComplaintDetailsActivity extends BaseCABNoNavActivity {
 
-    interface IBundle{
+    interface IBundle {
         String ID = "id";
         String TITLE = "title";
         String DESCRIPTION = "description";
@@ -68,7 +68,7 @@ public class ComplaintDetailsActivity extends BaseCABNoNavActivity {
 
     @Override
     protected String getExpandedHeaderText() {
-        return "Complaint ID : "+mID;
+        return "Complaint ID : " + mID;
     }
 
     @Override
@@ -79,8 +79,8 @@ public class ComplaintDetailsActivity extends BaseCABNoNavActivity {
     @Override
     protected AbsFragment getFragment() {
         Bundle args = new Bundle();
-        args.putString(ComplaintDetailsFragment.IARGS.COMPLAINT_ID,mID);
-        return (AbsFragment) Fragment.instantiate(this, ComplaintDetailsFragment.class.getName(),args);
-
+        args.putString(ComplaintDetailsFragment.IARGS.COMPLAINT_ID, mID);
+        args.putString(ComplaintDetailsFragment.IARGS.DESCRIPTION, mDescription);
+        return (AbsFragment) Fragment.instantiate(this, ComplaintDetailsFragment.class.getName(), args);
     }
 }

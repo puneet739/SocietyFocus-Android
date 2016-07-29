@@ -40,8 +40,6 @@ public class AssetsListFragment extends AbsBaseListFragment {
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 //        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 //        return layoutManager;
-
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         return gridLayoutManager;
 

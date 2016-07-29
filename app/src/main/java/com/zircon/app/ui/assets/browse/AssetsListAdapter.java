@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.zircon.app.BuildConfig;
 import com.zircon.app.R;
 import com.zircon.app.model.Asset;
 import com.zircon.app.ui.assets.booking.AssetBookingActivity;
@@ -28,7 +27,6 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_asset,null,false);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mContext = view.getContext();
         return new ViewHolder(view);
     }
