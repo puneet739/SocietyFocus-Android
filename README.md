@@ -24,6 +24,10 @@ The best in class application for all the society needs varying from security is
 Using Society Focus is easy and simple for any society admins. 
 Just drop a mail to ceo@societyfocus.com to get your society registered. 
 
+# Donation
+We are accepting donation for running and providing services. 
+https://www.paypal.me/PuneetBehl
+
 ```
 Project managed by Team Society Focus. 
 Puneet Behl  -- Puneet739@gmail.com -- CEO@societyfocus.com
