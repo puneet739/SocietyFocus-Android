@@ -48,12 +48,7 @@ public class ComplaintDetailsActivity extends BaseCABNoNavActivity {
 
     @Override
     protected View.OnClickListener getFABClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        };
+        return null;
     }
 
     @Override

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-  <include layout="@layout/main_appbar"></include>
+    <include layout="@layout/main_appbar"></include>
 
     <TextView
         android:id="@+id/textView"
@@ -92,6 +92,27 @@
             android:layout_width="50dp"
             android:layout_height="40dp"
             android:alpha=".4"
+            android:src="@drawable/short_text_black" />
+
+        <EditText
+            android:id="@+id/profile_occupation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Occupation"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
             android:src="@drawable/phone_black" />
 
         <EditText
@@ -110,10 +131,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:alpha="1"
-        android:gravity="center_vertical"
-        android:paddingBottom="5dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="15dp"
+        android:gravity="center_horizontal"
+        android:padding="7dp"
         android:text="PROFILE PICTURE"
         android:textStyle="normal" />
 

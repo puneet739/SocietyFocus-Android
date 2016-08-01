@@ -3,6 +3,7 @@ package com.zircon.app.utils;
 import com.zircon.app.model.User;
 import com.zircon.app.model.request.BookAsset;
 import com.zircon.app.model.request.Complaint;
+import com.zircon.app.model.response.AddCommentResponse;
 import com.zircon.app.model.response.AssetsResponse;
 import com.zircon.app.model.response.BaseResponse;
 import com.zircon.app.model.response.BookAssetListResponse;
@@ -87,6 +88,11 @@ public interface API {
            @Header(ILoginHeaderParams.PASSWORD) String password,
            @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld);
  */
+
+    @GET(API_PATH_PATTERN + "v1/comment/add/complaint_{Complaint_ID}/{MESSAGE}")
+    public Call<AddCommentResponse> getAddComment(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken,
+                                                  @Path("Complaint_ID") String complaintID, @Path("MESSAGE") String message);
+
     @GET(API_PATH_PATTERN + "user/getalluser")
     public Call<MembersResponse> getAllUsers(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
 

@@ -179,6 +179,8 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             SessionManager.logoutUser();
             LoginManager.getInstance().logOut();
             intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             isFinishCurrActivity = true;
         } else if (id == R.id.nav_complaint_new) {
             intent = new Intent(BaseNavActivity.this, ComplaintActivity.class);

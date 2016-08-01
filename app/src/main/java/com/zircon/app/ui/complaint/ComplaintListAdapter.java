@@ -25,8 +25,7 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_complaint,null,false);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_complaint, null, false);
         return new ViewHolder(view);
     }
 
@@ -36,13 +35,13 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
 
     }
 
-    public void addAll(ArrayList<Complaint> complaints){
+    public void addAll(ArrayList<Complaint> complaints) {
         int i = complaintsList.size();
         complaintsList.addAll(complaints);
-        notifyItemRangeInserted(i-1,complaints.size());
+        notifyItemRangeInserted(i - 1, complaints.size());
     }
 
-    public void add(Complaint complaint){
+    public void add(Complaint complaint) {
         complaintsList.add(complaint);
         notifyItemInserted(complaintsList.size() - 1);
     }
@@ -52,7 +51,7 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
         return complaintsList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleTextView;
         TextView descriptionTextView;
@@ -70,10 +69,10 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(),ComplaintDetailsActivity.class);
-                    intent.putExtra(ComplaintDetailsActivity.IBundle.ID,(String) titleTextView.getTag());
-                    intent.putExtra(ComplaintDetailsActivity.IBundle.TITLE,titleTextView.getText().toString());
-                    intent.putExtra(ComplaintDetailsActivity.IBundle.DESCRIPTION,descriptionTextView.getText().toString());
+                    Intent intent = new Intent(itemView.getContext(), ComplaintDetailsActivity.class);
+                    intent.putExtra(ComplaintDetailsActivity.IBundle.ID, (String) titleTextView.getTag());
+                    intent.putExtra(ComplaintDetailsActivity.IBundle.TITLE, titleTextView.getText().toString());
+                    intent.putExtra(ComplaintDetailsActivity.IBundle.DESCRIPTION, descriptionTextView.getText().toString());
                     itemView.getContext().startActivity(intent);
                 }
             });
@@ -84,11 +83,11 @@ public class ComplaintListAdapter extends RecyclerView.Adapter<ComplaintListAdap
             titleTextView.setTag(complaint.complaintid);
             titleTextView.setText(complaint.title);
             descriptionTextView.setText(complaint.description);
-            statusTextView.setText((complaint.status==null?"":"["+complaint.status+"]"));
+            statusTextView.setText((complaint.status == null ? "" : "[" + complaint.status + "]"));
 
             try {
                 Date date = BaseResponse.API_SDF.parse(complaint.creationdate);
-                dateTextView.setText("created on "+new SimpleDateFormat("dd MMM yyyy").format(date));
+                dateTextView.setText("created on " + new SimpleDateFormat("dd MMM yyyy").format(date));
 
             } catch (ParseException e) {
                 e.printStackTrace();

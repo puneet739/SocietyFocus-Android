@@ -1,5 +1,6 @@
 package com.zircon.app.ui.assets.browsebooking;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
@@ -9,9 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
 import com.zircon.app.model.AssetBooking;
 import com.zircon.app.model.response.BaseResponse;
+import com.zircon.app.ui.residents.MemberDetaisActivity;
+import com.zircon.app.utils.datapasser.UserPasser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +32,7 @@ public class BookingAssetListAdapter extends RecyclerView.Adapter<BookingAssetLi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_asset_detail1, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_asset_detail, parent, false);
         return new ViewHolder(view);
     }
 
@@ -54,28 +58,23 @@ public class BookingAssetListAdapter extends RecyclerView.Adapter<BookingAssetLi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nameTextview;
-        TextView nametextTextView;
-        TextView bookingchargesTextView;
-        TextView bookingchargestextTextView;
+        TextView contactNoTextView, contactNotextTextview;
+        TextView nameTextView;
+        TextView durationTextview;
+        TextView bookingchargesTextView, bookingchargestextTextView;
         AssetBooking assetbookinglist;
+        ImageView imageImageView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
 
-            nameTextview = (TextView) itemView.findViewById(R.id.assetname);
-            nametextTextView = (TextView) itemView.findViewById(R.id.assetnametext);
+            imageImageView = (ImageView) itemView.findViewById(R.id.image);
+            durationTextview = (TextView) itemView.findViewById(R.id.duration);
+            nameTextView = (TextView) itemView.findViewById(R.id.assetname);
             bookingchargesTextView = (TextView) itemView.findViewById(R.id.assetcharges);
             bookingchargestextTextView = (TextView) itemView.findViewById(R.id.assetchargestext);
-
-           /* itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                   *//* UserPasser.getInstance().setUser(panel.user);
-                    Intent intent = new Intent(itemView.getContext(),MemberDetaisActivity.class);
-                    itemView.getContext().startActivity(intent);*//*
-                }
-            });*/
+            contactNotextTextview = (TextView) itemView.findViewById(R.id.contactnotext);
+            contactNoTextView = (TextView) itemView.findViewById(R.id.contactno);
 
         }
 
@@ -83,16 +82,28 @@ public class BookingAssetListAdapter extends RecyclerView.Adapter<BookingAssetLi
             this.assetbookinglist = assetbookinglist;
 
             if (!TextUtils.isEmpty(assetbookinglist.description)) {
-                nameTextview.setVisibility(View.VISIBLE);
-                nametextTextView.setVisibility(View.VISIBLE);
-                nameTextview.setText(assetbookinglist.description);
+                nameTextView.setVisibility(View.VISIBLE);
+                nameTextView.setText(assetbookinglist.description);
             }
             if (assetbookinglist.charges != 0) {
                 bookingchargesTextView.setVisibility(View.VISIBLE);
                 bookingchargestextTextView.setVisibility(View.VISIBLE);
                 bookingchargesTextView.setText("₹ " + assetbookinglist.charges);
             }
+            if (!TextUtils.isEmpty(assetbookinglist.contactno)) {
+                contactNoTextView.setVisibility(View.VISIBLE);
+                contactNotextTextview.setVisibility(View.VISIBLE);
+                contactNoTextView.setText(" " + assetbookinglist.contactno);
+            }
 
+            if (assetbookinglist.duration != 0) {
+                durationTextview.setVisibility(View.VISIBLE);
+                durationTextview.setText("" + assetbookinglist.duration + " Hours");
+            }
+
+            if (!TextUtils.isEmpty(assetbookinglist.img_url)) {
+                Picasso.with(itemView.getContext()).load(assetbookinglist.img_url).placeholder(R.drawable.ic_1_2).into(imageImageView);
+            }
         }
     }
 

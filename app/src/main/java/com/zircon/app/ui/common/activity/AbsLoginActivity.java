@@ -141,6 +141,7 @@ public abstract class AbsLoginActivity extends AppCompatActivity {
                 if (response.isSuccess()) {
                     SessionManager.setLoggedInUser(response.body().body.userDetails.user, loginCredentials, response.body().body.token, response.body().body.society);
                     Intent intent = new Intent(AbsLoginActivity.this, MainNavActivity.class);
+                    Log.e("AccessToken","Token: "+response.body().body.token);
                     if (getIntent().getIntExtra("requestcode", -1) == AbsBaseActivity.REQUEST_LOGIN) {
                         setResult(RESULT_OK);
                     } else {

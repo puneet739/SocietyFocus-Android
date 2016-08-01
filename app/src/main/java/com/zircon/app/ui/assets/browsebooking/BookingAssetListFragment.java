@@ -24,7 +24,8 @@ public class BookingAssetListFragment extends AbsBaseListFragment {
 
     @Override
     public RecyclerView.ItemDecoration getItemDecoration() {
-        return new RecyclerView.ItemDecoration() {
+
+        /*return new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
@@ -32,7 +33,8 @@ public class BookingAssetListFragment extends AbsBaseListFragment {
                     outRect.bottom = 50;
                 }
             }
-        };
+        };*/
+        return null;
     }
 
     @Override

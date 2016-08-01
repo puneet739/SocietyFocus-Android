@@ -99,7 +99,7 @@ public class MembersFragment extends AbsResidentsSearchListViewFragment {
 
         @Override
         protected RecyclerView.ViewHolder createViewholder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user1, parent, false);
             return new ViewHolder((SwipeView) view);
         }
 

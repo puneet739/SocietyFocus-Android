@@ -25,8 +25,7 @@ public class ComplaintCommentsAdapter extends RecyclerView.Adapter<ComplaintComm
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_complaint_detail,null,false);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_complaint_detail,parent,false);
         return new ViewHolder(view);
     }
 
@@ -76,7 +75,6 @@ public class ComplaintCommentsAdapter extends RecyclerView.Adapter<ComplaintComm
                     e.printStackTrace();
                 }
             }
-
             userTextView.setText("by "+comment.user.firstname);
         }
     }

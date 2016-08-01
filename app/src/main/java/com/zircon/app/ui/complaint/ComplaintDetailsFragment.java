@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.zircon.app.R;
 import com.zircon.app.model.Comment;
+import com.zircon.app.model.response.AddCommentResponse;
 import com.zircon.app.model.response.BaseResponse;
 import com.zircon.app.model.response.ComplaintCommentResponse;
 import com.zircon.app.ui.assets.booking.AssetBookingActivity;
@@ -64,17 +66,25 @@ public class ComplaintDetailsFragment extends AbsBaseListFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_list_complaint, null, false);
+        return inflater.inflate(R.layout.fragment_list_complaint, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        (getActivity().findViewById(R.id.fab)).setOnClickListener(new View.OnClickListener() {
+        /*(getActivity().findViewById(R.id.fab)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });*/
+        AddCommentButton = (Button) view.findViewById(R.id.addcomment);
+        /*ViewCommentsButton = (Button) view.findViewById(R.id.viewcomment);
+        */
+        AddCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_complaint_comment_add, null, false);
-//                v.setLayoutParams(new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                 alertDialogBuilder.setView(dialogView);
@@ -83,6 +93,28 @@ public class ComplaintDetailsFragment extends AbsBaseListFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         EditText et = (EditText) dialogView.findViewById(R.id.et_comment);
                         String comment = et.getText().toString();
+                        if (!TextUtils.isEmpty(comment)) {
+                            Call<AddCommentResponse> call = HTTP.getAPI().getAddComment(SessionManager.getToken(), mComplaintID, comment);
+                            call.enqueue(new AuthCallBack<AddCommentResponse>() {
+                                @Override
+                                protected void onAuthError() {
+
+                                }
+
+                                @Override
+                                protected void parseSuccessResponse(Response<AddCommentResponse> response) {
+                                    if (response.isSuccess()) {
+                                        ((ComplaintCommentsAdapter) mListAdapter).add(response.body().body);
+                                        System.out.println("jyo :::: " + response.body().body.comment);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Throwable t) {
+                                    t.getLocalizedMessage();
+                                }
+                            });
+                        }/*
                         System.out.println("jyo :::: " + comment);
                         Comment commentObj = new Comment();
                         commentObj.comment = comment;
@@ -90,14 +122,12 @@ public class ComplaintDetailsFragment extends AbsBaseListFragment {
                         commentObj.creationdate = BaseResponse.API_SDF.format(Calendar.getInstance().getTime());
                         commentObj.status = Comment.Status.SENDING_TO_SERVER;
                         commentObj.user = SessionManager.getLoggedInUser();
-                        ((ComplaintCommentsAdapter) mListAdapter).add(commentObj);
+                        ((ComplaintCommentsAdapter) mListAdapter).add(commentObj);*/
                     }
                 });
                 alertDialogBuilder.create().show();
             }
         });
-        /*ViewCommentsButton = (Button) view.findViewById(R.id.viewcomment);
-        AddCommentButton = (Button) view.findViewById(R.id.addcomment);*/
         descriptionTextView = (TextView) view.findViewById(R.id.complaint_description);
         descriptionTextView.setText(mDescription);
     }
@@ -139,7 +169,6 @@ public class ComplaintDetailsFragment extends AbsBaseListFragment {
             @Override
             protected void parseSuccessResponse(Response<ComplaintCommentResponse> response) {
                 if (response.isSuccess() && response.body() != null && response.body().body != null) {
-//                    getmRecyclerView().setPadding(0,40,0,0);
 
                     ((ComplaintCommentsAdapter) mListAdapter).addAll(response.body().body.comments);
 

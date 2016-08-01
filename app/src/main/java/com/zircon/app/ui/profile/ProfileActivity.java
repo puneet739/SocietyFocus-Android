@@ -34,7 +34,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
     EditText mFirstNameView;
     EditText mAddressView;
     EditText mPhoneNoView;
-    EditText mAboutYourselfView;
+    EditText mAboutYourselfView, mOccupationView;
 
     EditText mOldPassView;
     EditText mNewPassView;
@@ -43,7 +43,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
     String firstName;
     String address;
     String phoneNo;
-    String aboutyourself;
+    String aboutyourself, occupation;
 
     String oldPass;
     String newPass;
@@ -63,6 +63,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
 
         setTitle("Edit Profile");
 
+        mOccupationView = (EditText) findViewById(R.id.profile_occupation);
         mFirstNameView = (EditText) findViewById(R.id.profile_name);
         mAddressView = (EditText) findViewById(R.id.profile_address);
         mPhoneNoView = (EditText) findViewById(R.id.profile_phoneno);
@@ -70,11 +71,11 @@ public class ProfileActivity extends BaseABNoNavActivity {
 
         user = SessionManager.getLoggedInUser();
 
-        mFirstNameView.setText("" + user.firstname);
-        mAddressView.setText("" + (user.address==null?"":user.address));
-        mPhoneNoView.setText("" + (user.contactNumber==null?"":user.contactNumber));
-        mAboutYourselfView.setText("" + (user.description==null?"":user.description));
-
+        mFirstNameView.setText(user.firstname);
+        mAddressView.setText((user.address == null ? "" : user.address));
+        mPhoneNoView.setText((user.contactNumber == null ? "" : user.contactNumber));
+        mAboutYourselfView.setText((user.description == null ? "" : user.description));
+        mOccupationView.setText((user.occupation == null ? "" : user.occupation));
     }
 
     @Override
@@ -101,13 +102,14 @@ public class ProfileActivity extends BaseABNoNavActivity {
         address = mAddressView.getText().toString().trim();
         phoneNo = mPhoneNoView.getText().toString().trim();
         aboutyourself = mAboutYourselfView.getText().toString().trim();
+        occupation = mOccupationView.getText().toString().trim();
 
         boolean isDataChanged = false;
         if ((firstName != null) && (firstName.length() > 0) && (!firstName.equals(user.firstname))) {
             user.firstname = firstName;
             isDataChanged = true;
         }
-        if ((address != null) && (address.length() > 0) && (!address.equals(user.lastname))) {
+        if ((address != null) && (address.length() > 0) && (!address.equals(user.address))) {
             user.address = address;
             isDataChanged = true;
         }
@@ -115,8 +117,12 @@ public class ProfileActivity extends BaseABNoNavActivity {
             user.contactNumber = phoneNo;
             isDataChanged = true;
         }
-        if ((aboutyourself != null) && (aboutyourself.length() > 0) && (!aboutyourself.equals(user.address))) {
+        if ((aboutyourself != null) && (aboutyourself.length() > 0) && (!aboutyourself.equals(user.description))) {
             user.description = aboutyourself;
+            isDataChanged = true;
+        }
+        if ((occupation != null) && (occupation.length() > 0) && (!occupation.equals(user.occupation))) {
+            user.occupation = occupation;
             isDataChanged = true;
         }
 
@@ -135,6 +141,8 @@ public class ProfileActivity extends BaseABNoNavActivity {
                 if (response.isSuccess()) {
                     SessionManager.setLoggedInUser(user);
                     Toast.makeText(ProfileActivity.this, "Details updated successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("Temporary", "error message " + response.message());
                 }
             }
 
