@@ -115,26 +115,28 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         String phone = loggedInUser.contactNumber;
         String profileImage = loggedInUser.profilePic;
 
-//        if (!TextUtils.isEmpty(profileImage))
-//        Picasso.with(this).load("http://graph.facebook.com/10203757628318921/picture?type=large").into(mProfileImageView);
+        if (!TextUtils.isEmpty(profileImage)) {
+            if (profileImage.contains("graph.facebook.com")) {
+                Call<GraphPhotoResponse> call = HTTP.getAPI().graphcall(profileImage + "&redirect=false");
+                call.enqueue(new Callback<GraphPhotoResponse>() {
+                    @Override
+                    public void onResponse(Response<GraphPhotoResponse> response) {
+                        if (response.isSuccess()) {
+                            Picasso.with(BaseNavActivity.this).load(response.body().getData().getUrl()).into(mProfileImageView);
+                        }
+                    }
 
-        Call<GraphPhotoResponse> call = HTTP.getAPI().graphcall("http://graph.facebook.com/10203757628318921/picture?type=large"+"&redirect=false");
-        call.enqueue(new Callback<GraphPhotoResponse>() {
-            @Override
-            public void onResponse(Response<GraphPhotoResponse> response) {
-                if (response.isSuccess()) {
-                    Picasso.with(BaseNavActivity.this).load(response.body().getData().getUrl()).into(mProfileImageView);
-                }
+                    @Override
+                    public void onFailure(Throwable t) {
+                        t.getLocalizedMessage();
+                    }
+                });
+            } else {
+                Picasso.with(BaseNavActivity.this).load(profileImage).into(mProfileImageView);
             }
-            @Override
-            public void onFailure(Throwable t)  {
-                t.getLocalizedMessage();
-            }
-        });
-
+        }
         if (!TextUtils.isEmpty(societyPic))
             Picasso.with(this).load(societyPic).into(mNavHeaderView);
-
         mPhoneTextView.setText((phone == null ? "" : phone));
         mSocietyNameTextView.setText(societyName);
         mNameTextView.setText(name);
@@ -179,14 +181,16 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             SessionManager.logoutUser();
             LoginManager.getInstance().logOut();
             intent = new Intent(BaseNavActivity.this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             isFinishCurrActivity = true;
         } else if (id == R.id.nav_complaint_new) {
             intent = new Intent(BaseNavActivity.this, ComplaintActivity.class);
         } else if (id == R.id.nav_complaint_track) {
             intent = new Intent(BaseNavActivity.this, AllComplaintsActivity.class);
-        } else if (id == R.id.nav_changepassword) {
+        } /*else if (id == R.id.nav_changepassword) {
             intent = new Intent(BaseNavActivity.this, Changepassword.class);
-        }
+        }*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 

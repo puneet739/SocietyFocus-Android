@@ -26,22 +26,21 @@ public class AssetsListFragment extends AbsBaseListFragment {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                    outRect.bottom = 50;
-
+                outRect.bottom = 50;
                 if (parent.getChildAdapterPosition(view) % 2 == 0) {
-                    outRect.right = 50;
-                }
+                    outRect.left=15;
+                    outRect.right=30;
+                    }
             }
         };
     }
+
 
     @Override
     public RecyclerView.LayoutManager getLayoutManager() {
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 //        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 //        return layoutManager;
-
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         return gridLayoutManager;
 
@@ -59,7 +58,7 @@ public class AssetsListFragment extends AbsBaseListFragment {
         call.enqueue(new AuthCallBack<AssetsResponse>() {
             @Override
             protected void onAuthError() {
-                ((AbsBaseActivity)getActivity()).onAuthError(new AbsBaseActivity.IAuthCallback() {
+                ((AbsBaseActivity) getActivity()).onAuthError(new AbsBaseActivity.IAuthCallback() {
                     @Override
                     public void onAuthSuccess() {
                         fetchList();
@@ -77,7 +76,6 @@ public class AssetsListFragment extends AbsBaseListFragment {
                 t.getLocalizedMessage();
             }
         });
-
 
 
     }

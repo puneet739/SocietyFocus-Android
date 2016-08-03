@@ -21,8 +21,4 @@ public abstract class AuthCallBack<T> implements Callback<T> {
 
     protected abstract void parseSuccessResponse(Response<T> response);
 
-
-
-
-
 }

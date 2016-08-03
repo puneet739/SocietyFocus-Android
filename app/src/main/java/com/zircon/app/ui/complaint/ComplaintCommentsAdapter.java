@@ -25,15 +25,13 @@ public class ComplaintCommentsAdapter extends RecyclerView.Adapter<ComplaintComm
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_complaint_detail,null,false);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_complaint_detail,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setComment(commentsList.get(position));
-
     }
 
     public void addAll(ArrayList<Comment> comments){
@@ -69,16 +67,15 @@ public class ComplaintCommentsAdapter extends RecyclerView.Adapter<ComplaintComm
 
         public void setComment(Comment comment) {
             titleTextView.setText(comment.comment);
-            if (comment.creationdate != null){
+            if (comment.creationdate != null) {
                 try {
-                    Date date = BaseResponse.API_SDF.parse(comment.creationdate);
-                    dateTextView.setText(new SimpleDateFormat("dd MMM yyyy").format(date));
+                Date date=BaseResponse.API_SDF.parse(comment.creationdate);
+                    dateTextView.setText("Comment added on "+new SimpleDateFormat("dd MMM yyyy").format(date));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
-
-            userTextView.setText(comment.user.firstname);
+            userTextView.setText("by "+comment.user.firstname);
         }
     }
 

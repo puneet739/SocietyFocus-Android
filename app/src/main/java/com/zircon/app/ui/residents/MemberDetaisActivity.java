@@ -1,5 +1,6 @@
 package com.zircon.app.ui.residents;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
@@ -24,6 +25,17 @@ public class MemberDetaisActivity extends BaseCABNoNavActivity {
             throw new NullPointerException("user is null");
         }
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected View.OnClickListener getImageViewClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MemberDetaisActivity.this,ImageViewActivity.class);
+                startActivity(intent);
+            }
+        };
     }
 
     @Override

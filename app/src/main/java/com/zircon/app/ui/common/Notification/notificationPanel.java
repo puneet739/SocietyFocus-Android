@@ -1,13 +1,11 @@
-package com.zircon.app.utils.Notifications;
+package com.zircon.app.ui.common.Notification;
 
 import android.view.View;
 
 import com.zircon.app.R;
 import com.zircon.app.ui.common.activity.nonav.BaseABNoNavActivity;
 
-/**
- * Created by Cbc-03 on 07/15/16.
- */
+
 public class notificationPanel extends BaseABNoNavActivity {
     @Override
     protected int getContentViewResID() {

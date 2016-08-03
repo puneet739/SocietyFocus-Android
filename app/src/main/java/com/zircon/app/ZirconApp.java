@@ -17,7 +17,7 @@ public class ZirconApp extends Application{
     public void onCreate() {
         super.onCreate();
         appContext = this;
-        KeyUtils.getKeyHash();
+        /*KeyUtils.getKeyHash();*/
     }
 
 

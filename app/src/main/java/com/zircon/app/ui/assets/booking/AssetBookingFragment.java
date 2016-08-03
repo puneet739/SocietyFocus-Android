@@ -180,8 +180,6 @@ public class AssetBookingFragment extends AbsFragment implements DatePickerDialo
             @Override
             protected void parseSuccessResponse(Response<BookAssetResponse> response) {
                 if (response.isSuccess()) {
-
-
                     timeEditText.setText("");
                     dateEditText.setText("");
                     descriptionEditText.setText("");

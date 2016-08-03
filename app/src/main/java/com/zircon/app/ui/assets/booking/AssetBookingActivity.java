@@ -27,6 +27,11 @@ public class AssetBookingActivity extends BaseCABNoNavActivity {
     }
 
     @Override
+    protected View.OnClickListener getImageViewClickListener() {
+        return null;
+    }
+
+    @Override
     protected View.OnClickListener getFABClickListener() {
         return null;
     }
