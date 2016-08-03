@@ -3,6 +3,7 @@ package com.zircon.app.utils;
 import com.zircon.app.model.User;
 import com.zircon.app.model.request.BookAsset;
 import com.zircon.app.model.request.Complaint;
+import com.zircon.app.model.request.UploadImage;
 import com.zircon.app.model.response.AddCommentResponse;
 import com.zircon.app.model.response.AssetsResponse;
 import com.zircon.app.model.response.BaseResponse;
@@ -16,6 +17,7 @@ import com.zircon.app.model.response.LoginResponse;
 import com.zircon.app.model.response.MembersResponse;
 import com.zircon.app.model.response.PanelResponse;
 import com.zircon.app.model.response.SocietyListResponse;
+import com.zircon.app.model.response.UploadImageResponse;
 import com.zircon.app.model.response.UserResponse;
 
 import retrofit2.Call;
@@ -34,8 +36,8 @@ public interface API {
 
     //    String SERVER_URL = "http://192.168.11.150:8080";
 //    String SERVER_URL = "http://10.0.2.2:8080/";
-    String SERVER_URL = "http://52.76.71.5:8090/";
-    String API_PATH_PATTERN = "/zircon/services/";
+    String SERVER_URL = "http://societyfocus.com/";
+    String API_PATH_PATTERN = "service/";
 
     interface ILoginHeaderParams {
         String SOCIETY = "X-Society";
@@ -68,10 +70,6 @@ public interface API {
 
     @GET
     public Call<GraphPhotoResponse> graphcall(@Url String url);
-/*
-    @GET(API_PATH_PATTERN + "social/fblogin")
-    public Call<LoginResponse>
-    fblogin(@Query("accesstoken") String fbtoken);*/
 
     @POST(API_PATH_PATTERN + "access/login")
     public Call<LoginResponse>
@@ -81,13 +79,8 @@ public interface API {
           @Header(ILoginHeaderParams.DEVICE_ID) String deviceID,
           @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld);
 
-    /* @POST(API_PATH_PATTERN+"access/login")
-     public Call<LoginResponse>
-     login(@Header(ILoginHeaderParams.SOCIETY) String society,
-           @Header(ILoginHeaderParams.USERNAME) String username,
-           @Header(ILoginHeaderParams.PASSWORD) String password,
-           @Header(ILoginHeaderParams.DEVICE_IDOld) String deviceIDOld);
- */
+    @POST(API_PATH_PATTERN + "upload/image/base64")
+    public Call<UploadImageResponse> uploadimage(@Body UploadImage uploadImage);
 
     @GET(API_PATH_PATTERN + "v1/comment/add/complaint_{Complaint_ID}/{MESSAGE}")
     public Call<AddCommentResponse> getAddComment(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken,

@@ -1,6 +1,7 @@
 package com.zircon.app.ui.profile;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,6 +9,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -24,10 +26,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
 import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.model.User;
+import com.zircon.app.model.request.UploadImage;
 import com.zircon.app.model.response.BaseResponse;
+import com.zircon.app.model.response.UploadImageResponse;
 import com.zircon.app.model.response.UserResponse;
 import com.zircon.app.ui.common.activity.nonav.BaseABNoNavActivity;
 import com.zircon.app.utils.AuthCallBack;
@@ -75,6 +80,13 @@ public class ProfileActivity extends BaseABNoNavActivity {
     String imgDecodableString;
 
     User user;
+
+    int REQUEST_CAMERA = 3;
+    int SELECT_FILE = 2;
+    int RESULT_CROP = 200;
+    String userChoosenTask;
+    int isImageChanged = 0;
+    Bitmap Imagebitmap;
 
     @Override
     protected int getContentViewResID() {
@@ -135,9 +147,6 @@ public class ProfileActivity extends BaseABNoNavActivity {
         startActivityForResult(intent, REQUEST_CAMERA);
     }
 
-    int REQUEST_CAMERA = 3;
-    int SELECT_FILE = 2;
-    String userChoosenTask;
 
     public void onChangeImage() {
         final CharSequence[] items = {"Take Photo", "Choose from Library",
@@ -181,6 +190,40 @@ public class ProfileActivity extends BaseABNoNavActivity {
         }
     }
 
+    private void performCrop(String picUri) {
+        try {
+            //Start Crop Activity
+
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            // indicate image type and Uri
+            File f = new File(picUri);
+            Uri contentUri = Uri.fromFile(f);
+
+            cropIntent.setDataAndType(contentUri, "image/*");
+            // set crop properties
+            cropIntent.putExtra("crop", "true");
+            // indicate aspect of desired crop
+            cropIntent.putExtra("aspectX", 1);
+            cropIntent.putExtra("aspectY", 1);
+            // indicate output X and Y
+            cropIntent.putExtra("outputX", 280);
+            cropIntent.putExtra("outputY", 280);
+
+            // retrieve data on return
+            cropIntent.putExtra("return-data", true);
+            // start the activity - we handle returning in onActivityResult
+            startActivityForResult(cropIntent, RESULT_CROP);
+        }
+        // respond to users whose devices do not support the crop action
+        catch (ActivityNotFoundException anfe) {
+            // display an error message
+            String errorMessage = "your device doesn't support the crop action!";
+            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -191,11 +234,21 @@ public class ProfileActivity extends BaseABNoNavActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == SELECT_FILE)
+            if (requestCode == SELECT_FILE) {
                 onSelectFromGalleryResult(data);
-            else if (requestCode == REQUEST_CAMERA)
+            } else if (requestCode == REQUEST_CAMERA) {
                 onCaptureImageResult(data);
+            }
         }
+        /*if (requestCode == RESULT_CROP) {
+            if (resultCode == Activity.RESULT_OK) {
+                Bundle extras = data.getExtras();
+                Bitmap selectedBitmap = extras.getParcelable("data");
+                // Set The Bitmap Data To ImageView
+                mProfileImageView.setImageBitmap(selectedBitmap);
+                mProfileImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            }
+        }*/
     }
 
     private void onSelectFromGalleryResult(Intent data) {
@@ -205,6 +258,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
                 // Get the Image from data
 
                 Uri selectedImage = data.getData();
+
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                 // Get the cursor
@@ -220,6 +274,8 @@ public class ProfileActivity extends BaseABNoNavActivity {
                 // Set the Image in ImageView after decoding the String
                 mProfileImageView.setImageBitmap(BitmapFactory
                         .decodeFile(imgDecodableString));
+                Imagebitmap = BitmapFactory.decodeFile(imgDecodableString);
+                isImageChanged = 1;
                 Log.e("ImageBytes", "Image: " + imgDecodableString);
             } else {
                 Toast.makeText(this, "You haven't picked Image",
@@ -231,14 +287,15 @@ public class ProfileActivity extends BaseABNoNavActivity {
         }
     }
 
-    private void onCaptureImageResult(Intent data){
+    private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        String base64Image= Base64.encodeToString(bytes.toByteArray(),Base64.DEFAULT);
-        Log.e("ImageBase64","Image: data:image/jpeg;base64,"+base64Image);
-        Log.e("ImageBytes","Image: "+bytes.toByteArray());
-        FileOutputStream fo;
+
+        /*File destination = new File(Environment.getExternalStorageDirectory(),
+                System.currentTimeMillis() + ".jpg");*/
+        /*String base64Image = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
+        Log.e("ImageBase64", "Image: data:image/jpeg;base64," + base64Image);
+        Log.e("ImageBytes", "Image: " + bytes.toByteArray());
+        FileOutputStream fo;*/
         /*try {
             destination.createNewFile();
             fo = new FileOutputStream(destination);
@@ -249,8 +306,11 @@ public class ProfileActivity extends BaseABNoNavActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+        Imagebitmap = thumbnail;
+        isImageChanged = 1;
         mProfileImageView.setImageBitmap(thumbnail);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -271,6 +331,14 @@ public class ProfileActivity extends BaseABNoNavActivity {
         occupation = mOccupationView.getText().toString().trim();
 
         boolean isDataChanged = false;
+        if (isImageChanged == 1) {
+            isDataChanged = true;
+            UploadImagetoServer();
+        } else if (isImageChanged == -1) {
+            isDataChanged = true;
+            user.profilePic = null;
+        }
+
         if ((firstName != null) && (firstName.length() > 0) && (!firstName.equals(user.firstname))) {
             user.firstname = firstName;
             isDataChanged = true;
@@ -318,6 +386,38 @@ public class ProfileActivity extends BaseABNoNavActivity {
             }
         });
 
+    }
+
+    private void UploadImagetoServer() {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        Imagebitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+        String encodedImage = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
+        UploadImage image = new UploadImage("data:image/jpeg;base64," + encodedImage, "filename.jpg");
+
+        Call<UploadImageResponse> call = HTTP.getAPI().uploadimage(image);
+        call.enqueue(new AuthCallBack<UploadImageResponse>() {
+            @Override
+            protected void onAuthError() {
+
+            }
+
+            @Override
+            protected void parseSuccessResponse(Response<UploadImageResponse> response) {
+                if (response.isSuccess()) {
+                    if (response.body().getBody() != null) {
+                        Log.e("Imageresponse", "ImageURL " + response.body().getBody());
+                        user.profilePic = response.body().getBody();
+                        isImageChanged=0;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.getLocalizedMessage();
+            }
+        });
     }
 
     public void onChangePassword() {

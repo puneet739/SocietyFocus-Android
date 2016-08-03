@@ -122,6 +122,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.residents.MemberDetaisActivity" />
         </activity>
+        <activity android:name=".ui.common.Notification.notificationPanel"></activity>
     </application>
 
 </manifest>
