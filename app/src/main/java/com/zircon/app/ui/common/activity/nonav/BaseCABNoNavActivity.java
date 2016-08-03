@@ -58,6 +58,7 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
 
        setContentView(R.layout.activity_cab_no_nav_main);
         setupFAB(getFABClickListener());
+        setupImageClick(getImageViewClickListener());
 
 
         mCollapseImageView = (ImageView) findViewById(R.id.main_imageview_placeholder);
@@ -106,6 +107,14 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
 
     }
+    public void setupImageClick(View.OnClickListener clickListener) {
+        CircleImageView mCirleImage = (CircleImageView) findViewById(R.id.cirle_image);
+        if (mCirleImage == null)
+            return;
+        mCirleImage.setOnClickListener(clickListener);
+
+    }
+    protected abstract View.OnClickListener getImageViewClickListener();
 
     protected abstract String getCircleImageURL();
 

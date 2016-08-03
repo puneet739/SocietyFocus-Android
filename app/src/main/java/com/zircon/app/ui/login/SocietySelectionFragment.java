@@ -121,7 +121,7 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
         protected RecyclerView.ViewHolder createViewholder(ViewGroup parent, int viewType) {
 
             View v = LayoutInflater.from(getContext()).inflate(R.layout.list_item_society, null, false);
-            v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            v.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
             return new ViewHolder(v);
 
@@ -177,7 +177,6 @@ public class SocietySelectionFragment extends AbsSearchListViewFragment {
 
                 societyAddressTextView.setText(society.address);
 
-                Picasso.with(getContext()).setIndicatorsEnabled(false);
                 Picasso.with(getContext()).load(society.societypic).placeholder(R.drawable.ic_1_2).into(societyImgView);
                 key = society.societyId;
             }

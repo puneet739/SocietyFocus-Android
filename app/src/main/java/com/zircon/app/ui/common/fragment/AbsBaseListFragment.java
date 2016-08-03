@@ -15,7 +15,7 @@ import com.zircon.app.R;
  */
 public abstract class AbsBaseListFragment extends AbsFragment {
 
-    private RecyclerView mRecyclerView;
+    protected RecyclerView mRecyclerView;
     protected RecyclerView.Adapter mListAdapter;
 
     @Nullable

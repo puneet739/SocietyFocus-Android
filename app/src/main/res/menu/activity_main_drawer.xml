@@ -51,10 +51,10 @@
             <!--android:title="Share" />-->
             <!--<item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"-->
             <!--android:title="Send" />Send-->
-            <item
+          <!--  <item
                 android:id="@+id/nav_changepassword"
                 android:icon="@android:drawable/ic_menu_edit"
-                android:title="Change Password" />
+                android:title="Change Password" />-->
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@android:drawable/ic_menu_delete"

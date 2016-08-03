@@ -26,7 +26,6 @@ import retrofit2.Response;
 public class AllComplaintsFragment extends AbsBaseListFragment {
 
 
-
     @Override
     public RecyclerView.ItemDecoration getItemDecoration() {
         return new RecyclerView.ItemDecoration() {
@@ -58,11 +57,11 @@ public class AllComplaintsFragment extends AbsBaseListFragment {
         call.enqueue(new AuthCallBack<ComplaintListResponse>() {
             @Override
             protected void onAuthError() {
-
             }
 
             @Override
             protected void parseSuccessResponse(Response<ComplaintListResponse> response) {
+                    mRecyclerView.setVisibility(View.VISIBLE);
                 ((ComplaintListAdapter) mListAdapter).addAll(response.body().body);
             }
 

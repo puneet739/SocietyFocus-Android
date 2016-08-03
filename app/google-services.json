@@ -3,8 +3,8 @@
     "project_number": "431406209508",
     "firebase_url": "https://society-focus.firebaseio.com",
     "project_id": "society-focus",
-    "storage_bucket": "society-focus.appspot.com"
-  },
+  "storage_bucket": "society-focus.appspot.com"
+},
   "client": [
     {
       "client_info": {
