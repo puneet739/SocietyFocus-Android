@@ -1,257 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent">-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <include layout="@layout/main_appbar"></include>
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:alpha="1"
+        android:padding="7dp"
+        android:text="BASIC INFORMATION"
+        android:textColor="@color/black" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
-        <include layout="@layout/main_appbar"></include>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
+            android:src="@drawable/profile_name" />
 
-        <TextView
-            android:id="@+id/pf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="1"
-            android:gravity="center_horizontal"
-            android:padding="7dp"
-            android:text="PROFILE PICTURE"
-            android:textColor="@color/black"
-            android:textStyle="normal" />
-
-        <RelativeLayout
+        <EditText
+            android:id="@+id/profile_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/image"
-                android:scaleType="fitXY"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/profile_name" />
-
-            <TextView
-                android:id="@+id/changepic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/image"
-                android:alpha=".7"
-                android:drawableLeft="@android:drawable/ic_menu_gallery"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="Change Picture"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/removepic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/changepic"
-                android:layout_toRightOf="@+id/image"
-                android:alpha=".7"
-                android:drawableLeft="@android:drawable/ic_delete"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:text="Remove Picture"
-                android:textSize="15sp" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="1"
-            android:padding="7dp"
-            android:text="BASIC INFORMATION"
-            android:textColor="@color/black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:alpha=".4"
-                android:src="@drawable/profile_name" />
-
-            <EditText
-                android:id="@+id/profile_name"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="@string/prompt_name"
-                android:inputType="textCapSentences"
-                android:maxLines="1"
-                android:paddingLeft="10dp"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:alpha=".4"
-                android:src="@drawable/city" />
-
-            <EditText
-                android:id="@+id/profile_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_address"
-                android:inputType="textCapSentences"
-                android:maxLines="1"
-                android:paddingLeft="10dp"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:alpha=".4"
-                android:src="@drawable/short_text_black" />
-
-            <EditText
-                android:id="@+id/profile_aboutyourself"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_aboutyourself"
-                android:inputType="textMultiLine"
-                android:maxLength="100"
-                android:paddingLeft="10dp"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:alpha=".4"
-                android:src="@drawable/occuptation" />
-
-            <EditText
-                android:id="@+id/profile_occupation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Occupation"
-                android:maxLines="1"
-                android:paddingLeft="10dp"
-                android:singleLine="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:alpha=".4"
-                android:src="@drawable/phone_black" />
-
-            <EditText
-                android:id="@+id/profile_phoneno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_phoneno"
-                android:inputType="phone"
-                android:maxLines="1"
-                android:paddingLeft="10dp"
-                android:singleLine="true" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="1"
-                android:gravity="center_horizontal"
-                android:padding="7dp"
-                android:text="CHANGE PASSWORD"
-                android:textColor="@color/black"
-                android:textStyle="normal" />
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-
-                <EditText
-                    android:id="@+id/oldpassword"
-                    android:layout_width="330dp"
-                    android:layout_height="40dp"
-                    android:hint="Old Password"
-                    android:inputType="none"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-
-                <EditText
-                    android:id="@+id/newpassword"
-                    android:layout_width="330dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="15dp"
-                    android:hint="New Password"
-                    android:inputType="none"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-
-                <EditText
-                    android:id="@+id/confirmpassword"
-                    android:layout_width="330dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="15dp"
-                    android:hint="Confirm New Password"
-                    android:inputType="none"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
-
-            <Button
-                android:id="@+id/changepassword"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:text="Change Password" />
-        </LinearLayout>
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:hint="@string/prompt_name"
+            android:inputType="textCapSentences"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
     </LinearLayout>
-</ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
+            android:src="@drawable/city" />
+
+        <EditText
+            android:id="@+id/profile_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:hint="@string/prompt_address"
+            android:inputType="textCapSentences"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
+            android:src="@drawable/short_text_black" />
+
+        <EditText
+            android:id="@+id/profile_aboutyourself"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:hint="@string/prompt_aboutyourself"
+            android:inputType="textMultiLine"
+            android:maxLength="100"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
+            android:src="@drawable/occuptation" />
+
+        <EditText
+            android:id="@+id/profile_occupation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:hint="Occupation"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:alpha=".4"
+            android:src="@drawable/phone_black" />
+
+        <EditText
+            android:id="@+id/profile_phoneno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:hint="@string/prompt_phoneno"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:alpha="1"
+        android:gravity="center_horizontal"
+        android:padding="7dp"
+        android:text="PROFILE PICTURE"
+        android:textColor="@color/black"
+        android:textStyle="normal" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--   <ImageView
+               android:id="@+id/image"
+               android:scaleType="fitXY"
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:src="@drawable/profile_name" />-->
+
+        <TextView
+            android:id="@+id/changepic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/image"
+            android:alpha=".7"
+            android:drawableLeft="@android:drawable/ic_menu_gallery"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Change Picture"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/removepic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/changepic"
+            android:layout_toRightOf="@+id/image"
+            android:alpha=".7"
+            android:drawableLeft="@android:drawable/ic_delete"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Remove Picture"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/changepassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_toRightOf="@+id/textview"
+        android:alpha="1"
+        android:background="@drawable/border_black"
+        android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:padding="7dp"
+        android:text="Change Password" />
+
+
+    <!--   <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="10dp"
+           android:orientation="vertical">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:alpha="1"
+               android:gravity="center_horizontal"
+               android:padding="7dp"
+               android:text="CHANGE PASSWORD"
+               android:textColor="@color/black"
+               android:textStyle="normal" />
+
+           <android.support.design.widget.TextInputLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal">
+
+               <EditText
+                   android:id="@+id/oldpassword"
+                   android:layout_width="330dp"
+                   android:layout_height="40dp"
+                   android:hint="Old Password"
+                   android:inputType="none"
+                   android:maxLines="1"
+                   android:singleLine="true" />
+           </android.support.design.widget.TextInputLayout>
+
+           <android.support.design.widget.TextInputLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal">
+
+               <EditText
+                   android:id="@+id/newpassword"
+                   android:layout_width="330dp"
+                   android:layout_height="40dp"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_marginTop="15dp"
+                   android:hint="New Password"
+                   android:inputType="none"
+                   android:maxLines="1"
+                   android:singleLine="true" />
+           </android.support.design.widget.TextInputLayout>
+
+           <android.support.design.widget.TextInputLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal">
+
+               <EditText
+                   android:id="@+id/confirmpassword"
+                   android:layout_width="330dp"
+                   android:layout_height="40dp"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_marginTop="15dp"
+                   android:hint="Confirm New Password"
+                   android:inputType="none"
+                   android:maxLines="1"
+                   android:singleLine="true" />
+           </android.support.design.widget.TextInputLayout>
+
+           <Button
+               android:id="@+id/changepassword"
+               android:layout_width="200dp"
+               android:layout_height="50dp"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginTop="20dp"
+               android:text="Change Password" />
+       </LinearLayout>-->
+</LinearLayout><!--</ScrollView>-->

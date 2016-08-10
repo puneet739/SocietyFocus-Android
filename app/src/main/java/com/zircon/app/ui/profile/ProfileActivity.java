@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import com.zircon.app.Changepassword;
 import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.model.User;
@@ -99,7 +100,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
         setTitle("Edit Profile");
 
         mChangeImageView = (TextView) findViewById(R.id.changepic);
-        mProfileImageView = (ImageView) findViewById(R.id.image);
+//        mProfileImageView = (ImageView) findViewById(R.id.image);
 
         mOccupationView = (EditText) findViewById(R.id.profile_occupation);
         mFirstNameView = (EditText) findViewById(R.id.profile_name);
@@ -112,15 +113,16 @@ public class ProfileActivity extends BaseABNoNavActivity {
         mChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onChangePassword();
+                Intent intent = new Intent(ProfileActivity.this, Changepassword.class);
+                startActivity(intent);
             }
         });
 
         user = SessionManager.getLoggedInUser();
 
-        if (!TextUtils.isEmpty(user.profilePic)) {
+       /* if (!TextUtils.isEmpty(user.profilePic)) {
             Picasso.with(ProfileActivity.this).load(user.profilePic).placeholder(R.drawable.profile_name).into(mProfileImageView);
-        }
+        }*/
         mFirstNameView.setText(user.firstname);
         mAddressView.setText((user.address == null ? "" : user.address));
         mPhoneNoView.setText((user.contactNumber == null ? "" : user.contactNumber));
@@ -146,7 +148,6 @@ public class ProfileActivity extends BaseABNoNavActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
-
 
     public void onChangeImage() {
         final CharSequence[] items = {"Take Photo", "Choose from Library",
@@ -272,8 +273,8 @@ public class ProfileActivity extends BaseABNoNavActivity {
                 cursor.close();
 
                 // Set the Image in ImageView after decoding the String
-                mProfileImageView.setImageBitmap(BitmapFactory
-                        .decodeFile(imgDecodableString));
+              /*  mProfileImageView.setImageBitmap(BitmapFactory
+                        .decodeFile(imgDecodableString));*/
                 Imagebitmap = BitmapFactory.decodeFile(imgDecodableString);
                 isImageChanged = 1;
                 Log.e("ImageBytes", "Image: " + imgDecodableString);
@@ -308,7 +309,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
         }*/
         Imagebitmap = thumbnail;
         isImageChanged = 1;
-        mProfileImageView.setImageBitmap(thumbnail);
+//        mProfileImageView.setImageBitmap(thumbnail);
     }
 
     @Override
@@ -408,7 +409,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
                     if (response.body().getBody() != null) {
                         Log.e("Imageresponse", "ImageURL " + response.body().getBody());
                         user.profilePic = response.body().getBody();
-                        isImageChanged=0;
+                        isImageChanged = 0;
                     }
                 }
             }
