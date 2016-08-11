@@ -8,19 +8,16 @@ import android.widget.TextView;
 
 import com.zircon.app.R;
 import com.zircon.app.model.AssetBooking;
-import com.zircon.app.model.response.BaseResponse;
-import com.zircon.app.model.response.BookAssetListResponse;
+import com.zircon.app.model.response.AssetbookingByUserResponse;
 import com.zircon.app.ui.common.fragment.AbsMonthFragment;
 import com.zircon.app.ui.common.widget.DayCellView;
 import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -32,14 +29,14 @@ public class BookingMonthFragment extends AbsMonthFragment {
 
     private ArrayList<AssetBooking> assetBookings;
 
-    private Call<BookAssetListResponse> call;
+    private Call<AssetbookingByUserResponse> call;
     private String assetID;
     private AssetMonthInteractionListener assetMonthInteractionListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        assetID = getArguments().getString(BookingCalendarFragment.ARGS.ASSET_ID,null);
+//        assetID = getArguments().getString(BookingCalendarFragment.ARGS.ASSET_ID,null);
     }
 
     private void setAssetBookings(ArrayList<AssetBooking> assetBookings) {
@@ -108,17 +105,17 @@ public class BookingMonthFragment extends AbsMonthFragment {
         if (call == null) {
             return;
         }
-        call.enqueue(new AuthCallBack<BookAssetListResponse>() {
+        call.enqueue(new AuthCallBack<AssetbookingByUserResponse>() {
             @Override
             protected void onAuthError() {
                 //TODO handle this
             }
 
             @Override
-            protected void parseSuccessResponse(Response<BookAssetListResponse> response) {
+            protected void parseSuccessResponse(Response<AssetbookingByUserResponse> response) {
                 if (response.body() != null && response.body().body != null && response.body().body.size() > 0){
-                    setAssetBookings(response.body().body);
-                    assetMonthInteractionListener.onAssetDataFetched(response.body().body, calendar);
+//                    setAssetBookings(response.body().body);
+//                    assetMonthInteractionListener.onAssetDataFetched(response.body().body, calendar);
                 }
             }
 
@@ -168,7 +165,7 @@ public class BookingMonthFragment extends AbsMonthFragment {
 
 
 
-    private Call<BookAssetListResponse> getEventCALL(Calendar calendar) {
+    private Call<AssetbookingByUserResponse> getEventCALL(Calendar calendar) {
         return HTTP.getAPI().getAssetBooking(SessionManager.getToken());//, assetID, calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
 
     }

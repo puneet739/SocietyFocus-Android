@@ -1,14 +1,12 @@
-package com.zircon.app;
+package com.zircon.app.ui.profile;
 
-import android.content.pm.PackageInstaller;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
 import com.zircon.app.model.User;
 import com.zircon.app.model.response.BaseResponse;
@@ -19,7 +17,6 @@ import com.zircon.app.utils.Log;
 import com.zircon.app.utils.SessionManager;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Changepassword extends BaseABNoNavActivity {

@@ -49,9 +49,9 @@ public class BookingCalendarFragment extends AbsCalendarFragment implements Book
     @Override
     protected AbsMonthFragment getMonthFragment(Bundle args, int position) {
                 args.putString(ARGS.ASSET_ID, assetID);
-        AbsMonthFragment fragment = (AbsMonthFragment) Fragment.instantiate(getContext(),BookingMonthFragment.class.getName(),args);
-        ((BookingMonthFragment)fragment).setAssetMonthInteractionListener(BookingCalendarFragment.this);
-        return fragment;
+//        AbsMonthFragment fragment = (AbsMonthFragment) Fragment.instantiate(getContext(),BookingMonthFragment.class.getName(),args);
+//        ((BookingMonthFragment)fragment).setAssetMonthInteractionListener(BookingCalendarFragment.this);
+        return null;
     }
 
     boolean isFirstTime = true;

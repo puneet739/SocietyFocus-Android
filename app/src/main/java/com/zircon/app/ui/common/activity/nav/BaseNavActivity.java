@@ -19,6 +19,10 @@ import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.squareup.picasso.Picasso;
 import com.zircon.app.BuildConfig;
 import com.zircon.app.Changepassword;
@@ -61,6 +65,14 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(getLayoutResID());
         setupFAB(getFABClickListener());
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("E272D0E02F9646D08082058A0B814575")
+                .build();
+        if (mAdView != null)
+            mAdView.loadAd(adRequest);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);

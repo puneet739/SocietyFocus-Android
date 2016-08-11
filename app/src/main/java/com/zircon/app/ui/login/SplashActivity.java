@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.firebase.iid.FirebaseInstanceId;*/
+import com.google.android.gms.ads.MobileAds;
 import com.zircon.app.R;
 import com.zircon.app.ZirconApp;
 import com.zircon.app.model.LoginCredentials;
@@ -34,6 +35,7 @@ public class SplashActivity extends AbsLoginActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-7208785423388103~4681070926");
         setContentView(R.layout.activity_splash);
 
         /*new AsyncTask<Void,Void,String>(){
