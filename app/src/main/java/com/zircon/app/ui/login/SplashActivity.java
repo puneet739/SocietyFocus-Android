@@ -38,18 +38,6 @@ public class SplashActivity extends AbsLoginActivity {
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-7208785423388103~4681070926");
         setContentView(R.layout.activity_splash);
 
-        /*new AsyncTask<Void,Void,String>(){
-            @Override
-            protected String doInBackground(Void... params) {
-                return FirebaseInstanceId.getInstance().getToken();
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                Log.e("Token","Token "+s);
-            }
-        }.execute(null,null,null);*/
-
         mProgressView = findViewById(R.id.login_progress);
 
         if (AppManager.isFirstTimeLaunchAfterInstall()) {
@@ -96,22 +84,6 @@ public class SplashActivity extends AbsLoginActivity {
     }
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-
-//    private boolean checkPlayServices() {
-//        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-//        if (resultCode != ConnectionResult.SUCCESS) {
-//            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
-//                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
-//                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
-//            } else {
-//                Toast.makeText(ZirconApp.getAppContext(), "This device doesn't support Play services, App will not work normally",
-//                        Toast.LENGTH_LONG).show();
-//                finish();
-//            }
-//            return false;
-//        }
-//        return true;
-//    }
 
     /**
      * Shows the progress UI and hides the login form.

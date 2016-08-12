@@ -10,11 +10,13 @@ import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v7.app.NotificationCompat;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.zircon.app.R;
+import com.zircon.app.ui.login.SplashActivity;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,12 +30,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
         Log.e(TAG, "From: " + remoteMessage.getFrom());
-        Log.e(TAG, "Notification Message Body: " + remoteMessage.getData().get("body"));
+        Log.e(TAG, "Notification Message Body: " + remoteMessage.getData().get(notificationPanel.IARGS.BODY));
         Bitmap image = null;
-        String messageimage = remoteMessage.getData().get("main_picture");
-        String messagetitle = remoteMessage.getData().get("title");
-        String messagebody = remoteMessage.getData().get("body");
-        String messageicon = remoteMessage.getData().get("icon");
+        String messageimage = remoteMessage.getData().get(notificationPanel.IARGS.IMAGE);
+        String messagetitle = remoteMessage.getData().get(notificationPanel.IARGS.TITLE);
+        String messagebody = remoteMessage.getData().get(notificationPanel.IARGS.BODY);
+        String messageicon = remoteMessage.getData().get(notificationPanel.IARGS.ICON);
         URL url = null;
         try {
             url = new URL(messageimage);
@@ -44,11 +46,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        NotificationCompat.Builder mBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this);
+        Intent resultIntent;
+        if (!TextUtils.isEmpty(messageimage)) {
+            android.support.v4.app.NotificationCompat.BigPictureStyle notiStyle = new android.support.v4.app.NotificationCompat.BigPictureStyle();
+            notiStyle.setSummaryText(messagebody);
+            notiStyle.bigPicture(image);
+            mBuilder.setStyle(notiStyle);
+            resultIntent = new Intent(this, notificationPanel.class);
+            resultIntent.putExtra(notificationPanel.IARGS.BODY, messagebody);
+            resultIntent.putExtra(notificationPanel.IARGS.TITLE, messagetitle);
+            resultIntent.putExtra(notificationPanel.IARGS.IMAGE, messageimage);
+        } else {
+            resultIntent = new Intent(this, SplashActivity.class);
+        }
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        Intent resultIntent = new Intent(this, notificationPanel.class);
-        resultIntent.putExtra("msgbody", messagebody);
-        resultIntent.putExtra("msgtitle", messagetitle);
-        resultIntent.putExtra("main_picture", messageimage);
+
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         this,
@@ -56,17 +70,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         resultIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
-
-        android.support.v4.app.NotificationCompat.BigPictureStyle notiStyle = new android.support.v4.app.NotificationCompat.BigPictureStyle();
-        notiStyle.setSummaryText(messagebody);
-        notiStyle.bigPicture(image);
-        NotificationCompat.Builder mBuilder =
-                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(android.R.drawable.stat_notify_chat)
-                        .setContentTitle(messagetitle)
-                        .setSound(defaultSoundUri)
-                        .setContentIntent(resultPendingIntent)
-                        .setContentText(messagebody).setStyle(notiStyle);
+        mBuilder.setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(messagetitle)
+                .setSound(defaultSoundUri)
+                .setContentIntent(resultPendingIntent)
+                .setContentText(messagebody);
 
         int mNotificationId = 001;
         NotificationManager mNotifyMgr =
