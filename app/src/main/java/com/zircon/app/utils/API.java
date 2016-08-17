@@ -7,7 +7,7 @@ import com.zircon.app.model.request.UploadImage;
 import com.zircon.app.model.response.AddCommentResponse;
 import com.zircon.app.model.response.AssetsResponse;
 import com.zircon.app.model.response.BaseResponse;
-import com.zircon.app.model.response.BookAssetListResponse;
+import com.zircon.app.model.response.AssetbookingByUserResponse;
 import com.zircon.app.model.response.BookAssetResponse;
 import com.zircon.app.model.response.ComplaintCommentResponse;
 import com.zircon.app.model.response.ComplaintListResponse;
@@ -117,5 +117,5 @@ public interface API {
     public Call<BookAssetResponse> saveAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken, @Body BookAsset bookAsset);
 
     @POST(API_PATH_PATTERN + "society/asset/getassetbyuser")
-    public Call<BookAssetListResponse> getAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
+    public Call<AssetbookingByUserResponse> getAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
 }

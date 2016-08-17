@@ -9,7 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.squareup.picasso.Picasso;
 import com.zircon.app.BuildConfig;
 import com.zircon.app.R;
@@ -37,6 +42,16 @@ public class HomeFragment extends AbsFragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+   /* InterstitialAd mInterstitialAd;
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("E272D0E02F9646D08082058A0B814575")
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
+    }*/
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -45,6 +60,11 @@ public class HomeFragment extends AbsFragment {
         mSocietyNameView = (TextView) view.findViewById(R.id.society_name);
         mSocietyAddressView = (TextView) view.findViewById(R.id.society_address);
         mSocietyCallView = (ImageView) view.findViewById(R.id.society_call);
+
+   /*     mInterstitialAd = new InterstitialAd(getActivity());
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+
+        requestNewInterstitial();*/
 
         Picasso.with(getActivity()).setIndicatorsEnabled(false);
         Picasso.with(getActivity()).load(SessionManager.getLoggedInSociety().societypic).placeholder(R.drawable.ic_1_2).into(mSocietyImgView);
@@ -55,7 +75,7 @@ public class HomeFragment extends AbsFragment {
         mSocietyCallView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AbsBaseActivity)getActivity()).call(SessionManager.getLoggedInSociety().contactDetail);
+                ((AbsBaseActivity) getActivity()).call(SessionManager.getLoggedInSociety().contactDetail);
             }
         });
     }

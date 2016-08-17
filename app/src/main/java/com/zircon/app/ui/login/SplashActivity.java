@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.firebase.iid.FirebaseInstanceId;*/
+import com.google.android.gms.ads.MobileAds;
 import com.zircon.app.R;
 import com.zircon.app.ZirconApp;
 import com.zircon.app.model.LoginCredentials;
@@ -34,19 +35,8 @@ public class SplashActivity extends AbsLoginActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-7208785423388103~4681070926");
         setContentView(R.layout.activity_splash);
-
-        /*new AsyncTask<Void,Void,String>(){
-            @Override
-            protected String doInBackground(Void... params) {
-                return FirebaseInstanceId.getInstance().getToken();
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                Log.e("Token","Token "+s);
-            }
-        }.execute(null,null,null);*/
 
         mProgressView = findViewById(R.id.login_progress);
 
@@ -94,22 +84,6 @@ public class SplashActivity extends AbsLoginActivity {
     }
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-
-//    private boolean checkPlayServices() {
-//        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-//        if (resultCode != ConnectionResult.SUCCESS) {
-//            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
-//                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
-//                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
-//            } else {
-//                Toast.makeText(ZirconApp.getAppContext(), "This device doesn't support Play services, App will not work normally",
-//                        Toast.LENGTH_LONG).show();
-//                finish();
-//            }
-//            return false;
-//        }
-//        return true;
-//    }
 
     /**
      * Shows the progress UI and hides the login form.

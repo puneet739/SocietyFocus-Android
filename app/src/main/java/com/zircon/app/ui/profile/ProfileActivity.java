@@ -1,5 +1,8 @@
 package com.zircon.app.ui.profile;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -9,8 +12,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -24,8 +26,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.squareup.picasso.Picasso;
 
 import com.zircon.app.R;
 import com.zircon.app.model.LoginCredentials;
@@ -43,9 +43,6 @@ import com.zircon.app.utils.PermissionCheck;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -87,6 +84,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
     String userChoosenTask;
     int isImageChanged = 0;
     Bitmap Imagebitmap;
+    private View mProgressView;
 
     @Override
     protected int getContentViewResID() {
@@ -97,9 +95,10 @@ public class ProfileActivity extends BaseABNoNavActivity {
     protected void initViews() {
 
         setTitle("Edit Profile");
+        mProgressView = findViewById(R.id.login_progress);
 
         mChangeImageView = (TextView) findViewById(R.id.changepic);
-        mProfileImageView = (ImageView) findViewById(R.id.image);
+//        mProfileImageView = (ImageView) findViewById(R.id.image);
 
         mOccupationView = (EditText) findViewById(R.id.profile_occupation);
         mFirstNameView = (EditText) findViewById(R.id.profile_name);
@@ -112,15 +111,13 @@ public class ProfileActivity extends BaseABNoNavActivity {
         mChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onChangePassword();
+                Intent intent = new Intent(ProfileActivity.this, Changepassword.class);
+                startActivity(intent);
             }
         });
 
         user = SessionManager.getLoggedInUser();
 
-        if (!TextUtils.isEmpty(user.profilePic)) {
-            Picasso.with(ProfileActivity.this).load(user.profilePic).placeholder(R.drawable.profile_name).into(mProfileImageView);
-        }
         mFirstNameView.setText(user.firstname);
         mAddressView.setText((user.address == null ? "" : user.address));
         mPhoneNoView.setText((user.contactNumber == null ? "" : user.contactNumber));
@@ -135,6 +132,29 @@ public class ProfileActivity extends BaseABNoNavActivity {
         });
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    protected void showProgress(final boolean show) {
+        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+        // for very easy animations. If available, use these APIs to fade-in
+        // the progress spinner.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            mProgressView.animate().setDuration(shortAnimTime).alpha(
+                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
+            });
+        } else {
+            // The ViewPropertyAnimator APIs are not available, so simply show
+            // and hide the relevant UI components.
+            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        }
+    }
+
     public void galleryIntent() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -146,7 +166,6 @@ public class ProfileActivity extends BaseABNoNavActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
-
 
     public void onChangeImage() {
         final CharSequence[] items = {"Take Photo", "Choose from Library",
@@ -190,39 +209,6 @@ public class ProfileActivity extends BaseABNoNavActivity {
         }
     }
 
-    private void performCrop(String picUri) {
-        try {
-            //Start Crop Activity
-
-            Intent cropIntent = new Intent("com.android.camera.action.CROP");
-            // indicate image type and Uri
-            File f = new File(picUri);
-            Uri contentUri = Uri.fromFile(f);
-
-            cropIntent.setDataAndType(contentUri, "image/*");
-            // set crop properties
-            cropIntent.putExtra("crop", "true");
-            // indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 1);
-            cropIntent.putExtra("aspectY", 1);
-            // indicate output X and Y
-            cropIntent.putExtra("outputX", 280);
-            cropIntent.putExtra("outputY", 280);
-
-            // retrieve data on return
-            cropIntent.putExtra("return-data", true);
-            // start the activity - we handle returning in onActivityResult
-            startActivityForResult(cropIntent, RESULT_CROP);
-        }
-        // respond to users whose devices do not support the crop action
-        catch (ActivityNotFoundException anfe) {
-            // display an error message
-            String errorMessage = "your device doesn't support the crop action!";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -240,15 +226,6 @@ public class ProfileActivity extends BaseABNoNavActivity {
                 onCaptureImageResult(data);
             }
         }
-        /*if (requestCode == RESULT_CROP) {
-            if (resultCode == Activity.RESULT_OK) {
-                Bundle extras = data.getExtras();
-                Bitmap selectedBitmap = extras.getParcelable("data");
-                // Set The Bitmap Data To ImageView
-                mProfileImageView.setImageBitmap(selectedBitmap);
-                mProfileImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            }
-        }*/
     }
 
     private void onSelectFromGalleryResult(Intent data) {
@@ -271,12 +248,10 @@ public class ProfileActivity extends BaseABNoNavActivity {
                 imgDecodableString = cursor.getString(columnIndex);
                 cursor.close();
 
-                // Set the Image in ImageView after decoding the String
-                mProfileImageView.setImageBitmap(BitmapFactory
-                        .decodeFile(imgDecodableString));
                 Imagebitmap = BitmapFactory.decodeFile(imgDecodableString);
                 isImageChanged = 1;
                 Log.e("ImageBytes", "Image: " + imgDecodableString);
+                UploadImagetoServer();
             } else {
                 Toast.makeText(this, "You haven't picked Image",
                         Toast.LENGTH_LONG).show();
@@ -289,33 +264,15 @@ public class ProfileActivity extends BaseABNoNavActivity {
 
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-
-        /*File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + ".jpg");*/
-        /*String base64Image = Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
-        Log.e("ImageBase64", "Image: data:image/jpeg;base64," + base64Image);
-        Log.e("ImageBytes", "Image: " + bytes.toByteArray());
-        FileOutputStream fo;*/
-        /*try {
-            destination.createNewFile();
-            fo = new FileOutputStream(destination);
-            fo.write(bytes.toByteArray());
-            fo.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         Imagebitmap = thumbnail;
         isImageChanged = 1;
-        mProfileImageView.setImageBitmap(thumbnail);
+        UploadImagetoServer();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action:
-                //  this.finish();
                 onChangeProfileSubmit(item.getActionView());
                 return true;
             default:
@@ -333,7 +290,6 @@ public class ProfileActivity extends BaseABNoNavActivity {
         boolean isDataChanged = false;
         if (isImageChanged == 1) {
             isDataChanged = true;
-            UploadImagetoServer();
         } else if (isImageChanged == -1) {
             isDataChanged = true;
             user.profilePic = null;
@@ -389,6 +345,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
     }
 
     private void UploadImagetoServer() {
+        showProgress(true);
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         Imagebitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
@@ -396,25 +353,29 @@ public class ProfileActivity extends BaseABNoNavActivity {
         UploadImage image = new UploadImage("data:image/jpeg;base64," + encodedImage, "filename.jpg");
 
         Call<UploadImageResponse> call = HTTP.getAPI().uploadimage(image);
+
         call.enqueue(new AuthCallBack<UploadImageResponse>() {
+
+
             @Override
             protected void onAuthError() {
-
+                showProgress(false);
             }
 
             @Override
             protected void parseSuccessResponse(Response<UploadImageResponse> response) {
                 if (response.isSuccess()) {
+                    showProgress(false);
                     if (response.body().getBody() != null) {
                         Log.e("Imageresponse", "ImageURL " + response.body().getBody());
-                        user.profilePic = response.body().getBody();
-                        isImageChanged=0;
+                        user.profilePic = "https://"+response.body().getBody();
                     }
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
+                showProgress(false);
                 t.getLocalizedMessage();
             }
         });

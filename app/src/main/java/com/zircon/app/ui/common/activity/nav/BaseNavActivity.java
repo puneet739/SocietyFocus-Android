@@ -1,10 +1,7 @@
 package com.zircon.app.ui.common.activity.nav;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,9 +16,9 @@ import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.squareup.picasso.Picasso;
-import com.zircon.app.BuildConfig;
-import com.zircon.app.Changepassword;
 import com.zircon.app.R;
 import com.zircon.app.model.User;
 import com.zircon.app.model.response.GraphPhotoResponse;
@@ -61,6 +58,14 @@ public abstract class BaseNavActivity extends AbsBaseActivity
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(getLayoutResID());
         setupFAB(getFABClickListener());
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("E272D0E02F9646D08082058A0B814575")
+                .build();
+        if (mAdView != null)
+            mAdView.loadAd(adRequest);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);

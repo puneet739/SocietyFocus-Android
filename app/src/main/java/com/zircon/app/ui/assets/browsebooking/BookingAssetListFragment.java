@@ -1,26 +1,20 @@
 package com.zircon.app.ui.assets.browsebooking;
 
-import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
-import com.zircon.app.model.AssetBooking;
-import com.zircon.app.model.response.BookAssetListResponse;
-import com.zircon.app.ui.assets.browse.AssetsListAdapter;
+import com.zircon.app.model.response.AssetbookingByUserResponse;
 import com.zircon.app.ui.common.fragment.AbsBaseListFragment;
 import com.zircon.app.utils.AuthCallBack;
 import com.zircon.app.utils.HTTP;
 import com.zircon.app.utils.SessionManager;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Response;
 
 
 public class BookingAssetListFragment extends AbsBaseListFragment {
-    private Call<BookAssetListResponse> call;
+    private Call<AssetbookingByUserResponse> call;
 
     @Override
     public RecyclerView.ItemDecoration getItemDecoration() {
@@ -57,14 +51,14 @@ public class BookingAssetListFragment extends AbsBaseListFragment {
         if (call == null) {
             return;
         }
-        call.enqueue(new AuthCallBack<BookAssetListResponse>() {
+        call.enqueue(new AuthCallBack<AssetbookingByUserResponse>() {
             @Override
             protected void onAuthError() {
                 //TODO handle this
             }
 
             @Override
-            protected void parseSuccessResponse(Response<BookAssetListResponse> response) {
+            protected void parseSuccessResponse(Response<AssetbookingByUserResponse> response) {
                 if (response.body() != null && response.body().body != null && response.body().body.size() > 0){
                     ((BookingAssetListAdapter)mListAdapter).addAll(response.body().body);
                 }
@@ -91,8 +85,8 @@ public class BookingAssetListFragment extends AbsBaseListFragment {
 
  /*   @Override
     public void fetchList() {
-        Call<BookAssetListResponse> call = HTTP.getAPI().getAssetBooking(SessionManager.getToken());
-        call.enqueue(new AuthCallBack<BookAssetListResponse>() {
+        Call<AssetbookingByUserResponse> call = HTTP.getAPI().getAssetBooking(SessionManager.getToken());
+        call.enqueue(new AuthCallBack<AssetbookingByUserResponse>() {
             @Override
             protected void onAuthError() {
                 ((AbsBaseActivity)getActivity()).onAuthError(new AbsBaseActivity.IAuthCallback() {
