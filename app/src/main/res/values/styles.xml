@@ -18,6 +18,12 @@
         <item name="colorPrimaryDark">#0fff</item>
     </style>
 
+    <style name="EditProfile">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="SplashTheme" parent="AppTheme.NoActionBar">
@@ -27,14 +33,18 @@
 
     <style name="Text" parent="TextAppearance.AppCompat" />
 
-    <style name="Text.ScreenHeader" parent="Text" >
+    <style name="Text.ScreenHeader" parent="Text">
         <item name="android:textSize">@dimen/screen_header_text_size</item>
         <item name="android:layout_marginTop">@dimen/screen_header_margin</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="Text.Header" parent="Text" >
+    <style name="EditTextProfile">
+        <item name="colorAccent">@color/mdtp_line_dark</item>
+    </style>
+
+    <style name="Text.Header" parent="Text">
         <item name="android:textSize">@dimen/header_text_size</item>
         <item name="android:layout_marginTop">@dimen/header_margin</item>
         <item name="android:gravity">center</item>

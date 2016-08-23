@@ -3,16 +3,31 @@
 <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent">-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/main_appbar"></include>
+    <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/EditProfile">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/main.toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="5dp"
+            app:popupTheme="@style/EditProfile" />
+    </android.support.design.widget.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -37,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:alpha="1"
+                    android:alpha=".5"
                     android:padding="7dp"
                     android:text="BASIC INFORMATION"
                     android:textColor="@color/black" />
@@ -51,7 +66,8 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="40dp"
-                        android:alpha=".4"
+                        android:alpha=".2"
+                        android:padding="5dp"
                         android:src="@drawable/profile_name" />
 
                     <EditText
@@ -59,12 +75,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginRight="10dp"
+                        android:background="@color/white"
                         android:hint="@string/prompt_name"
                         android:inputType="textCapSentences"
                         android:maxLines="1"
                         android:paddingLeft="10dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:theme="@style/EditTextProfile" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/lighter_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,20 +97,28 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="40dp"
-                        android:alpha=".4"
+                        android:alpha=".2"
+                        android:padding="5dp"
                         android:src="@drawable/city" />
 
                     <EditText
                         android:id="@+id/profile_address"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_marginRight="10dp"
+                        android:background="@color/white"
                         android:hint="@string/prompt_address"
                         android:inputType="textCapSentences"
                         android:maxLines="1"
                         android:paddingLeft="10dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:theme="@style/EditTextProfile" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/lighter_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -97,7 +128,8 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="40dp"
-                        android:alpha=".4"
+                        android:alpha=".2"
+                        android:padding="5dp"
                         android:src="@drawable/short_text_black" />
 
                     <EditText
@@ -105,12 +137,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
+                        android:background="@color/white"
                         android:hint="@string/prompt_aboutyourself"
                         android:inputType="textMultiLine"
                         android:maxLength="100"
+                        android:minHeight="50dp"
                         android:paddingLeft="10dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:theme="@style/EditTextProfile" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/lighter_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -120,7 +160,8 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="40dp"
-                        android:alpha=".4"
+                        android:alpha=".2"
+                        android:padding="5dp"
                         android:src="@drawable/occuptation" />
 
                     <EditText
@@ -128,11 +169,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
+                        android:background="@color/white"
                         android:hint="Occupation"
                         android:maxLines="1"
+                        android:minHeight="50dp"
                         android:paddingLeft="10dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:theme="@style/EditTextProfile" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/lighter_gray" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -142,7 +191,8 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="40dp"
-                        android:alpha=".4"
+                        android:alpha=".2"
+                        android:padding="5dp"
                         android:src="@drawable/phone_black" />
 
                     <EditText
@@ -150,11 +200,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
+                        android:background="@color/white"
                         android:hint="@string/prompt_phoneno"
                         android:inputType="phone"
                         android:maxLines="1"
+                        android:minHeight="50dp"
                         android:paddingLeft="10dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:theme="@style/EditTextProfile" />
                 </LinearLayout>
 
                 <TextView
@@ -162,7 +215,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:alpha="1"
+                    android:alpha=".7"
                     android:gravity="center_horizontal"
                     android:padding="7dp"
                     android:text="PROFILE PICTURE"
@@ -177,40 +230,44 @@
                         android:id="@+id/changepic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/image"
-                        android:alpha=".7"
                         android:drawableLeft="@android:drawable/ic_menu_gallery"
                         android:gravity="center_vertical"
-                        android:padding="5dp"
-                        android:text="Change Picture"
+                        android:padding="10dp"
+                        android:text="    Change Picture"
                         android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/textline"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@+id/changepic"
+                        android:background="@color/lighter_gray" />
 
                     <TextView
                         android:id="@+id/removepic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/changepic"
-                        android:layout_toRightOf="@+id/image"
-                        android:alpha=".7"
+                        android:layout_below="@+id/textline"
                         android:drawableLeft="@android:drawable/ic_delete"
                         android:gravity="center_vertical"
-                        android:padding="5dp"
-                        android:text="Remove Picture"
+                        android:padding="10dp"
+                        android:text="    Remove Picture"
                         android:textSize="17sp" />
 
                 </RelativeLayout>
 
                 <Button
                     android:id="@+id/changepassword"
-                    android:layout_width="wrap_content"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_toRightOf="@+id/textview"
                     android:alpha="1"
                     android:background="@drawable/border_black"
                     android:drawableLeft="@android:drawable/ic_menu_edit"
                     android:padding="7dp"
-                    android:text="Change Password" />
+                    android:text="Change Password"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cardview_dark_background" />
 
 
             </LinearLayout>

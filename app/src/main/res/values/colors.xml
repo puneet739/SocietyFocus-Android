@@ -9,6 +9,7 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="Login_BG">#222222</color>
+    <color name="lighter_gray">#ddd</color>
 
 </resources>
 

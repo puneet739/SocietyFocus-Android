@@ -1,6 +1,7 @@
 package com.zircon.app.utils.datapasser;
 
 import com.zircon.app.model.User;
+import com.zircon.app.model.response.NotificationResponse;
 
 /**
  * Created by jyotishman on 20/03/16.
@@ -8,6 +9,16 @@ import com.zircon.app.model.User;
 public class UserPasser {
 
     private static UserPasser instance;
+
+    private NotificationResponse notificationResponse;
+
+    public  NotificationResponse getNotificationResponse() {
+        return notificationResponse;
+    }
+
+    public  void setNotificationResponse(NotificationResponse notificationResponse) {
+        this.notificationResponse = notificationResponse;
+    }
 
     private UserPasser(){
 
@@ -30,6 +41,7 @@ public class UserPasser {
     }
 
     public void clear(){
-        user = null;
+        notificationResponse = null;
+
     }
 }
