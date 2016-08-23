@@ -367,8 +367,8 @@ public class ProfileActivity extends BaseABNoNavActivity {
                 if (response.isSuccess()) {
                     showProgress(false);
                     if (response.body().getBody() != null) {
-                        Log.e("Imageresponse", "ImageURL " + response.body().getBody());
-                        user.profilePic = "https://"+response.body().getBody();
+                        Toast.makeText(ProfileActivity.this, "ImageLoaded successfully!!\n Save the details before leaving the page", Toast.LENGTH_LONG).show();
+                        user.profilePic = response.body().getBody();
                     }
                 }
             }
@@ -376,6 +376,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
             @Override
             public void onFailure(Throwable t) {
                 showProgress(false);
+                Toast.makeText(ProfileActivity.this, "Image could not be loaded successfully!!\n Something went wrong!", Toast.LENGTH_LONG).show();
                 t.getLocalizedMessage();
             }
         });
