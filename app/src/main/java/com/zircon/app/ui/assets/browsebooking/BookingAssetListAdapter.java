@@ -1,28 +1,21 @@
 package com.zircon.app.ui.assets.browsebooking;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.vision.text.Text;
 import com.squareup.picasso.Picasso;
 import com.zircon.app.R;
-import com.zircon.app.model.AssetBooking;
 import com.zircon.app.model.response.AssetBookingList;
 import com.zircon.app.model.response.BaseResponse;
-import com.zircon.app.ui.residents.MemberDetaisActivity;
-import com.zircon.app.utils.datapasser.UserPasser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
