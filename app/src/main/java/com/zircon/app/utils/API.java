@@ -107,7 +107,7 @@ public interface API {
     @GET(API_PATH_PATTERN + "v1/complaint/get/{id}")
     public Call<ComplaintCommentResponse> getComplaintDetails(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken, @Path("id") String complaintID);
 
-    @POST(API_PATH_PATTERN + "user/modifyuser")
+    @POST(API_PATH_PATTERN + "user/modifymyuser")
     public Call<UserResponse> modifyUser(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken, @Body User user);
 
     @GET(API_PATH_PATTERN + "user/modify/oldpass/{oldpassword}/newpass/{newpassword}/email/{email}")
