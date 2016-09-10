@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.zircon.app.utils.KeyUtils;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 
 /**
@@ -16,8 +18,8 @@ public class ZirconApp extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         appContext = this;
-        /*KeyUtils.getKeyHash();*/
     }
 
 
