@@ -66,7 +66,6 @@ public class HomeFragment extends AbsFragment {
 
         requestNewInterstitial();*/
 
-        Picasso.with(getActivity()).setIndicatorsEnabled(false);
         Picasso.with(getActivity()).load(SessionManager.getLoggedInSociety().societypic).placeholder(R.drawable.ic_1_2).into(mSocietyImgView);
 
         mSocietyNameView.setText(SessionManager.getLoggedInSociety().name);
