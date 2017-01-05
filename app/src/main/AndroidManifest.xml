@@ -65,6 +65,13 @@
         <activity
             android:name=".ui.panel.MembersNavActivity"
             android:label="@string/app_name" />
+        <activity
+            android:name=".ui.noticeboard.AllNoticesActivity"
+            android:parentActivityName=".ui.home.MainNavActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.home.MainNavActivity" />
+        </activity>
 
         <!-- complaint begin -->
         <activity
@@ -108,7 +115,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".ui.common.Notification.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -130,6 +136,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.login.SplashActivity" />
         </activity>
+        <activity android:name=".ui.carsearch.CarSearchNavActivity" />
+        <activity android:name=".ui.noticeboard.NoticeDetailActivity"></activity>
     </application>
 
 </manifest>

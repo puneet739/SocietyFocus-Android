@@ -46,11 +46,11 @@ public class Changepassword extends BaseABNoNavActivity {
     protected void initViews() {
         setTitle("Change Password");
 
-        mChangePasswordButton= (Button) findViewById(R.id.changepassword);
+        mChangePasswordButton = (Button) findViewById(R.id.changepassword);
         mOldPassView = (EditText) findViewById(R.id.oldpassword);
         mNewPassView = (EditText) findViewById(R.id.newpassword);
-        mConfirmNewPassView= (EditText) findViewById(R.id.confirmpassword);
-        user= SessionManager.getLoggedInUser();
+        mConfirmNewPassView = (EditText) findViewById(R.id.confirmpassword);
+        user = SessionManager.getLoggedInUser();
         mChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +70,7 @@ public class Changepassword extends BaseABNoNavActivity {
                                 LoginCredentials credentials = SessionManager.getLoginCredentials();
                                 credentials.password = newPass;
                                 SessionManager.setLoginCredentials(credentials);
+                                ClearFields();
                                 Toast.makeText(Changepassword.this, "Password Changed Successfully", Toast.LENGTH_SHORT).show();
                             } else {
                                 Log.e("Profile", "test " + response.message() + " " + response.errorBody());
@@ -113,5 +114,12 @@ public class Changepassword extends BaseABNoNavActivity {
             mNewPassView.setError("Cannot be less than 2 characters");
         }
         return isValid;
+    }
+
+    public void ClearFields() {
+        mOldPassView.requestFocus();
+        mOldPassView.setText("");
+        mNewPassView.setText("");
+        mConfirmNewPassView.setText("");
     }
 }

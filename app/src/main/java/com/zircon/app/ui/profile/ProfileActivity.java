@@ -14,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -102,8 +103,7 @@ public class ProfileActivity extends BaseABNoNavActivity {
         mProgressView = findViewById(R.id.login_progress);
 
         mChangeImageView = (TextView) findViewById(R.id.changepic);
-//        mProfileImageView = (ImageView) findViewById(R.id.image);
-
+        mRemoveImageView = (TextView) findViewById(R.id.removepic);
         mOccupationView = (EditText) findViewById(R.id.profile_occupation);
         mFirstNameView = (EditText) findViewById(R.id.profile_name);
         mAddressView = (EditText) findViewById(R.id.profile_address);
@@ -132,6 +132,12 @@ public class ProfileActivity extends BaseABNoNavActivity {
             @Override
             public void onClick(View v) {
                 onChangeImage();
+            }
+        });
+        mRemoveImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onRemoveProfilePic();
             }
         });
     }
@@ -310,14 +316,14 @@ public class ProfileActivity extends BaseABNoNavActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action:
-                onChangeProfileSubmit(item.getActionView());
+                onChangeProfileSubmit();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public void onChangeProfileSubmit(View view) {
+    public void onChangeProfileSubmit() {
         firstName = mFirstNameView.getText().toString().trim();
         address = mAddressView.getText().toString().trim();
         phoneNo = mPhoneNoView.getText().toString().trim();
@@ -367,18 +373,16 @@ public class ProfileActivity extends BaseABNoNavActivity {
             protected void parseSuccessResponse(Response<UserResponse> response) {
                 if (response.isSuccess()) {
                     SessionManager.setLoggedInUser(user);
-                    Toast.makeText(ProfileActivity.this, "Details updated successfully", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(mLinearView, "Details updated successfully", Snackbar.LENGTH_SHORT).show();
                 } else {
                     Log.e("Temporary", "error message " + response.message());
                 }
             }
-
             @Override
             public void onFailure(Throwable t) {
                 t.getLocalizedMessage();
             }
         });
-
     }
 
     private void UploadImagetoServer() {
@@ -404,8 +408,9 @@ public class ProfileActivity extends BaseABNoNavActivity {
                 if (response.isSuccess()) {
                     showProgress(false);
                     if (response.body().getBody() != null) {
-                        Toast.makeText(ProfileActivity.this, "ImageLoaded successfully!!\n Save the details before leaving the page", Toast.LENGTH_LONG).show();
                         user.profilePic = response.body().getBody();
+                        Snackbar.make(mLinearView, "ImageLoaded successfully!!", Snackbar.LENGTH_SHORT).show();
+                        onChangeProfileSubmit();
                     }
                 }
             }
@@ -419,57 +424,27 @@ public class ProfileActivity extends BaseABNoNavActivity {
         });
     }
 
-    public void onChangePassword() {
-        mOldPassView = (EditText) findViewById(R.id.oldpassword);
-        mNewPassView = (EditText) findViewById(R.id.newpassword);
-        mConfirmNewPassView = (EditText) findViewById(R.id.confirmpassword);
-
-        oldPass = mOldPassView.getText().toString();
-        newPass = mNewPassView.getText().toString();
-        newPassConfirm = mConfirmNewPassView.getText().toString();
-
-        if (TextUtils.isEmpty(oldPass)) {
-            mOldPassView.setError("Enter this field");
-            mOldPassView.requestFocus();
-        } else if (!oldPass.equals(SessionManager.getLoginCredentials().password)) {
-            mOldPassView.setError("Invalid Password");
-            mOldPassView.requestFocus();
-
-        } else if (TextUtils.isEmpty(newPass)) {
-            mNewPassView.setError("Enter this field");
-            mNewPassView.requestFocus();
-
-        } else if (!newPass.equals(newPassConfirm)) {
-            mConfirmNewPassView.setError("Passwords donot match");
-            mConfirmNewPassView.requestFocus();
-
-        } else {
-
-            Call<BaseResponse> call = HTTP.getAPI().modifyPassword(SessionManager.getToken(), oldPass, newPass, SessionManager.getLoggedInUser().email);
-            call.enqueue(new Callback<BaseResponse>() {
-                @Override
-                public void onResponse(Response<BaseResponse> response) {
-                    if (response.isSuccess()) {
-                        LoginCredentials credentials = SessionManager.getLoginCredentials();
-                        credentials.password = newPass;
-                        SessionManager.setLoginCredentials(credentials);
-                        Toast.makeText(ProfileActivity.this, "Password Changed Successfully", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Log.e("Profile", "test " + response.message() + " " + response.errorBody());
-                    }
-                }
-
-                @Override
-                public void onFailure(Throwable t) {
-                    t.getLocalizedMessage();
-                    Log.e("Profile", "test " + t.getLocalizedMessage());
-                }
-            });
-        }
-    }
-
     @Override
     protected View.OnClickListener getFABClickListener() {
         return null;
+    }
+
+    public void onRemoveProfilePic() {
+        new AlertDialog.Builder(ProfileActivity.this)
+                .setTitle("Confirm?")
+                .setMessage("Are you sure you want to delete the profile picture?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        isImageChanged = -1;
+                        onChangeProfileSubmit();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show();
     }
 }

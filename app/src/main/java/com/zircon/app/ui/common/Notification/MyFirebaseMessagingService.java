@@ -22,6 +22,7 @@ import com.zircon.app.utils.datapasser.UserPasser;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -62,6 +63,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             resultIntent = new Intent(this, SplashActivity.class);
         } else {
             resultIntent = new Intent(this, SplashActivity.class);
+            mBuilder.setStyle(new NotificationCompat.BigTextStyle()
+                    .bigText(notification.getMessage()));
         }
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
@@ -77,12 +80,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setSound(defaultSoundUri)
                 .setContentIntent(resultPendingIntent)
                 .setContentText(notification.getMessage());
-
-        int mNotificationId = 001;
+        Random random = new Random();
+        int m = random.nextInt(9999 - 1000) + 1000;
         NotificationManager mNotifyMgr =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        mNotifyMgr.notify(mNotificationId, mBuilder.build());
-
+        mNotifyMgr.notify(m, mBuilder.build());
     }
 
 }

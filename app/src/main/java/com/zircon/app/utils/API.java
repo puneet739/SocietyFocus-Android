@@ -1,20 +1,24 @@
 package com.zircon.app.utils;
 
+import com.zircon.app.model.AddNewNotice;
 import com.zircon.app.model.User;
 import com.zircon.app.model.request.BookAsset;
 import com.zircon.app.model.request.Complaint;
 import com.zircon.app.model.request.UploadImage;
 import com.zircon.app.model.response.AddCommentResponse;
+import com.zircon.app.model.response.AddNewNoticeResponse;
+import com.zircon.app.model.response.AssetbookingByUserResponse;
 import com.zircon.app.model.response.AssetsResponse;
 import com.zircon.app.model.response.BaseResponse;
-import com.zircon.app.model.response.AssetbookingByUserResponse;
 import com.zircon.app.model.response.BookAssetResponse;
+import com.zircon.app.model.response.CarSearchResponse;
 import com.zircon.app.model.response.ComplaintCommentResponse;
 import com.zircon.app.model.response.ComplaintListResponse;
 import com.zircon.app.model.response.ComplaintResponse;
 import com.zircon.app.model.response.GraphPhotoResponse;
 import com.zircon.app.model.response.LoginResponse;
 import com.zircon.app.model.response.MembersResponse;
+import com.zircon.app.model.response.NoticeBoardResponse;
 import com.zircon.app.model.response.PanelResponse;
 import com.zircon.app.model.response.SocietyListResponse;
 import com.zircon.app.model.response.UploadImageResponse;
@@ -118,4 +122,13 @@ public interface API {
 
     @POST(API_PATH_PATTERN + "society/asset/getassetbyuser")
     public Call<AssetbookingByUserResponse> getAssetBooking(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
+
+    @GET(API_PATH_PATTERN + "vehicle/getvehilcebynumber/{vehiclenumber}")
+    public Call<CarSearchResponse> searchVehicleNumber(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken, @Path("vehiclenumber") int vehiclenumber);
+
+    @GET(API_PATH_PATTERN + "society/noticeboard/getall")
+    public Call<NoticeBoardResponse> getAllNotices(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken);
+
+    @POST(API_PATH_PATTERN + "society/noticeboard/add")
+    public Call<AddNewNoticeResponse> addNewNotice(@Header(IPostLoginHeaderParams.AUTH_TOKEN) String authToken, @Body AddNewNotice newNotice);
 }

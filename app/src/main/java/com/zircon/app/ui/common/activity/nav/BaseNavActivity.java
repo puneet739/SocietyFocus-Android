@@ -2,14 +2,14 @@ package com.zircon.app.ui.common.activity.nav;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,12 +24,14 @@ import com.zircon.app.model.User;
 import com.zircon.app.model.response.GraphPhotoResponse;
 import com.zircon.app.ui.assets.browse.AssetsNavActivity;
 import com.zircon.app.ui.assets.browsebooking.BrowseAssetBookingActivity;
+import com.zircon.app.ui.carsearch.CarSearchNavActivity;
 import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 import com.zircon.app.ui.complaint.AllComplaintsActivity;
 import com.zircon.app.ui.complaint.ComplaintActivity;
 import com.zircon.app.ui.home.MainNavActivity;
 import com.zircon.app.ui.login.LoginActivity;
+import com.zircon.app.ui.noticeboard.AllNoticesActivity;
 import com.zircon.app.ui.profile.ProfileActivity;
 import com.zircon.app.ui.residents.MembersNavActivity;
 import com.zircon.app.utils.HTTP;
@@ -127,7 +129,7 @@ public abstract class BaseNavActivity extends AbsBaseActivity
                     @Override
                     public void onResponse(Response<GraphPhotoResponse> response) {
                         if (response.isSuccess()) {
-                            Picasso.with(BaseNavActivity.this).load(response.body().getData().getUrl()).into(mProfileImageView);
+                            Picasso.with(BaseNavActivity.this).load(response.body().getData().getUrl()).placeholder(R.drawable.ic_avatar).into(mProfileImageView);
                         }
                     }
 
@@ -193,9 +195,11 @@ public abstract class BaseNavActivity extends AbsBaseActivity
             intent = new Intent(BaseNavActivity.this, ComplaintActivity.class);
         } else if (id == R.id.nav_complaint_track) {
             intent = new Intent(BaseNavActivity.this, AllComplaintsActivity.class);
-        } /*else if (id == R.id.nav_changepassword) {
-            intent = new Intent(BaseNavActivity.this, Changepassword.class);
-        }*/
+        } else if (id == R.id.nav_carnumber) {
+            intent = new Intent(BaseNavActivity.this, CarSearchNavActivity.class);
+        } else if (id == R.id.nav_viewnotice) {
+            intent = new Intent(BaseNavActivity.this, AllNoticesActivity.class);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 

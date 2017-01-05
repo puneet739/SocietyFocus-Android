@@ -11,9 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.zircon.app.BuildConfig;
 import com.zircon.app.R;
-import com.zircon.app.ui.common.activity.AbsBaseActivity;
 import com.zircon.app.ui.common.fragment.AbsFragment;
 import com.zircon.app.utils.SessionManager;
 
@@ -56,7 +54,7 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       setContentView(R.layout.activity_cab_no_nav_main);
+        setContentView(R.layout.activity_cab_no_nav_main);
         setupFAB(getFABClickListener());
         setupImageClick(getImageViewClickListener());
 
@@ -71,10 +69,10 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
 
         setTitle(title);
 
-        mToolbar        = (Toolbar) findViewById(R.id.main_toolbar);
-        mTitle          = (TextView) findViewById(R.id.main_textview_title);
+        mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        mTitle = (TextView) findViewById(R.id.main_textview_title);
         mTitleContainer = (LinearLayout) findViewById(R.id.main_linearlayout_title);
-        mAppBarLayout   = (AppBarLayout) findViewById(R.id.main_appbar);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.main_appbar);
 
         mExpandedHeaderView = (TextView) findViewById(R.id.main_expanded_title);
         mExpandedTagLineView = (TextView) findViewById(R.id.main_expanded_subtitle);
@@ -82,9 +80,9 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
         mCirleImage = (CircleImageView) findViewById(R.id.cirle_image);
         String circleURL = getCircleImageURL();
 
-        if (circleURL !=  null && circleURL.trim().length() > 0 ){
+        if (circleURL != null && circleURL.trim().length() > 0) {
 
-            Picasso.with(this).load(circleURL).into(mCirleImage);
+            Picasso.with(this).load(circleURL).placeholder(R.drawable.ic_avatar).into(mCirleImage);
         }
 
         mExpandedHeaderView.setText(getExpandedHeaderText());
@@ -99,7 +97,7 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
 
 
-        mFragmentLayout = (RelativeLayout)findViewById(R.id.fragment_container);
+        mFragmentLayout = (RelativeLayout) findViewById(R.id.fragment_container);
 
         mFragment = getFragment();
 
@@ -107,6 +105,7 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mFragment).commit();
 
     }
+
     public void setupImageClick(View.OnClickListener clickListener) {
         CircleImageView mCirleImage = (CircleImageView) findViewById(R.id.cirle_image);
         if (mCirleImage == null)
@@ -114,6 +113,7 @@ public abstract class BaseCABNoNavActivity extends BaseNoNavActivity implements 
         mCirleImage.setOnClickListener(clickListener);
 
     }
+
     protected abstract View.OnClickListener getImageViewClickListener();
 
     protected abstract String getCircleImageURL();
