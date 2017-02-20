@@ -22,3 +22,15 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// use the ext object to add any properties to the project
+subprojects {
+    ext.globalCompileSdkVersion = 23
+    ext.globalBuildToolsVersion = "24.0.1"
+    ext.globalTargetSdkVersion = 23
+    ext.globalMinimumSdkVersion = 16
+
+    ext.globalAndroidSupportLibVersion = "23.4.0"
+    ext.globalFirbaseVersion = "9.4.0"
+}
+

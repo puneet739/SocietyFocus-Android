@@ -16,9 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.newrelic.agent.android.NewRelic;
 import com.zircon.app.R;
 import com.zircon.app.ui.login.LoginActivity;
 import com.zircon.app.utils.Log;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by jikoobaruah on 09/02/16.
@@ -29,35 +34,23 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
     private static final int REQUEST_SMS = 3;
     public static final int REQUEST_LOGIN = 2;
 
+    private static final String ACTIVITY_LOAD = "activity_load";
+    private static final String ACTIVITY_NAME = "activity_name";
+
+    protected FirebaseAnalytics firebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Fabric.with(this, new Crashlytics());
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        Bundle args = new Bundle();
+        args.putString(ACTIVITY_NAME, getClass().getSimpleName());
+        firebaseAnalytics.logEvent(ACTIVITY_LOAD,args);
     }
-
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     public void setupFAB(View.OnClickListener clickListener) {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

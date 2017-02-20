@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="facebook_app_id">1749929318576139</string>
+    <string name="banner_ad_unit_id">ca-app-pub-7208785423388103/6157804128</string>
+    <string name="crashlytics_key">ca454e4ab6b5092df0a7451acc17d157689e2c9c</string>
+    <string name="new_relic">AA797bbbaf5cf3b76dbc480d0f69aeeeede98c36ad
+</string>
+
+</resources>
