@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.zircon.app.NoticeDetailFragment;
 import com.zircon.app.model.NoticeBoard;
 import com.zircon.app.model.response.BaseResponse;
 import com.zircon.app.ui.common.activity.nonav.BaseCABNoNavActivity;
