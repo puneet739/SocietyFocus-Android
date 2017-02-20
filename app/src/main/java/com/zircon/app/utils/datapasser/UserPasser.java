@@ -1,5 +1,6 @@
 package com.zircon.app.utils.datapasser;
 
+import com.zircon.app.model.NoticeBoard;
 import com.zircon.app.model.User;
 import com.zircon.app.model.response.NotificationResponse;
 
@@ -11,6 +12,15 @@ public class UserPasser {
     private static UserPasser instance;
 
     private NotificationResponse notificationResponse;
+    private NoticeBoard SingleNotice;
+
+    public NoticeBoard getSingleNotice() {
+        return SingleNotice;
+    }
+
+    public void setSingleNotice(NoticeBoard singleNotice) {
+        SingleNotice = singleNotice;
+    }
 
     public  NotificationResponse getNotificationResponse() {
         return notificationResponse;
