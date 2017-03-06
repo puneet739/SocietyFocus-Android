@@ -29,8 +29,8 @@ android {
         minSdkVersion globalMinimumSdkVersion
         targetSdkVersion globalTargetSdkVersion
 
-        versionCode 27022019
-        versionName "1.4"
+        versionCode 27022021
+        versionName "1.6"
 
         multiDexEnabled true
     }
@@ -39,6 +39,9 @@ android {
         javaMaxHeapSize "4g"
     }
 
+    lintOptions {
+        abortOnError false
+    }
 
     signingConfigs {
         release {
